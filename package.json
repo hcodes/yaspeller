@@ -1,0 +1,32 @@
+{
+    "author": {
+        "name": "Denis Seleznev",
+        "email": "hcodes@yandex.ru",
+        "url": "https://github.com/hcodes"
+    },
+    "name": "yaspeller",
+    "main": "index.js",
+    "description": "Проверка опечаток в тексте",
+    "version": "0.1.0",
+    "homepage": "https://github.com/hcodes/yaspeller",
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/hcodes/yaspeller.git"
+    },
+    "keywords": [
+        "templates", "typos", "text", "опечатки", "текст"
+    ],    
+    "dependencies": {
+        "commander": "~1.3",
+        "request": "~2.47",
+        "xml2js": "~0.4"
+    },
+    "devDependencies": {},
+    "optionalDependencies": {},
+    "engines": {
+        "node": "*"
+    },
+    "bin": {
+        "yaspeller": "./bin/yaspeller.js"
+    }
+}
