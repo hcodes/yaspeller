@@ -6,8 +6,8 @@
     },
     "name": "yaspeller",
     "main": "index.js",
-    "description": "Проверка опечаток в тексте",
-    "version": "0.1.0",
+    "description": "Проверка опечаток в текстах, файлах и сайтах",
+    "version": "0.1.1",
     "homepage": "https://github.com/hcodes/yaspeller",
     "repository": {
         "type": "git",
@@ -27,6 +27,6 @@
         "node": "*"
     },
     "bin": {
-        "yaspeller": "./bin/yaspeller.js"
+        "yaspeller": "./bin/cli.js"
     }
 }
