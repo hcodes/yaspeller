@@ -1,6 +1,7 @@
 yaspeller
 =========
 Средство поиска опечаток в текстах, в файлах и на сайтах.
+Используется API [Яндекс.Спеллера](https://tech.yandex.ru/speller/doc/dg/concepts/About-docpage/)
 
 ## Установка
 `npm install yaspeller -g`
