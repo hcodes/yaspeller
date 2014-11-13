@@ -160,7 +160,6 @@ function checkSitemap(url, options) {
 program
     .version(JSON.parse(fs.readFileSync(__dirname + '/../package.json')).version)
     .usage('[options] <file-or-directory-or-link>')
-    .option('-d, --debug', 'debugging mode')
     .parse(process.argv);
 
 var resource = process.argv[2],
