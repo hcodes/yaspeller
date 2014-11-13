@@ -7,7 +7,7 @@
     "name": "yaspeller",
     "main": "index.js",
     "description": "Проверка опечаток в текстах, файлах и сайтах",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "homepage": "https://github.com/hcodes/yaspeller",
     "repository": {
         "type": "git",
