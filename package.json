@@ -1,32 +1,37 @@
 {
-    "author": {
-        "name": "Denis Seleznev",
-        "email": "hcodes@yandex.ru",
-        "url": "https://github.com/hcodes"
-    },
-    "name": "yaspeller",
-    "main": "index.js",
-    "description": "Проверка опечаток в текстах, в файлах и на сайтах",
-    "version": "0.1.3",
-    "homepage": "https://github.com/hcodes/yaspeller",
-    "repository": {
-        "type": "git",
-        "url": "git://github.com/hcodes/yaspeller.git"
-    },
-    "keywords": [
-        "typos", "text", "опечатки", "текст", "Яндекс.Спеллер", "Yandex.Speller"
-    ],    
-    "dependencies": {
-        "commander": "~1.3",
-        "request": "~2.47",
-        "xml2js": "~0.4"
-    },
-    "devDependencies": {},
-    "optionalDependencies": {},
-    "engines": {
-        "node": "*"
-    },
-    "bin": {
-        "yaspeller": "./bin/cli.js"
-    }
+  "author": {
+    "name": "Denis Seleznev",
+    "email": "hcodes@yandex.ru",
+    "url": "https://github.com/hcodes"
+  },
+  "name": "yaspeller",
+  "main": "index.js",
+  "description": "Проверка опечаток в текстах, в файлах и на сайтах",
+  "version": "0.1.3",
+  "license": "MIT",
+  "homepage": "https://github.com/hcodes/yaspeller",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/hcodes/yaspeller.git"
+  },
+  "bugs": {
+    "url": "https://github.com/hcodes/yaspeller/issues"
+  },
+  "keywords": [
+    "typos", "text", "опечатки", "текст", "Яндекс.Спеллер", "Yandex.Speller"
+  ],
+  "dependencies": {
+    "commander": "~1.3",
+    "request": "~2.47",
+    "isutf8": "~1.0",
+    "xml2js": "~0.4"
+  },
+  "devDependencies": {},
+  "optionalDependencies": {},
+  "engines": {
+    "node": "*"
+  },
+  "bin": {
+    "yaspeller": "./bin/cli.js"
+  }
 }
