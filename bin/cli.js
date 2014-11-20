@@ -1,189 +1,248 @@
 #!/usr/bin/env node
 
 var fs = require('fs'),
-    pth = require('path'),
-    request = require('request'),
-    yaspeller = require('../lib/yaspeller'),
+    chalk = require('chalk'),
+    isutf8 = require('isutf8'),
+    Q = require('q'),
     program = require('commander'),
-    xml2js = require('xml2js'),
+    yaspeller = require('../lib/yaspeller'),
+    printDebug = require('../lib/print_debug'),
     FILENAME_DICTIONARY = '.yaspeller.dictionary.json',
-    FILE_EXTENSIONS = ['wiki', 'md', 'txt', 'text', 'html', 'htm', 'json', 'js', 'css', 'xml', 'svg'],
-    isDir = function(path) {
-        return fs.statSync(path).isDirectory();
-    },
-    dictionary = [];
+    dictionary;
 
-if(fs.existsSync(FILENAME_DICTIONARY)) {
-    dictionary = JSON.parse(fs.readFileSync(FILENAME_DICTIONARY, 'utf-8'));
-}
+function getDictionary(filename) {
+    var dict;
 
-function printErrors(resource, words) {
-    var bufWords = delDuplicates(words);
-
-    bufWords = markRuEnSymbols(bufWords);
-
-    if(bufWords.length) {
-        console.log('Resource: ' + resource);
-        console.log('typos: ' + bufWords.join(', ') + '\n');
-    }
-}
-
-function firstUpperCase(word) {
-    return word.substr(0, 1).toUpperCase() + word.substr(1);
-}
-
-function delDuplicates(ar) {
-    var props = {},
-        result = [];
-
-    ar.forEach(function(el) {
-        if(props[el]) {
-            props[el]++;
-        } else {
-            props[el] = 1;
-        }
-    });
-
-    Object.keys(props).forEach(function(key) {
-        if(props[key] > 1) {
-            result.push(key + ' (' + props[key] + ')');
-        } else {
-            result.push(key);
-        }
-    });
-
-    return result.sort();
-}
-
-function markRuEnSymbols(words) {
-    var result = [];
-    words.forEach(function(el) {
-        if(el.search(/[a-z]/i) !== -1 && el.search(/[а-яё]/i) !== -1) {
-            result.push(el + ' (en: ' + el.replace(/[а-яё]/gi, '*') + ', ru: ' + el.replace(/[a-z]/gi, '*') + ')');
-        } else {
-            result.push(el);
-        }
-    });
-
-    return result;
-}
-
-function getWords(data) {
-    var res = [];
-    data.forEach(function(el) {
-        var word = firstUpperCase(el.word);
-        var find = false;
-        dictionary.forEach(function(el2) {
-            var dword = firstUpperCase(el2);
-            if(dword === word) {
-                find = true;
+    printDebug('get/check dictionary: ' + filename);
+    if(fs.existsSync(filename)) {
+        try {
+            dict = fs.readFileSync(filename);
+            if(!isutf8(dict)) {
+                console.error(filename + ': is not utf-8');
+                process.exit(1);
             }
-        });
+
+            dictionary = JSON.parse(dict.toString('utf-8'));
+            printDebug('use dictionary: ' + filename);
+        } catch(e) {
+            console.error(filename + ': error parsing JSON');
+            process.exit(1);
+        }
+    }
+
+    return dict || [];
+}
+
+function getTypos(data) {
+    var buf = [];
+    data.forEach(function(el) {
+        var find = false;
+        // ERROR_UNKNOWN_WORD: Слова нет в словаре
+        if(el.code === 1) {
+            dictionary.some(function(el2) {
+                if(el2 === el.word) {
+                    find = true;
+                }
+
+                return find;
+            });
+        }
 
         if(!find) {
-            res.push(el.word);
+            buf.push(el.word);
         }
     });
 
-    return res;
-}
+    var obj = {};
+    buf.forEach(function(word) {
+        if(!obj[word]) {
+            obj[word] = {
+                count: 0,
+                comment: []
+            };
 
-function checkText(text, resource, options) {
-    // Если в тексте нет русских символов, то проверять не нужно
-    if(!text || (options.lang === 'ru' && text.search(/[а-яё]/i) === -1)) {
-        return;
-    }
-
-    yaspeller.checkText(text, options.lang, options.options, options.format, function(error, data) {
-        var words = getWords(data);
-        printErrors(resource, words);
-    });
-}
-
-function checkFile(file, options) {
-    var text = fs.readFileSync(file, 'utf-8');
-    checkText(text, file, options);
-}
-
-function checkUrl(url, options) {
-    request.get(url, function(error, response, text) {
-        checkText(text, url, options);
-    });
-}
-
-function checkDir(dir, options) {
-    var files = findFiles(Array.isArray(dir) ? dir : [dir]);
-    files.forEach(function(file) {
-        checkFile(file, options);
-    });
-}
-
-function findFiles(files) {
-    var res = [],
-    regExp = new RegExp('\.(' + FILE_EXTENSIONS.join('|') + ')$', 'i'),
-    find = function (path) {
-        var files = fs.readdirSync(path);
-        files.forEach(function (el) {
-            var file = pth.join(path, el);
-            if (isDir(file)) {
-                find(file);
-            } else if (file.search(regExp) !== -1) {
-                res.push(file);
+            if(word.search(/[a-z]/i) > -1 && word.search(/[а-яё]/i) > -1) {
+                obj[word].comment = [
+                    chalk.red('en: ' + word.replace(/[а-яё]/gi, '*')),
+                    chalk.green('ru: ' + word.replace(/[a-z]/gi, '*'))
+                ];
             }
-        });
-    };
+        }
 
-    files.forEach(function (el) {
-        if(isDir(el)) {
-            find(el);
-        } else {
-            res.push(el);
+        obj[word].count++;
+    });
+
+    var typos = [];
+    Object.keys(obj).forEach(function(w) {
+        var comment = [],
+            item = obj[w];
+        if(item.count > 1) {
+            comment.push(chalk.cyan('count: ' + item.count));
+        }
+
+        if(item.comment.length) {
+            comment = comment.concat(item.comment);
+        }
+
+        typos.push(w + (comment.length ? ' (' + comment.join(', ') + ')' : ''));
+    });
+
+    return typos;
+}
+
+function getRepeatWords(data) {
+    var words = [];
+    data.forEach(function(el) {
+        // ERROR_REPEAT_WORD: Повтор слова
+        if(el.code === 2) {
+            words.push(el.word);
         }
     });
 
-    return res;
+    return words;
 }
 
-function checkSitemap(url, options) {
-    request.get(url, function(error, response, xml) {
-        var parser = new xml2js.Parser();
-        parser.parseString(xml, function (err, result) {
-            result.urlset.url.forEach(function(el) {
-                el.loc.forEach(function(url) {
-                    checkUrl(url, options);
-                });
-            });
-        });
+function getCapitalisation(data) {
+    var words = [];
+    data.forEach(function(el) {
+        // ERROR_CAPITALIZATION: Неверное употребление прописных и строчных букв
+        if(el.code === 3) {
+            words.push(el.word);
+        }
     });
+
+    return words;
+}
+
+function hasManyErrors(data) {
+    var hasErrors = false;
+    data.some(function(el) {
+        // ERROR_TOO_MANY_ERRORS: Текст содержит слишком много ошибок
+        if(el.code === 4) {
+            hasErrors = true;
+            return true;
+        }
+        return false;
+    });
+
+    return hasErrors;
+}
+
+function getTextError(title, words) {
+    var SEPARATOR = '\n-----';
+    return chalk.cyan(title + ': ' + words.length + SEPARATOR + '\n') + words.join('\n') + chalk.cyan(SEPARATOR);
+}
+
+function buildResource(err, data) {
+    if(err) {
+        console.error(chalk.red(data));
+    } else {
+        var typos = getTypos(data.data),
+            repeatWords = getRepeatWords(data.data),
+            capitalization = getCapitalisation(data.data),
+            textErrors = [];
+
+        if(hasManyErrors(data.data)) {
+            textErrors.push(chalk.red('Too many errors'));
+        }
+
+        if(repeatWords.length) {
+            textErrors.push(getTextError('Repeat words', repeatWords));
+        }
+
+        if(capitalization.length) {
+            textErrors.push(getTextError('Capitalization', capitalization));
+        }
+
+        if(typos.length) {
+            textErrors.push(getTextError('Typos', typos));
+        }
+
+        if(textErrors.length) {
+            console.error(chalk.red.bold('[ERR]'), data.resource);
+            console.error(textErrors.join('\n') + '\n');
+        } else {
+            console.log(chalk.bold.green('[OK]'), data.resource);
+        }
+    }
 }
 
 program
-    .version(JSON.parse(fs.readFileSync(__dirname + '/../package.json')).version)
-    .usage('[options] <file-or-directory-or-link>')
+    .version(require('../package.json').version)
+    .usage('[options] <file-or-directory-or-link...>')
+    .option('-l, --lang <s>', 'Langs: ru, en, tr. Default: "en,ru"')
+    .option('-d, --debug', 'Debug mode')
+    .option('-di, --dictionary <s>', 'json file for own dictionary')
+    .option('-f, --format <s>', 'Formats: plain or html. Default: plain')
     .parse(process.argv);
 
-var resource = process.argv[2],
-    timeA = Date.now(),
-    opt = {format: 'html', lang: 'ru'};
+var startTime = Date.now(),
+    settings = {};
 
-if(!resource) {
+if(program.lang) {
+    settings.lang = program.lang;
+}
+
+if(program.format) {
+    settings.format = program.format;
+}
+
+if(!program.args.length) {
     program.help();
 }
 
-if(resource.search(/^https?:/) !== -1) {
-    if(resource.search(/sitemap\.xml$/) !== -1) {
-        checkSitemap(resource, opt);
-    } else {
-        checkUrl(resource, opt);
-    }
-} else {
-    if(fs.existsSync(resource)) {
-        if(isDir(resource)) {
-            checkDir(resource, opt);
+var hasErrors = false,
+    onNext = function(data) {
+        data.forEach(function(el) {
+            if(el[0]) {
+                hasErrors = true;
+            }
+
+            buildResource(el[0], el[1]);
+        });
+    };
+
+yaspeller.setDebug(program.debug);
+
+dictionary = getDictionary(program.dictionary || FILENAME_DICTIONARY);
+
+var queries = [];
+program.args.forEach(function(resource) {
+    queries.push(Q.Promise(function(resolve) {
+        if(resource.search(/^https?:/) > -1) {
+            if(resource.search(/sitemap\.xml$/) > -1) {
+                yaspeller.checkSitemap(resource, function(err, data) {
+                    onNext(err, data);
+                    resolve();
+                }, settings);
+            } else {
+                yaspeller.checkUrl(resource, function(err, data) {
+                    onNext([[err, data]]);
+                    resolve();
+                }, settings);
+            }
         } else {
-            checkFile(resource, opt);
+            if(fs.existsSync(resource)) {
+                if(fs.statSync(resource).isDirectory()) {
+                    yaspeller.checkDir(resource, function(err, data) {
+                        onNext(err, data);
+                        resolve();
+                    }, settings);
+                } else {
+                    yaspeller.checkFile(resource, function(err, data) {
+                        onNext([[err, data]]);
+                        resolve();
+                    }, settings);
+                }
+            } else {
+                onNext([[true, Error(resource + ': is not exists')]]);
+                resolve();
+            }
         }
-    } else {
-        console.log(resource + ': No such file or directory');
-    }
-}
+    }));
+});
+
+Q.all(queries).then(function() {
+    console.log(chalk.magenta('Build finished: ' + ((+new Date() - startTime) / 1000) + ' sec.'));
+    process.exit(hasErrors ? 1 : 0);
+});
