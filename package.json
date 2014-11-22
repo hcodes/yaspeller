@@ -21,8 +21,8 @@
     "typos", "text", "опечатки", "текст", "Яндекс.Спеллер", "Yandex.Speller"
   ],
   "dependencies": {
-    "commander": "~1.3",
-    "request": "~2.47",
+    "commander": "~2.5",
+    "request": "~2.x",
     "isutf8": "~1.0",
     "xml2js": "~0.4"
   },
