@@ -22,7 +22,7 @@ function getDictionary(filename) {
                 process.exit(1);
             }
 
-            dictionary = JSON.parse(dict.toString('utf-8'));
+            dict = JSON.parse(dict.toString('utf-8'));
             program.debug && printDebug('use dictionary: ' + filename);
         } catch(e) {
             console.error(filename + ': error parsing JSON');

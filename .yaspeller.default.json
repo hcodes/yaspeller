@@ -1,5 +1,8 @@
 {
-  "excludeFiles": [],
+  "excludeFiles": [
+    ".git",
+    "node_modules"
+  ],
   "format": "auto",
   "lang": "en,ru",
   "fileExtensions": [
