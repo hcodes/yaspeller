@@ -7,7 +7,7 @@
   "name": "yaspeller",
   "main": "index.js",
   "description": "Проверка опечаток в текстах, в файлах и на сайтах",
-  "version": "0.3.1",
+  "version": "0.5.0",
   "license": "MIT",
   "homepage": "https://github.com/hcodes/yaspeller",
   "repository": {
@@ -26,7 +26,8 @@
     "isutf8": "~1.0",
     "xml2js": "~0.4",
     "chalk": "0.5.1",
-    "q": "~1.1.2"
+    "q": "~1.1.2",
+    "minimatch": "~2.0.1"
   },
   "devDependencies": {
     "mocha": "2.0.x",
@@ -43,6 +44,7 @@
     "test": "npm run-script jshint && npm run-script check-style && npm run-script unit-test-coverage",
     "jscs": "./node_modules/.bin/jscs .",
     "jshint": "./node_modules/.bin/jshint .",
+    "yaspeller": ".bin/cli .",
     "unit-test": "./node_modules/.bin/mocha -u bdd -R spec --recursive test",
     "unit-test-coverage": "./node_modules/.bin/istanbul cover ./node_modules/mocha/bin/_mocha -- -u bdd -R spec --recursive test"  
   },

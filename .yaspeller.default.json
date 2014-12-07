@@ -1,0 +1,28 @@
+{
+  "excludeFiles": [],
+  "format": "auto",
+  "lang": "en,ru",
+  "fileExtensions": [
+    "css",
+    "md",
+    "htm",
+    "html",
+    "js",
+    "json",
+    "txt",
+    "text",
+    "svg",
+    "wiki",
+    "xhtml",
+    "xml"
+  ],
+  "html": [
+    "md",
+    "html",
+    "htm",
+    "xhtml",
+    "xml",
+    "svg",
+    "wiki"
+  ]
+}

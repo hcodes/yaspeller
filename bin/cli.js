@@ -3,17 +3,17 @@
 var fs = require('fs'),
     chalk = require('chalk'),
     isutf8 = require('isutf8'),
-    Q = require('q'),
     program = require('commander'),
+    Q = require('q'),
     yaspeller = require('../lib/yaspeller'),
-    printDebug = require('../lib/print_debug'),
+    printDebug = require('../lib/debug'),
     FILENAME_DICTIONARY = '.yaspeller.dictionary.json',
     dictionary;
 
 function getDictionary(filename) {
     var dict;
 
-    printDebug('get/check dictionary: ' + filename);
+    program.debug && printDebug('get/check dictionary: ' + filename);
     if(fs.existsSync(filename)) {
         try {
             dict = fs.readFileSync(filename);
@@ -23,7 +23,7 @@ function getDictionary(filename) {
             }
 
             dictionary = JSON.parse(dict.toString('utf-8'));
-            printDebug('use dictionary: ' + filename);
+            program.debug && printDebug('use dictionary: ' + filename);
         } catch(e) {
             console.error(filename + ': error parsing JSON');
             process.exit(1);
@@ -170,22 +170,42 @@ function buildResource(err, data) {
 program
     .version(require('../package.json').version)
     .usage('[options] <file-or-directory-or-link...>')
-    .option('-l, --lang <s>', 'Langs: ru, en, tr. Default: "en,ru"')
     .option('-d, --debug', 'Debug mode')
     .option('-di, --dictionary <s>', 'json file for own dictionary')
     .option('-f, --format <s>', 'Formats: plain or html. Default: plain')
+    .option('-l, --lang <s>', 'Langs: ru, en, tr. Default: "en,ru"')
+    .option('-n, --no-colors', 'Clean output without colors')
     .parse(process.argv);
 
 var startTime = Date.now(),
-    settings = {};
+    settings = {},
+    jsonAtDirFilename = './.yaspeller.json',
+    jsonAtDir = {},
+    json = JSON.parse(fs.readFileSync(__dirname + '/../.yaspeller.default.json', 'utf-8'));
 
-if(program.lang) {
-    settings.lang = program.lang;
-}
+    program.debug && printDebug('get/check ./yaspeller.json');
+    if(fs.existsSync(jsonAtDirFilename)) {
+        try {
+            jsonAtDir = JSON.parse(fs.readFileSync(jsonAtDirFilename));
+            program.debug && printDebug('using ./.yaspeller.json');
+        } catch(e) {
+            console.error('error parsing ./.yaspeller.json');
+            process.exit(1);
+        }
+    }
 
-if(program.format) {
-    settings.format = program.format;
-}
+    Object.keys(jsonAtDir).forEach(function(key) {
+        json[key] = jsonAtDir[key];
+    });
+
+    yaspeller.setHtmlExts(json.html);
+    yaspeller.setFileExtensions(json.fileExtensions);
+    yaspeller.setExcludeFiles(json.excludeFiles);
+
+    settings.lang = program.lang || json.lang;
+    settings.format = program.format || json.format;
+
+chalk.enabled = program.colors;
 
 if(!program.args.length) {
     program.help();
