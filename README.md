@@ -1,10 +1,9 @@
 yaspeller
 =========
-[![NPM version](https://badge.fury.io/js/yaspeller.svg)](http://badge.fury.io/js/yaspeller)
+[![NPM version](https://badge.fury.io/js/typograf.svg)](http://badge.fury.io/js/yaspeller)
 [![Build Status](https://travis-ci.org/hcodes/yaspeller.png?branch=master)](https://travis-ci.org/hcodes/yaspeller)
 [![Coverage Status](https://coveralls.io/repos/hcodes/yaspeller/badge.png?branch=master)](https://coveralls.io/r/hcodes/yaspeller)
 [![Dependency Status](https://gemnasium.com/hcodes/yaspeller.svg)](https://gemnasium.com/hcodes/yaspeller)
-
 
 Средство поиска опечаток в текстах, в файлах и на сайтах.
 

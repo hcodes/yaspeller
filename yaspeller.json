@@ -1,0 +1,45 @@
+{
+  "common": {
+    "format": "auto",
+    "lang": "en,ru",
+    "options": {}
+  },
+  "fileExtensions": {
+    "css": {
+      "format": "plain"
+    },
+    "md": {
+      "format": "html"
+    },
+    "htm": {
+      "format": "html"
+    },
+    "html": {
+      "format": "html"
+    },
+    "xhtml": {
+      "format": "html"
+    },
+    "js": {
+      "format": "plain"
+    },
+    "json": {
+      "format": "plain"
+    },
+    "txt": {
+      "format": "plain"
+    },
+    "text": {
+      "format": "plain"
+    },
+    "svg": {
+      "format": "html"
+    },
+    "wiki": {
+      "format": "html"
+    },
+    "xml": {
+      "format": "html"
+    }
+  }
+}
