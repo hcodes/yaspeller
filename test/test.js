@@ -42,7 +42,10 @@ describe('API', function() {
         });
     });
 
-    yaspeller.setFileExtensions(['txt']);
+    yaspeller.setParams({
+        fileExtensions: ['txt']
+    });
+
     it('checkDir', function(done) {
         yaspeller.checkDir('./test/texts/checkdir', function(data) {
             data.forEach(function(el) {
