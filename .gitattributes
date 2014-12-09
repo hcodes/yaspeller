@@ -1,4 +1,6 @@
-*.js		eol=lf
-*.css		eol=lf
-*.json		eol=lf
-*.md		eol=lf
+*.js    eol=lf
+*.css    eol=lf
+*.json    eol=lf
+*.md    eol=lf
+.yaspellerrc    eol=lf
+.jscsrc    eol=lf

@@ -6,32 +6,14 @@ var fs = require('fs'),
     program = require('commander'),
     Q = require('q'),
     yaspeller = require('../lib/yaspeller'),
-    printDebug = require('../lib/debug'),
-    FILENAME_DICTIONARY = '.yaspeller.dictionary.json',
-    dictionary;
-
-function getDictionary(filename) {
-    var dict;
-
-    program.debug && printDebug('get/check dictionary: ' + filename);
-    if(fs.existsSync(filename)) {
-        try {
-            dict = fs.readFileSync(filename);
-            if(!isutf8(dict)) {
-                console.error(filename + ': is not utf-8');
-                process.exit(1);
-            }
-
-            dict = JSON.parse(dict.toString('utf-8'));
-            program.debug && printDebug('use dictionary: ' + filename);
-        } catch(e) {
-            console.error(filename + ': error parsing JSON');
-            process.exit(1);
-        }
-    }
-
-    return dict || [];
-}
+    mDebug = require('../lib/debug'),
+    printDebug = mDebug.print,
+    startTime = Date.now(),
+    dictionary = [],
+    settings = {},
+    jsonAtDir = {},
+    json = JSON.parse(fs.readFileSync(__dirname + '/../.yaspellerrc.default.json', 'utf-8')),
+    jsonAtDirFilename = './.yaspellerrc';
 
 function getTypos(data) {
     var buf = [];
@@ -158,11 +140,12 @@ function buildResource(err, data) {
             textErrors.push(getTextError('Typos', typos));
         }
 
+        var time = data.time ? ' ' + chalk.magenta(data.time + ' ms') : '';
         if(textErrors.length) {
-            console.error(chalk.red.bold('[ERR]'), data.resource);
+            console.error(chalk.red('[ERR]') +  ' ' + data.resource + time);
             console.error(textErrors.join('\n') + '\n');
         } else {
-            console.log(chalk.bold.green('[OK]'), data.resource);
+            program.onlyErrors || console.log(chalk.green('[OK]') + ' ' + data.resource + time);
         }
     }
 }
@@ -170,92 +153,102 @@ function buildResource(err, data) {
 program
     .version(require('../package.json').version)
     .usage('[options] <file-or-directory-or-link...>')
-    .option('-d, --debug', 'Debug mode')
-    .option('-di, --dictionary <s>', 'json file for own dictionary')
-    .option('-f, --format <s>', 'Formats: plain or html. Default: plain')
-    .option('-l, --lang <s>', 'Langs: ru, en, tr. Default: "en,ru"')
-    .option('-n, --no-colors', 'Clean output without colors')
+    .option('-f, --format <value>', 'formats: plain or html. Default: plain')
+    .option('-l, --lang <value>', 'langs: ru, en, tr. Default: "en,ru"')
+    .option('--report', 'generate html report - ./yaspeller.html')
+    .option('--dictionary <file>', 'json file for own dictionary')
+    .option('--no-colors', 'clean output without colors')
+    .option('--only-errors', 'output only errors')
+    .option('--debug', 'debug mode')
     .parse(process.argv);
-
-var startTime = Date.now(),
-    settings = {},
-    jsonAtDirFilename = './.yaspeller.json',
-    jsonAtDir = {},
-    json = JSON.parse(fs.readFileSync(__dirname + '/../.yaspeller.default.json', 'utf-8'));
-
-    program.debug && printDebug('get/check ./yaspeller.json');
-    if(fs.existsSync(jsonAtDirFilename)) {
-        try {
-            jsonAtDir = JSON.parse(fs.readFileSync(jsonAtDirFilename));
-            program.debug && printDebug('using ./.yaspeller.json');
-        } catch(e) {
-            console.error('error parsing ./.yaspeller.json');
-            process.exit(1);
-        }
-    }
-
-    Object.keys(jsonAtDir).forEach(function(key) {
-        json[key] = jsonAtDir[key];
-    });
-
-    yaspeller.setHtmlExts(json.html);
-    yaspeller.setFileExtensions(json.fileExtensions);
-    yaspeller.setExcludeFiles(json.excludeFiles);
-
-    settings.lang = program.lang || json.lang;
-    settings.format = program.format || json.format;
-
-chalk.enabled = program.colors;
-
+    
 if(!program.args.length) {
     program.help();
 }
 
-var hasErrors = false,
-    onNext = function(data) {
-        data.forEach(function(el) {
-            if(el[0]) {
-                hasErrors = true;
-            }
+printDebug('get/check ./yaspellerrc');
+if(fs.existsSync(jsonAtDirFilename)) {
+    try {
+        jsonAtDir = JSON.parse(fs.readFileSync(jsonAtDirFilename));
+        printDebug('Using ' + jsonAtDirFilename);
+    } catch(e) {
+        console.error(chalk.red('Error parsing ' + jsonAtDirFilename));
+        process.exit(2);
+    }
+}
 
-            buildResource(el[0], el[1]);
-        });
+Object.keys(jsonAtDir).forEach(function(key) {
+    json[key] = jsonAtDir[key];
+});
+
+chalk.enabled = program.colors;
+
+mDebug.setDebug(program.debug);
+
+yaspeller.setHtmlExts(json.html);
+yaspeller.setFileExtensions(json.fileExtensions);
+yaspeller.setExcludeFiles(json.excludeFiles);
+
+settings.lang = program.lang || json.lang;
+settings.format = program.format || json.format;
+
+json.dictionary || (dictionary = json.dictionary);
+
+if(program.dictionary) {
+    if(fs.existsSync(program.dictionary)) {
+        printDebug('get/check dictionary: ' + program.dictionary);
+        try {
+            var bufDict = fs.readFileSync(program.dictionary);
+            if(!isutf8(bufDict)) {
+                console.error(program.dictionary + ': is not utf-8');
+                process.exit(2);
+            }
+            dictionary = JSON.parse(bufDict.toString('utf-8'));
+            printDebug('use dictionary: ' + program.dictionary);
+        } catch(e) {
+            console.error(program.dictionary + ': error parsing JSON');
+            process.exit(2);
+        }
+    } else {
+        console.error(program.dictionary + ': is not exists');
+        process.exit(2);
+    }
+}
+
+var hasErrors = false,
+    queries = [],
+    onResource = function(err, data) {
+        err || (hasErrors = true);
+        buildResource(err, data);
     };
 
-yaspeller.setDebug(program.debug);
-
-dictionary = getDictionary(program.dictionary || FILENAME_DICTIONARY);
-
-var queries = [];
 program.args.forEach(function(resource) {
     queries.push(Q.Promise(function(resolve) {
         if(resource.search(/^https?:/) > -1) {
             if(resource.search(/sitemap\.xml$/) > -1) {
-                yaspeller.checkSitemap(resource, function(err, data) {
-                    onNext(err, data);
+                yaspeller.checkSitemap(resource, function() {
                     resolve();
-                }, settings);
+                }, settings, onResource);
             } else {
                 yaspeller.checkUrl(resource, function(err, data) {
-                    onNext([[err, data]]);
+                    onResource(err, data);
                     resolve();
                 }, settings);
             }
         } else {
             if(fs.existsSync(resource)) {
                 if(fs.statSync(resource).isDirectory()) {
-                    yaspeller.checkDir(resource, function(err, data) {
-                        onNext(err, data);
+                    yaspeller.checkDir(resource, function() {
                         resolve();
-                    }, settings);
+                    }, settings, onResource);
                 } else {
                     yaspeller.checkFile(resource, function(err, data) {
-                        onNext([[err, data]]);
+                        onResource(err, data);
                         resolve();
                     }, settings);
                 }
             } else {
-                onNext([[true, Error(resource + ': is not exists')]]);
+                onResource(true, Error(resource + ': is not exists'));
                 resolve();
             }
         }
@@ -263,6 +256,6 @@ program.args.forEach(function(resource) {
 });
 
 Q.all(queries).then(function() {
-    console.log(chalk.magenta('Build finished: ' + ((+new Date() - startTime) / 1000) + ' sec.'));
+    program.onlyErrors || console.log(chalk.magenta('Build finished: ' + ((+new Date() - startTime) / 1000) + ' sec.'));
     process.exit(hasErrors ? 1 : 0);
 });
