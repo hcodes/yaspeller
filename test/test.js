@@ -5,7 +5,6 @@ var yaspeller = require('../lib/yaspeller'),
     urlGH = 'https://raw.githubusercontent.com/hcodes/yaspeller/master/test/texts/';
 
 describe('API', function() {
-    yaspeller.setDebug(true);
     it('checkFile', function(done) {
         yaspeller.checkFile('./test/texts/repeat_words.txt', function(err, data) {
             assert.equal(err, false);
@@ -43,7 +42,10 @@ describe('API', function() {
         });
     });
 
-    yaspeller.setFileExtensions(['txt']);
+    yaspeller.setParams({
+        fileExtensions: ['txt']
+    });
+
     it('checkDir', function(done) {
         yaspeller.checkDir('./test/texts/checkdir', function(data) {
             data.forEach(function(el) {
@@ -117,15 +119,6 @@ describe('API', function() {
         yaspeller.checkText(text, function(err, data) {
             assert.equal(err, false);
             assert.equal(data.length, 2);
-            done();
-        }, {lang: 'ru', format: 'plain'});
-    });
-
-    it('checkText as array', function(done) {
-        var text = fs.readFileSync('./test/texts/repeat_words.txt').toString('utf-8');
-        yaspeller.checkText([text, text], function(err, data) {
-            assert.equal(err, false);
-            assert.equal(data.length, 4);
             done();
         }, {lang: 'ru', format: 'plain'});
     });

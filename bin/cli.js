@@ -1,44 +1,26 @@
 #!/usr/bin/env node
-
+/* jshint maxlen: 500 */
 var fs = require('fs'),
+    async = require('async'),
     chalk = require('chalk'),
     isutf8 = require('isutf8'),
     program = require('commander'),
-    Q = require('q'),
     yaspeller = require('../lib/yaspeller'),
-    printDebug = require('../lib/debug'),
-    FILENAME_DICTIONARY = '.yaspeller.dictionary.json',
-    dictionary;
-
-function getDictionary(filename) {
-    var dict;
-
-    program.debug && printDebug('get/check dictionary: ' + filename);
-    if(fs.existsSync(filename)) {
-        try {
-            dict = fs.readFileSync(filename);
-            if(!isutf8(dict)) {
-                console.error(filename + ': is not utf-8');
-                process.exit(1);
-            }
-
-            dict = JSON.parse(dict.toString('utf-8'));
-            program.debug && printDebug('use dictionary: ' + filename);
-        } catch(e) {
-            console.error(filename + ': error parsing JSON');
-            process.exit(1);
-        }
-    }
-
-    return dict || [];
-}
+    mDebug = require('../lib/debug'),
+    printDebug = mDebug.print,
+    startTime = Date.now(),
+    dictionary = [],
+    settings = {},
+    jsonAtDir = {},
+    json = JSON.parse(fs.readFileSync(__dirname + '/../.yaspellerrc.default.json', 'utf-8')),
+    jsonAtDirFilename = './.yaspellerrc';
 
 function getTypos(data) {
     var buf = [];
     data.forEach(function(el) {
         var find = false;
-        // ERROR_UNKNOWN_WORD: Слова нет в словаре
-        if(el.code === 1) {
+
+        if(el.code === 1) { // ERROR_UNKNOWN_WORD
             dictionary.some(function(el2) {
                 if(el2 === el.word) {
                     find = true;
@@ -93,8 +75,7 @@ function getTypos(data) {
 function getRepeatWords(data) {
     var words = [];
     data.forEach(function(el) {
-        // ERROR_REPEAT_WORD: Повтор слова
-        if(el.code === 2) {
+        if(el.code === 2) { // ERROR_REPEAT_WORD
             words.push(el.word);
         }
     });
@@ -105,8 +86,7 @@ function getRepeatWords(data) {
 function getCapitalisation(data) {
     var words = [];
     data.forEach(function(el) {
-        // ERROR_CAPITALIZATION: Неверное употребление прописных и строчных букв
-        if(el.code === 3) {
+        if(el.code === 3) { // ERROR_CAPITALIZATION
             words.push(el.word);
         }
     });
@@ -117,8 +97,7 @@ function getCapitalisation(data) {
 function hasManyErrors(data) {
     var hasErrors = false;
     data.some(function(el) {
-        // ERROR_TOO_MANY_ERRORS: Текст содержит слишком много ошибок
-        if(el.code === 4) {
+        if(el.code === 4) { // ERROR_TOO_MANY_ERRORS
             hasErrors = true;
             return true;
         }
@@ -130,7 +109,7 @@ function hasManyErrors(data) {
 
 function getTextError(title, words) {
     var SEPARATOR = '\n-----';
-    return chalk.cyan(title + ': ' + words.length + SEPARATOR + '\n') + words.join('\n') + chalk.cyan(SEPARATOR);
+    return chalk.cyan(title + ': ' + words.length + SEPARATOR + '\n') + words.join('\n') + chalk.cyan(SEPARATOR) + '\n';
 }
 
 function buildResource(err, data) {
@@ -158,111 +137,160 @@ function buildResource(err, data) {
             textErrors.push(getTextError('Typos', typos));
         }
 
+        var time = data.time ? ' ' + chalk.magenta(data.time + ' ms') : '';
         if(textErrors.length) {
-            console.error(chalk.red.bold('[ERR]'), data.resource);
+            console.error(chalk.red('[ERR]') +  ' ' + data.resource + time);
             console.error(textErrors.join('\n') + '\n');
         } else {
-            console.log(chalk.bold.green('[OK]'), data.resource);
+            program.onlyErrors || console.log(chalk.green('[OK]') + ' ' + data.resource + time);
         }
     }
 }
 
+var options = [
+    ['ignoreUppercase', 'ignore words written in capital letters'],
+    ['ignoreDigits', 'ignore words with numbers, such as "avp17h4534"'],
+    ['ignoreUrls', 'ignore Internet addresses, email addresses and filenames'],
+    ['findRepeatWords', 'highlight repetitions of words, consecutive. For example, "I flew to to to Cyprus"'],
+    ['ignoreLatin', 'ignore words, written in Latin, for example, "madrid"'],
+    ['noSuggest', 'just check the text, without giving options to replace'],
+    ['flagLatin', 'celebrate words, written in Latin, as erroneous'],
+    ['byWords', 'do not use a dictionary environment (context) during the scan. This is useful in cases where the service is transmitted to the input of a list of individual words'],
+    ['ignoreCapitalization', 'ignore the incorrect use of UPPERCASE / lowercase letters, for example, in the word "moscow"'],
+    ['ignoreRomanNumerals', 'ignore Roman numerals ("I, II, III, ...")']
+];
+
 program
     .version(require('../package.json').version)
     .usage('[options] <file-or-directory-or-link...>')
-    .option('-d, --debug', 'Debug mode')
-    .option('-di, --dictionary <s>', 'json file for own dictionary')
-    .option('-f, --format <s>', 'Formats: plain or html. Default: plain')
-    .option('-l, --lang <s>', 'Langs: ru, en, tr. Default: "en,ru"')
-    .option('-n, --no-colors', 'Clean output without colors')
-    .parse(process.argv);
+    .option('-f, --format <value>', 'formats: plain or html. Default: plain')
+    .option('-l, --lang <value>', 'langs: ru, en, tr. Default: "en,ru"')
+    .option('--report', 'generate html report - ./yaspeller.html')
+    .option('--dictionary <file>', 'json file for own dictionary')
+    .option('--no-colors', 'clean output without colors')
+    .option('--max-requests', 'max count of requests at a time')
+    .option('--only-errors', 'output only errors')
+    .option('--debug', 'debug mode');
 
-var startTime = Date.now(),
-    settings = {},
-    jsonAtDirFilename = './.yaspeller.json',
-    jsonAtDir = {},
-    json = JSON.parse(fs.readFileSync(__dirname + '/../.yaspeller.default.json', 'utf-8'));
+options.forEach(function(el) {
+    program.option('--' + el[0].replace(/([A-Z])/g, '-$1').toLowerCase(), el[1]);
+});
 
-    program.debug && printDebug('get/check ./yaspeller.json');
-    if(fs.existsSync(jsonAtDirFilename)) {
-        try {
-            jsonAtDir = JSON.parse(fs.readFileSync(jsonAtDirFilename));
-            program.debug && printDebug('using ./.yaspeller.json');
-        } catch(e) {
-            console.error('error parsing ./.yaspeller.json');
-            process.exit(1);
-        }
-    }
-
-    Object.keys(jsonAtDir).forEach(function(key) {
-        json[key] = jsonAtDir[key];
-    });
-
-    yaspeller.setHtmlExts(json.html);
-    yaspeller.setFileExtensions(json.fileExtensions);
-    yaspeller.setExcludeFiles(json.excludeFiles);
-
-    settings.lang = program.lang || json.lang;
-    settings.format = program.format || json.format;
-
-chalk.enabled = program.colors;
+program.parse(process.argv);
 
 if(!program.args.length) {
     program.help();
 }
 
-var hasErrors = false,
-    onNext = function(data) {
-        data.forEach(function(el) {
-            if(el[0]) {
-                hasErrors = true;
-            }
+printDebug('get/check ./yaspellerrc');
+if(fs.existsSync(jsonAtDirFilename)) {
+    try {
+        jsonAtDir = JSON.parse(fs.readFileSync(jsonAtDirFilename));
+        printDebug('Using ' + jsonAtDirFilename);
+    } catch(e) {
+        console.error(chalk.red('Error parsing ' + jsonAtDirFilename));
+        process.exit(2);
+    }
+}
 
-            buildResource(el[0], el[1]);
-        });
+Object.keys(jsonAtDir).forEach(function(key) {
+    json[key] = jsonAtDir[key];
+});
+
+chalk.enabled = program.colors;
+
+mDebug.setDebug(program.debug);
+
+yaspeller.setParams({
+    maxRequests: program.maxRequests || json.maxRequests || 5,
+    htmlExts: json.html,
+    fileExtensions: json.fileExtensions,
+    excludeFiles: json.excludeFiles
+});
+
+settings.lang = program.lang || json.lang;
+settings.format = program.format || json.format;
+settings.options = json.options || {};
+
+program.noSuggest = !program.suggest;
+
+options.forEach(function(el) {
+    var key = el[0];
+    if(program[key]) {
+        settings.options[key] = true;
+    }
+});
+
+if(program.debug) {
+    Object.keys(settings.options).forEach(function(key) {
+        printDebug('option "' + key + '" is true');
+    });
+}
+
+json.dictionary || (dictionary = json.dictionary);
+
+if(program.dictionary) {
+    if(fs.existsSync(program.dictionary)) {
+        printDebug('get/check dictionary: ' + program.dictionary);
+        try {
+            var bufDict = fs.readFileSync(program.dictionary);
+            if(!isutf8(bufDict)) {
+                console.error(program.dictionary + ': is not utf-8');
+                process.exit(2);
+            }
+            dictionary = JSON.parse(bufDict.toString('utf-8'));
+            printDebug('use dictionary: ' + program.dictionary);
+        } catch(e) {
+            console.error(program.dictionary + ': error parsing JSON');
+            process.exit(2);
+        }
+    } else {
+        console.error(program.dictionary + ': is not exists');
+        process.exit(2);
+    }
+}
+
+var hasErrors = false,
+    tasks = [],
+    onResource = function(err, data) {
+        err || (hasErrors = true);
+        buildResource(err, data);
     };
 
-yaspeller.setDebug(program.debug);
-
-dictionary = getDictionary(program.dictionary || FILENAME_DICTIONARY);
-
-var queries = [];
 program.args.forEach(function(resource) {
-    queries.push(Q.Promise(function(resolve) {
+    tasks.push(function(cb) {
         if(resource.search(/^https?:/) > -1) {
             if(resource.search(/sitemap\.xml$/) > -1) {
-                yaspeller.checkSitemap(resource, function(err, data) {
-                    onNext(err, data);
-                    resolve();
-                }, settings);
+                yaspeller.checkSitemap(resource, function() {
+                    cb();
+                }, settings, onResource);
             } else {
                 yaspeller.checkUrl(resource, function(err, data) {
-                    onNext([[err, data]]);
-                    resolve();
+                    onResource(err, data);
+                    cb();
                 }, settings);
             }
         } else {
             if(fs.existsSync(resource)) {
                 if(fs.statSync(resource).isDirectory()) {
-                    yaspeller.checkDir(resource, function(err, data) {
-                        onNext(err, data);
-                        resolve();
-                    }, settings);
+                    yaspeller.checkDir(resource, function() {
+                        cb();
+                    }, settings, onResource);
                 } else {
                     yaspeller.checkFile(resource, function(err, data) {
-                        onNext([[err, data]]);
-                        resolve();
+                        onResource(err, data);
+                        cb();
                     }, settings);
                 }
             } else {
-                onNext([[true, Error(resource + ': is not exists')]]);
-                resolve();
+                onResource(true, Error(resource + ': is not exists'));
+                cb();
             }
         }
-    }));
+    });
 });
 
-Q.all(queries).then(function() {
-    console.log(chalk.magenta('Build finished: ' + ((+new Date() - startTime) / 1000) + ' sec.'));
+async.series(tasks, function() {
+    program.onlyErrors || console.log(chalk.magenta('Build finished: ' + ((+new Date() - startTime) / 1000) + ' sec.'));
     process.exit(hasErrors ? 1 : 0);
 });
