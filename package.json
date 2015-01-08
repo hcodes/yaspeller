@@ -22,7 +22,7 @@
   ],
   "dependencies": {
     "async": "0.9.0",
-    "commander": "~2.5",
+    "commander": "~2.6",
     "request": "~2.x",
     "isutf8": "~1.0",
     "xml2js": "~0.4",
