@@ -30,10 +30,10 @@
     "minimatch": "~2.0.1"
   },
   "devDependencies": {
-    "mocha": "2.0.x",
+    "mocha": "2.1.x",
     "chai": "1.x",
     "istanbul": "0.3.x",
-    "jscs": "1.8.x",
+    "jscs": "1.9.x",
     "jshint": "2.x"
   },
   "optionalDependencies": {},
