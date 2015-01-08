@@ -13,6 +13,8 @@ var fs = require('fs'),
     settings = {},
     jsonAtDir = {},
     json = require('../.yaspellerrc.default.json'),
+    defaultFileExtensions = json.fileExtensions.join(','),
+    defaultHtmlFileExtensions = json.htmlFileExtensions.join(','),
     jsonAtDirFilename = './.yaspellerrc';
 
 function getTypos(data) {
@@ -147,6 +149,10 @@ function buildResource(err, data) {
     }
 }
 
+function splitOnCommas(val) {
+    return val.split(',');
+}
+
 var options = [
     ['ignoreUppercase', 'ignore words written in capital letters'],
     ['ignoreDigits', 'ignore words with numbers, such as "avp17h4534"'],
@@ -163,12 +169,14 @@ var options = [
 program
     .version(require('../package.json').version)
     .usage('[options] <file-or-directory-or-link...>')
-    .option('-f, --format <value>', 'formats: plain or html. Default: plain')
-    .option('-l, --lang <value>', 'langs: ru, en, tr. Default: "en,ru"')
-    .option('--report', 'generate html report - ./yaspeller.html')
+    .option('-l, --lang <value>', 'languages: en, ru, tr or uk. Default: "en,ru"')
+    .option('-f, --format <value>', 'formats: plain, html or auto. Default: auto')
+    .option('--file-extensions <value>', 'set file extensions to search for files in a folder. Default: "' + defaultFileExtensions + '"', splitOnCommas, null)
+    .option('--html-file-extensions <value>', 'set HTML format for file extensions, if the format is set as auto. Default: "' + defaultHtmlFileExtensions + '"', splitOnCommas, null)
     .option('--dictionary <file>', 'json file for own dictionary')
     .option('--no-colors', 'clean output without colors')
-    .option('--max-requests', 'max count of requests at a time')
+    .option('--max-requests <value>', 'max count of requests at a time. Default: 2', parseInt, 0)
+    .option('--report', 'generate html report - ./yaspeller.html')
     .option('--only-errors', 'output only errors')
     .option('--debug', 'debug mode');
 
@@ -202,9 +210,9 @@ chalk.enabled = program.colors;
 mDebug.setDebug(program.debug);
 
 yaspeller.setParams({
-    maxRequests: program.maxRequests || json.maxRequests || 5,
-    htmlExts: json.html,
-    fileExtensions: json.fileExtensions,
+    maxRequests: program.maxRequests || json.maxRequests || 2,
+    fileExtensions: program.fileExtensions || json.fileExtensions,
+    htmlFileExtensions: program.htmlFileExtensions || json.htmlFileExtensions,
     excludeFiles: json.excludeFiles
 });
 
@@ -218,6 +226,8 @@ options.forEach(function(el) {
     var key = el[0];
     if(program[key]) {
         settings.options[key] = true;
+    } else if(typeof json[key] !== 'undefined') {
+        settings.options[key] = json[key];
     }
 });
 

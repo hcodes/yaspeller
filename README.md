@@ -25,10 +25,20 @@ Used API [Yandex.Speller](https://tech.yandex.ru/speller/doc/dg/concepts/About-d
 ### Options
 
 #### `-f, --format <value>`
-Formats: `plain` or `html`. Default: `plain`.
+Formats: `plain` or `html`
+Default: `plain`
 
 #### `-l, --lang <value>`
-Languages: `en`, `ru`, `tr` or `uk`. Default: `en,ru`.
+Languages: `en`, `ru`, `tr` or `uk`
+Default: `en,ru`
+
+#### `--file-extensions <value>`
+Set file extensions to search for files in a folder.
+Default: `md,htm,html,txt,text,svg,wiki,xhtml,xml`
+
+#### `--html-file-extensions <value>`
+Set HTML format for file extensions, if the format is set as auto.
+Default: `md,htm,html,xhtml,xml,svg,wiki`
 
 #### `--report` TODO
 Generate html report `./yaspeller.html`.
@@ -39,8 +49,9 @@ Json file for own dictionary.
 #### `--no-colors`
 Clean output without colors.
 
-#### `--max-requests`
+#### `--max-requests <value>`
 Max count of requests at a time.
+Default: `2`
 
 #### `--only-errors`
 Output only errors.

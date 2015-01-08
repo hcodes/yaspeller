@@ -17,7 +17,7 @@
     "xhtml",
     "xml"
   ],
-  "html": [
+  "htmlFileExtensions": [
     "md",
     "htm",
     "html",
