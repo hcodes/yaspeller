@@ -12,7 +12,7 @@ var fs = require('fs'),
     dictionary = [],
     settings = {},
     jsonAtDir = {},
-    json = JSON.parse(fs.readFileSync(__dirname + '/../.yaspellerrc.default.json', 'utf-8')),
+    json = require('../.yaspellerrc.default.json'),
     jsonAtDirFilename = './.yaspellerrc';
 
 function getTypos(data) {
