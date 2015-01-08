@@ -25,10 +25,10 @@ Used API [Yandex.Speller](https://tech.yandex.ru/speller/doc/dg/concepts/About-d
 ### Options
 
 #### `-f, --format <value>`
-Formats: plain or html. Default: plain.
+Formats: `plain` or `html`. Default: `plain`.
 
 #### `-l, --lang <value>`
-Languages: en, ru, tr or uk. Default: "en,ru".
+Languages: `en`, `ru`, `tr` or `uk`. Default: `en,ru`.
 
 #### `--report` TODO
 Generate html report `./yaspeller.html`.
@@ -79,5 +79,5 @@ Ignore the incorrect use of UPPERCASE / lowercase letters, for example, in the w
 #### `--ignore-roman-numerals`
 Ignore Roman numerals `I, II, III, ...`.
 
-## [License](./blob/master/LICENSE.md)
+## [License](./LICENSE.md)
 MIT License
