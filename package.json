@@ -6,8 +6,8 @@
   },
   "name": "yaspeller",
   "main": "index.js",
-  "description": "Проверка опечаток в текстах, в файлах и на сайтах",
-  "version": "0.6.0",
+  "description": "Search tool typos in the text, files and websites",
+  "version": "0.7.0",
   "license": "MIT",
   "homepage": "https://github.com/hcodes/yaspeller",
   "repository": {
