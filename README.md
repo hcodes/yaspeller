@@ -10,10 +10,10 @@ Search tool typos in the text, files and websites.
 
 Used API [Yandex.Speller](https://tech.yandex.ru/speller/doc/dg/concepts/About-docpage/).
  
-## Install
+## Installation
 `npm install yaspeller -g`
 
-## CLI
+## Using CLI
 `yaspeller [options] <file-or-directory-or-link...>`
 
 ### Examples
@@ -90,6 +90,8 @@ Output only errors.
 #### `--debug`
 Debug mode.
 
+## Configuration
+Yaspeller is configured using `.yaspellerrc` JSON file at the root of the project.
 
 ## [License](./LICENSE.md)
 MIT License
