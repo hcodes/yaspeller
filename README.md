@@ -9,7 +9,7 @@ yaspeller
 Search tool typos in the text, files and websites.
 
 Used API [Yandex.Speller](https://tech.yandex.ru/speller/doc/dg/concepts/About-docpage/).
- 
+
 ## Installation
 `npm install yaspeller -g`
 
@@ -88,7 +88,53 @@ Output only errors.
 Debug mode.
 
 ## Configuration
+`npm install yaspeller --save-dev`
+
+Add the text in `package.json` / `scripts`:
+`    "yaspeller": "./node_modules/.bin/yaspeller .",`
+
+To run the linter:
+`npm run yaspeller`
+
 Yaspeller is configured using `.yaspellerrc` JSON file at the root of the project.
+```JSON
+{
+  "excludeFiles": [
+    ".git",
+    "yaspeller",
+    "node_modules",
+    "libs"
+  ],
+  "format": "auto",
+  "lang": "ru",
+  "fileExtensions": [
+    "md",
+    "js",
+    "css"
+  ],
+  "dictionary": [
+    "someword1"
+  ]
+}
+```
+
+| Property | Type | Link |
+|----------|------|---------|
+| `format` | `String` | [see `--format`](#-f---format-value) |
+| `lang`   | `String` | [see `--lang`](#-l---lang-value) |
+| `excludeFiles` | `Array` | |
+| `fileExtensions` | `Array` | [see `--file-extension`](#--file-extensions-value) |
+| `dictionary` | `Array` | [see `--dictionary`](#--dictionary-file) |
+| `byWords`    | `Boolean` | [see `--by-words`](#--by-words) |
+| `findRepeatWords` | `Boolean` | [see `--by-words`](#--find-repeat-words) |
+| `flagLatin` | `Boolean` | [see `--by-words`](#--flag-latin) |
+| `ignoreCapitalization` | `Boolean` | [see `--by-words`](#--ignore-capitalization) |
+| `ignoreDigits` | `Boolean` | [see `--by-words`](#--ignore-digits) |
+| `ignoreLatin` | `Boolean` | [see `--by-words`](#--ignore-latin) |
+| `ignoreRomanNumerals` | `Boolean` | [see `--by-words`](#--ignore-roman-numerals) |
+| `ignoreUppercase` | `Boolean` | [see `--by-words`](#--ignore-uppercase) |
+| `ignoreUrls` | `Boolean` | [see `--by-words`](#--ignore-urls) |
+| `maxRequests` | `Boolean` | [see `--by-words`](#--max-requests-val) |
 
 ## [License](./LICENSE.md)
 MIT License
