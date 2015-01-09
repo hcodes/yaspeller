@@ -14,7 +14,6 @@ var fs = require('fs'),
     jsonAtDir = {},
     json = require('../.yaspellerrc.default.json'),
     defaultFileExtensions = json.fileExtensions.join(','),
-    defaultHtmlFileExtensions = json.htmlFileExtensions.join(','),
     jsonAtDirFilename = './.yaspellerrc';
 
 function getTypos(data) {
@@ -57,7 +56,7 @@ function getTypos(data) {
     });
 
     var typos = [];
-    Object.keys(obj).forEach(function(w, i) {
+    Object.keys(obj).forEach(function(w) {
         var comment = [],
             item = obj[w];
         if(item.count > 1) {
@@ -68,7 +67,7 @@ function getTypos(data) {
             comment = comment.concat(item.comment);
         }
 
-        typos.push((i + 1) + '. ' + w + (comment.length ? ' (' + comment.join(', ') + ')' : ''));
+        typos.push(w + (comment.length ? ' (' + comment.join(', ') + ')' : ''));
     });
 
     return typos;
@@ -111,7 +110,12 @@ function hasManyErrors(data) {
 
 function getTextError(title, words) {
     var SEPARATOR = '\n-----';
-    return chalk.cyan(title + ': ' + words.length + SEPARATOR + '\n') + words.join('\n') + chalk.cyan(SEPARATOR) + '\n';
+    
+    words.forEach(function(val, i) {
+        words[i] = (i + 1) + '. ' + words[i];
+    });
+
+    return chalk.red(title + ': ' + words.length + SEPARATOR + '\n') + words.join('\n') + chalk.red(SEPARATOR) + '\n';
 }
 
 function buildResource(err, data) {
@@ -159,7 +163,6 @@ var options = [
     ['ignoreUrls', 'ignore Internet addresses, email addresses and filenames'],
     ['findRepeatWords', 'highlight repetitions of words, consecutive. For example, "I flew to to to Cyprus"'],
     ['ignoreLatin', 'ignore words, written in Latin, for example, "madrid"'],
-    ['noSuggest', 'just check the text, without giving options to replace'],
     ['flagLatin', 'celebrate words, written in Latin, as erroneous'],
     ['byWords', 'do not use a dictionary environment (context) during the scan. This is useful in cases where the service is transmitted to the input of a list of individual words'],
     ['ignoreCapitalization', 'ignore the incorrect use of UPPERCASE / lowercase letters, for example, in the word "moscow"'],
@@ -172,7 +175,6 @@ program
     .option('-l, --lang <value>', 'languages: en, kk, ru or uk. Default: "en,ru"')
     .option('-f, --format <value>', 'formats: plain, html or auto. Default: auto')
     .option('--file-extensions <value>', 'set file extensions to search for files in a folder. Default: "' + defaultFileExtensions + '"', splitOnCommas, null)
-    .option('--html-file-extensions <value>', 'set HTML format for file extensions, if the format is set as auto. Default: "' + defaultHtmlFileExtensions + '"', splitOnCommas, null)
     .option('--dictionary <file>', 'json file for own dictionary')
     .option('--no-colors', 'clean output without colors')
     .option('--max-requests <value>', 'max count of requests at a time. Default: 2', parseInt, 0)
@@ -212,7 +214,6 @@ mDebug.setDebug(program.debug);
 yaspeller.setParams({
     maxRequests: program.maxRequests || json.maxRequests || 2,
     fileExtensions: program.fileExtensions || json.fileExtensions,
-    htmlFileExtensions: program.htmlFileExtensions || json.htmlFileExtensions,
     excludeFiles: json.excludeFiles
 });
 

@@ -36,10 +36,6 @@ Default: `en,ru`.
 Set file extensions to search for files in a folder.<br/>
 Default: `md,htm,html,txt,text,svg,wiki,xhtml,xml`.
 
-#### `--html-file-extensions <value>`
-Set HTML format for file extensions, if the format is set as auto.<br/>
-Default: `md,htm,html,xhtml,xml,svg,wiki`.
-
 #### `--dictionary <file>`
 JSON file for own dictionary.
 
@@ -73,9 +69,6 @@ Ignore words written in capital letters.
 
 #### `--ignore-urls`
 Ignore Internet addresses, email addresses and filenames.
-
-#### `--no-suggest`
-Just check the text, without giving options to replace.
 
 #### `--max-requests <value>`
 Max count of requests at a time.<br/>

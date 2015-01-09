@@ -16,14 +16,5 @@
     "wiki",
     "xhtml",
     "xml"
-  ],
-  "htmlFileExtensions": [
-    "md",
-    "htm",
-    "html",
-    "xhtml",
-    "xml",
-    "svg",
-    "wiki"
   ]
 }
