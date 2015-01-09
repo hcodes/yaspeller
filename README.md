@@ -25,33 +25,64 @@ Used API [Yandex.Speller](https://tech.yandex.ru/speller/doc/dg/concepts/About-d
 ### Options
 
 #### `-f, --format <value>`
-Formats: `plain` or `html`
-Default: `plain`
+Formats: `plain` or `html`.
+Default: `plain`.
 
 #### `-l, --lang <value>`
-Languages: `en`, `ru`, `tr` or `uk`
-Default: `en,ru`
+Languages: `en`, `ru`, `tr` or `uk`.<br/>
+Default: `en,ru`.
 
 #### `--file-extensions <value>`
-Set file extensions to search for files in a folder.
-Default: `md,htm,html,txt,text,svg,wiki,xhtml,xml`
+Set file extensions to search for files in a folder.<br/>
+Default: `md,htm,html,txt,text,svg,wiki,xhtml,xml`.
 
 #### `--html-file-extensions <value>`
-Set HTML format for file extensions, if the format is set as auto.
-Default: `md,htm,html,xhtml,xml,svg,wiki`
+Set HTML format for file extensions, if the format is set as auto.<br/>
+Default: `md,htm,html,xhtml,xml,svg,wiki`.
 
 #### `--report` TODO
 Generate html report `./yaspeller.html`.
 
 #### `--dictionary <file>`
-Json file for own dictionary.
+JSON file for own dictionary.
+
+#### `--by-words`
+Do not use a dictionary environment (context) during the scan.<br/>
+This is useful in cases where the service is transmitted to the input of a list of individual words.
+
+#### `--find-repeat-words`
+Highlight repetitions of words, consecutive. For example, `I flew to to to Cyprus`.
+
+#### `--flag-latin`
+Celebrate words, written in Latin, as erroneous.
+
+#### `--ignore-capitalization`
+Ignore the incorrect use of UPPERCASE / lowercase letters, for example, in the word `moscow`.
+
+#### `--ignore-digits`
+Ignore words with numbers, such as `avp17h4534`.
+
+#### `--ignore-latin`
+Ignore words, written in Latin, for example, `madrid`.
+
+#### `--ignore-roman-numerals`
+Ignore Roman numerals `I, II, III, ...`.
+
+#### `--ignore-uppercase`
+Ignore words written in capital letters.
+
+#### `--ignore-urls`
+Ignore Internet addresses, email addresses and filenames.
+
+#### `--no-suggest`
+Just check the text, without giving options to replace.
+
+#### `--max-requests <value>`
+Max count of requests at a time.<br/>
+Default: `2`.
 
 #### `--no-colors`
 Clean output without colors.
-
-#### `--max-requests <value>`
-Max count of requests at a time.
-Default: `2`
 
 #### `--only-errors`
 Output only errors.
@@ -59,36 +90,6 @@ Output only errors.
 #### `--debug`
 Debug mode.
 
-#### `--ignore-uppercase`
-Ignore words written in capital letters.
-
-#### `--ignore-digits`
-Ignore words with numbers, such as `avp17h4534`.
-
-#### `--ignore-urls`
-Ignore Internet addresses, email addresses and filenames.
-
-#### `--find-repeat-words`
-Highlight repetitions of words, consecutive. For example, `I flew to to to Cyprus`.
-
-#### `--ignore-latin`
-Ignore words, written in Latin, for example, `madrid`.
-
-#### `--no-suggest`
-Just check the text, without giving options to replace.
-
-#### `--flag-latin`
-Celebrate words, written in Latin, as erroneous.
-
-#### `--by-words`
-Do not use a dictionary environment (context) during the scan.
-This is useful in cases where the service is transmitted to the input of a list of individual words.
-
-#### `--ignore-capitalization`
-Ignore the incorrect use of UPPERCASE / lowercase letters, for example, in the word `moscow`.
-
-#### `--ignore-roman-numerals`
-Ignore Roman numerals `I, II, III, ...`.
 
 ## [License](./LICENSE.md)
 MIT License
