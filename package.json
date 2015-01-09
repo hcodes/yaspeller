@@ -7,7 +7,7 @@
   "name": "yaspeller",
   "main": "index.js",
   "description": "Search tool typos in the text, files and websites",
-  "version": "0.7.0",
+  "version": "0.7.1",
   "license": "MIT",
   "homepage": "https://github.com/hcodes/yaspeller",
   "repository": {
