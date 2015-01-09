@@ -1,4 +1,12 @@
 {
   "lang": "ru",
+  "format": "auto",
+  "excludeFiles": [
+    ".git",
+    "yaspeller",
+    "node_modules",
+    "coverage",
+    "test"
+  ],
   "dictionary": []
 }

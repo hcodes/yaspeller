@@ -57,7 +57,7 @@ function getTypos(data) {
     });
 
     var typos = [];
-    Object.keys(obj).forEach(function(w) {
+    Object.keys(obj).forEach(function(w, i) {
         var comment = [],
             item = obj[w];
         if(item.count > 1) {
@@ -68,7 +68,7 @@ function getTypos(data) {
             comment = comment.concat(item.comment);
         }
 
-        typos.push(w + (comment.length ? ' (' + comment.join(', ') + ')' : ''));
+        typos.push((i + 1) + '. ' + w + (comment.length ? ' (' + comment.join(', ') + ')' : ''));
     });
 
     return typos;
@@ -169,7 +169,7 @@ var options = [
 program
     .version(require('../package.json').version)
     .usage('[options] <file-or-directory-or-link...>')
-    .option('-l, --lang <value>', 'languages: en, ru, tr or uk. Default: "en,ru"')
+    .option('-l, --lang <value>', 'languages: en, kk, ru or uk. Default: "en,ru"')
     .option('-f, --format <value>', 'formats: plain, html or auto. Default: auto')
     .option('--file-extensions <value>', 'set file extensions to search for files in a folder. Default: "' + defaultFileExtensions + '"', splitOnCommas, null)
     .option('--html-file-extensions <value>', 'set HTML format for file extensions, if the format is set as auto. Default: "' + defaultHtmlFileExtensions + '"', splitOnCommas, null)
@@ -301,6 +301,6 @@ program.args.forEach(function(resource) {
 });
 
 async.series(tasks, function() {
-    program.onlyErrors || console.log(chalk.magenta('Build finished: ' + ((+new Date() - startTime) / 1000) + ' sec.'));
+    program.onlyErrors || console.log(chalk.magenta('Checking finished: ' + ((+new Date() - startTime) / 1000) + ' sec.'));
     process.exit(hasErrors ? 1 : 0);
 });
