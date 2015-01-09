@@ -256,7 +256,6 @@ describe('API', function() {
         it('flagLatin on', function(done) {
             var text = getFile('./test/texts/flag_latin.txt');
             yaspeller.checkText(text, function(err, data) {
-            console.log(err,data);
                 assert.equal(err, false);
                 assert.equal(data.length, 1);
                 done();
@@ -266,7 +265,6 @@ describe('API', function() {
         it('flagLatin off', function(done) {
             var text = getFile('./test/texts/flag_latin.txt');
             yaspeller.checkText(text, function(err, data) {
-                console.log(err,data);
                 assert.equal(err, false);
                 assert.equal(data.length, 0);
                 done();
