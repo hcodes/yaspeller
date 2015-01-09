@@ -236,7 +236,9 @@ if(program.debug) {
     });
 }
 
-json.dictionary || (dictionary = json.dictionary);
+if(json.dictionary) {
+    dictionary = json.dictionary;
+}
 
 if(program.dictionary) {
     if(fs.existsSync(program.dictionary)) {
