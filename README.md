@@ -29,7 +29,7 @@ Formats: `plain` or `html`.
 Default: `plain`.
 
 #### `-l, --lang <value>`
-Languages: `en`, `ru`, `tr` or `uk`.<br/>
+Languages: `en`, `kk`, `ru` or `uk`.<br/>
 Default: `en,ru`.
 
 #### `--file-extensions <value>`
@@ -40,11 +40,11 @@ Default: `md,htm,html,txt,text,svg,wiki,xhtml,xml`.
 Set HTML format for file extensions, if the format is set as auto.<br/>
 Default: `md,htm,html,xhtml,xml,svg,wiki`.
 
-#### `--report` TODO
-Generate html report `./yaspeller.html`.
-
 #### `--dictionary <file>`
 JSON file for own dictionary.
+
+#### `--report` TODO
+Generate html report `./yaspeller.html`.
 
 #### `--by-words`
 Do not use a dictionary environment (context) during the scan.<br/>
