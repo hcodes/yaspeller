@@ -38,9 +38,13 @@ Default: `md,htm,html,txt,text,svg,wiki,xhtml,xml`.
 
 #### `--dictionary <file>`
 JSON file for own dictionary.
-
-#### `--report` TODO
-Generate html report `./yaspeller.html`.
+```JSON
+[
+    "someword1",
+    "someword2",
+    "someword3"
+]
+```
 
 #### `--by-words`
 Do not use a dictionary environment (context) during the scan.<br/>
