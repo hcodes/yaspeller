@@ -221,8 +221,6 @@ settings.lang = program.lang || json.lang;
 settings.format = program.format || json.format;
 settings.options = json.options || {};
 
-program.noSuggest = !program.suggest;
-
 options.forEach(function(el) {
     var key = el[0];
     if(program[key]) {
