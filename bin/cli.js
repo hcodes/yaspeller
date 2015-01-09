@@ -110,7 +110,7 @@ function hasManyErrors(data) {
 
 function getTextError(title, words) {
     var SEPARATOR = '\n-----';
-    
+
     words.forEach(function(val, i) {
         words[i] = (i + 1) + '. ' + words[i];
     });
@@ -264,7 +264,10 @@ if(program.dictionary) {
 var hasErrors = false,
     tasks = [],
     onResource = function(err, data) {
-        err || (hasErrors = true);
+        if(err) {
+            hasErrors = true;
+        }
+
         buildResource(err, data);
     };
 
