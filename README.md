@@ -118,23 +118,23 @@ Yaspeller is configured using `.yaspellerrc` JSON file at the root of the projec
 }
 ```
 
-| Property | Type | Link |
+| Property | Type | Details |
 |----------|------|---------|
-| `format` | `String` | [see `--format`](#-f---format-value) |
-| `lang`   | `String` | [see `--lang`](#-l---lang-value) |
+| `format` | `String` | [`--format`](#-f---format-value) |
+| `lang`   | `String` | [`--lang`](#-l---lang-value) |
 | `excludeFiles` | `Array` | |
-| `fileExtensions` | `Array` | [see `--file-extension`](#--file-extensions-value) |
-| `dictionary` | `Array` | [see `--dictionary`](#--dictionary-file) |
-| `byWords`    | `Boolean` | [see `--by-words`](#--by-words) |
-| `findRepeatWords` | `Boolean` | [see `--by-words`](#--find-repeat-words) |
-| `flagLatin` | `Boolean` | [see `--by-words`](#--flag-latin) |
-| `ignoreCapitalization` | `Boolean` | [see `--by-words`](#--ignore-capitalization) |
-| `ignoreDigits` | `Boolean` | [see `--by-words`](#--ignore-digits) |
-| `ignoreLatin` | `Boolean` | [see `--by-words`](#--ignore-latin) |
-| `ignoreRomanNumerals` | `Boolean` | [see `--by-words`](#--ignore-roman-numerals) |
-| `ignoreUppercase` | `Boolean` | [see `--by-words`](#--ignore-uppercase) |
-| `ignoreUrls` | `Boolean` | [see `--by-words`](#--ignore-urls) |
-| `maxRequests` | `Boolean` | [see `--by-words`](#--max-requests-val) |
+| `fileExtensions` | `Array` | [`--file-extension`](#--file-extensions-value) |
+| `dictionary` | `Array` | [`--dictionary`](#--dictionary-file) |
+| `byWords`    | `Boolean` | [`--by-words`](#--by-words) |
+| `findRepeatWords` | `Boolean` | [`--find-repeat-words`](#--find-repeat-words) |
+| `flagLatin` | `Boolean` | [`--flag-latin`](#--flag-latin) |
+| `ignoreCapitalization` | `Boolean` | [`--ignore-capitalization`](#--ignore-capitalization) |
+| `ignoreDigits` | `Boolean` | [`--ignore-digits`](#--ignore-digits) |
+| `ignoreLatin` | `Boolean` | [`--ignore-latin`](#--ignore-latin) |
+| `ignoreRomanNumerals` | `Boolean` | [`--ignore-roman-numerals`](#--ignore-roman-numerals) |
+| `ignoreUppercase` | `Boolean` | [`--ignore-uppercase`](#--ignore-uppercase) |
+| `ignoreUrls` | `Boolean` | [`--ignore-urls`](#--ignore-urls) |
+| `maxRequests` | `Boolean` | [`--max-requests`](#--max-requests-val) |
 
 ## [License](./LICENSE.md)
 MIT License
