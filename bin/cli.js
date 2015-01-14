@@ -11,10 +11,10 @@ var fs = require('fs'),
     startTime = Date.now(),
     dictionary = [],
     settings = {},
-    jsonAtDir = {},
+    jsonConfig = {},
+    hasTypos = false,
     json = require('../.yaspellerrc.default.json'),
-    defaultFileExtensions = json.fileExtensions.join(','),
-    jsonAtDirFilename = './.yaspellerrc';
+    defaultFileExtensions = json.fileExtensions.join(',');
 
 function getTypos(data) {
     var buf = [];
@@ -96,16 +96,16 @@ function getCapitalisation(data) {
 }
 
 function hasManyErrors(data) {
-    var hasErrors = false;
+    var hasErr = false;
     data.some(function(el) {
         if(el.code === 4) { // ERROR_TOO_MANY_ERRORS
-            hasErrors = true;
+            hasErr = true;
             return true;
         }
         return false;
     });
 
-    return hasErrors;
+    return hasErr;
 }
 
 function getTextError(title, words) {
@@ -145,10 +145,11 @@ function buildResource(err, data) {
 
         var time = data.time ? ' ' + chalk.magenta(data.time + ' ms') : '';
         if(textErrors.length) {
+            hasTypos = true;
             console.error(chalk.red('[ERR]') +  ' ' + data.resource + time);
             console.error(textErrors.join('\n') + '\n');
-        } else {
-            program.onlyErrors || console.log(chalk.green('[OK]') + ' ' + data.resource + time);
+        } else if(!program.onlyErrors) {
+            console.log(chalk.green('[OK]') + ' ' + data.resource + time);
         }
     }
 }
@@ -174,11 +175,12 @@ program
     .usage('[options] <file-or-directory-or-link...>')
     .option('-l, --lang <value>', 'languages: en, kk, ru or uk. Default: "en,ru"')
     .option('-f, --format <value>', 'formats: plain, html or auto. Default: auto')
+    .option('-c, --config <path>', 'configuration file path')
     .option('--file-extensions <value>', 'set file extensions to search for files in a folder. Default: "' + defaultFileExtensions + '"', splitOnCommas, null)
     .option('--dictionary <file>', 'json file for own dictionary')
     .option('--no-colors', 'clean output without colors')
-    .option('--max-requests <value>', 'max count of requests at a time. Default: 2', parseInt, 0)
-    .option('--report', 'generate html report - ./yaspeller.html')
+    .option('--max-requests <number>', 'max count of requests at a time. Default: 2', parseInt, 0)
+    //.option('--report', 'generate html report - ./yaspeller.html')
     .option('--only-errors', 'output only errors')
     .option('--debug', 'debug mode');
 
@@ -192,19 +194,20 @@ if(!program.args.length) {
     program.help();
 }
 
-printDebug('get/check ./yaspellerrc');
-if(fs.existsSync(jsonAtDirFilename)) {
+printDebug('get/check JSON config');
+var jsonConfigFilename = program.config || './.yaspellerrc';
+if(fs.existsSync(jsonConfigFilename)) {
     try {
-        jsonAtDir = JSON.parse(fs.readFileSync(jsonAtDirFilename));
-        printDebug('Using ' + jsonAtDirFilename);
+        jsonConfig = JSON.parse(fs.readFileSync(jsonConfigFilename));
+        printDebug('Using config: ' + jsonConfigFilename);
     } catch(e) {
-        console.error(chalk.red('Error parsing ' + jsonAtDirFilename));
+        console.error(chalk.red('Error parsing ' + jsonConfigFilename));
         process.exit(2);
     }
 }
 
-Object.keys(jsonAtDir).forEach(function(key) {
-    json[key] = jsonAtDir[key];
+Object.keys(jsonConfig).forEach(function(key) {
+    json[key] = jsonConfig[key];
 });
 
 chalk.enabled = program.colors;
@@ -305,6 +308,13 @@ program.args.forEach(function(resource) {
 });
 
 async.series(tasks, function() {
-    program.onlyErrors || console.log(chalk.magenta('Checking finished: ' + ((+new Date() - startTime) / 1000) + ' sec.'));
+    if(!program.onlyErrors) {
+        if(!hasErrors && !hasTypos) {
+            console.log(chalk.green('No errors.'));
+        }
+
+        console.log(chalk.magenta('Checking finished: ' + ((+new Date() - startTime) / 1000) + ' sec.'));
+    }
+
     process.exit(hasErrors ? 1 : 0);
 });

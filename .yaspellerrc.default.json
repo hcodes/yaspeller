@@ -7,14 +7,14 @@
   "format": "auto",
   "lang": "en,ru",
   "fileExtensions": [
-    "md",
-    "htm",
-    "html",
-    "txt",
-    "text",
-    "svg",
-    "wiki",
-    "xhtml",
-    "xml"
+    ".md",
+    ".htm",
+    ".html",
+    ".txt",
+    ".text",
+    ".svg",
+    ".wiki",
+    ".xhtml",
+    ".xml"
   ]
 }

@@ -18,7 +18,7 @@ Used API [Yandex.Speller](https://tech.yandex.ru/speller/doc/dg/concepts/About-d
 
 ### Examples
 + `yaspeller README.md` — search typos in the file.
-+ `yaspeller ./texts/` — finding typos in files (xml, html, htm, txt, text, svg, md, wiki) in the folder.
++ `yaspeller ./texts/` — finding typos in files (.xml, .html, .htm, .txt, .text, .svg, .md, .wiki) in the folder.
 + `yaspeller http://www.yandex.ru/` — search typos in the page.
 + `yaspeller http://bem.info/sitemap.xml` — search typos at the addresses specified in the sitemap.xml.
 
@@ -32,9 +32,12 @@ Default: `plain`.
 Languages: `en`, `kk`, `ru` or `uk`.<br/>
 Default: `en,ru`.
 
+#### `-c, --config <path>`
+Configuration file path.
+
 #### `--file-extensions <value>`
 Set file extensions to search for files in a folder.<br/>
-Default: `md,htm,html,txt,text,svg,wiki,xhtml,xml`.
+Default: `.md,.htm,.html,.txt,.text,.svg,.wiki,.xhtml,.xml`.
 
 #### `--dictionary <file>`
 JSON file for own dictionary.
@@ -108,9 +111,9 @@ Yaspeller is configured using `.yaspellerrc` JSON file at the root of the projec
   "format": "auto",
   "lang": "ru",
   "fileExtensions": [
-    "md",
-    "js",
-    "css"
+    ".md",
+    ".js",
+    ".css"
   ],
   "dictionary": [
     "someword1"
