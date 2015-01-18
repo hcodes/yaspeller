@@ -6,9 +6,13 @@ yaspeller
 [![Dependency Status](https://img.shields.io/david/hcodes/yaspeller.svg)](https://david-dm.org/hcodes/yaspeller)
 [![devDependency Status](https://img.shields.io/david/dev/hcodes/yaspeller.svg)](https://david-dm.org/hcodes/yaspeller#info=devDependencies)
 
+This README is also available [in Russian](./README.ru.md).
+
 Search tool typos in the text, files and websites.
 
 Used API [Yandex.Speller](https://tech.yandex.ru/speller/doc/dg/concepts/About-docpage/).
+
+![yaspeller](https://raw.githubusercontent.com/hcodes/yaspeller/master/images/cli.png)
 
 ## Installation
 `npm install yaspeller -g`
@@ -25,8 +29,8 @@ Used API [Yandex.Speller](https://tech.yandex.ru/speller/doc/dg/concepts/About-d
 ### Options
 
 #### `-f, --format <value>`
-Formats: `plain` or `html`.
-Default: `plain`.
+Formats: `plain`, `html`, `markdown` или `auto`.<br/>
+Default: `auto`.
 
 #### `-l, --lang <value>`
 Languages: `en`, `kk`, `ru` or `uk`.<br/>

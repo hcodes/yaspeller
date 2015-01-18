@@ -2,5 +2,16 @@
   "excludeFiles": [],
   "fileExtensions": [],
   "format": "auto",
-  "lang": "en,ru"
+  "ignoreComments": true,
+  "ignoreTags": [
+    "code",
+    "kbd",
+    "object",
+    "samp",
+    "script",
+    "style",
+    "var"
+  ],
+  "lang": "en,ru",
+  "report": ["console"]
 }

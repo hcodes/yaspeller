@@ -1,4 +1,5 @@
 var yaspeller = require('../lib/yaspeller'),
+    debug = require('../lib/debug'),
     assert = require('chai').assert,
     fs = require('fs'),
     url404 = 'https://raw.githubusercontent.com/asd9qi9e91ke9k2k193k19',
@@ -7,9 +8,12 @@ var yaspeller = require('../lib/yaspeller'),
         return fs.readFileSync(name).toString('utf-8');
     };
 
+debug.setDebug(true);
+
 describe('API', function() {
     it('checkFile', function(done) {
         yaspeller.checkFile('./test/texts/repeat_words.txt', function(err, data) {
+            debug.setDebug(false);
             assert.equal(err, false);
             assert.equal(data.data.length, 2);
             done();
@@ -41,39 +45,6 @@ describe('API', function() {
         yaspeller.checkFile('./test/texts/repeat_words.txt', function(err, data) {
             assert.equal(err, false);
             assert.equal(data.data.length, 2);
-            done();
-        });
-    });
-
-    yaspeller.setParams({
-        fileExtensions: ['txt']
-    });
-
-    it('checkDir', function(done) {
-        yaspeller.checkDir('./test/texts/checkdir', function(data) {
-            data.forEach(function(el) {
-                assert.equal(el[0], false);
-                assert.equal(el[1].data.length, 2);
-            });
-            done();
-        });
-    });
-
-    it('checkDir with unknow dir', function(done) {
-        yaspeller.checkDir('./test/texts/unknowndir', function(data) {
-            data.forEach(function(el) {
-                assert.equal(el[0], true);
-            });
-            done();
-        });
-    });
-
-    it('checkDir as file', function(done) {
-        yaspeller.checkDir('./test/texts/repeat_words.txt', function(data) {
-            data.forEach(function(el) {
-                assert.equal(el[0], false);
-                assert.equal(el[1].data.length, 2);
-            });
             done();
         });
     });
@@ -135,7 +106,7 @@ describe('API', function() {
                 done();
             }, {lang: 'ru', format: 'plain', options: {ignoreUppercase: true}});
         });
-        
+
         it('ignoreUppercase off', function(done) {
             var text = getFile('./test/texts/ignore_uppercase.txt');
             yaspeller.checkText(text, function(err, data) {
@@ -144,7 +115,7 @@ describe('API', function() {
                 done();
             }, {lang: 'ru', format: 'plain'});
         });
-        
+
         it('ignoreDigits on', function(done) {
             var text = getFile('./test/texts/ignore_digits.txt');
             yaspeller.checkText(text, function(err, data) {
@@ -153,7 +124,7 @@ describe('API', function() {
                 done();
             }, {lang: 'ru', format: 'plain', options: {ignoreDigits: true}});
         });
-        
+
         it('ignoreDigits off', function(done) {
             var text = getFile('./test/texts/ignore_digits.txt');
             yaspeller.checkText(text, function(err, data) {
@@ -162,7 +133,7 @@ describe('API', function() {
                 done();
             }, {lang: 'ru', format: 'plain'});
         });
-        
+
         it('ignoreLatin on', function(done) {
             var text = getFile('./test/texts/ignore_latin.txt');
             yaspeller.checkText(text, function(err, data) {
@@ -171,7 +142,7 @@ describe('API', function() {
                 done();
             }, {lang: 'en,ru', format: 'plain', options: {ignoreLatin: true}});
         });
-        
+
         it('ignoreLatin off', function(done) {
             var text = getFile('./test/texts/ignore_latin.txt');
             yaspeller.checkText(text, function(err, data) {
@@ -179,8 +150,8 @@ describe('API', function() {
                 assert.equal(data.length, 1);
                 done();
             }, {lang: 'en,ru', format: 'plain'});
-        });        
-        
+        });
+
         it('ignoreUrls on', function(done) {
             var text = getFile('./test/texts/ignore_urls.txt');
             yaspeller.checkText(text, function(err, data) {
@@ -189,7 +160,7 @@ describe('API', function() {
                 done();
             }, {lang: 'en,ru', format: 'plain', options: {ignoreUrls: true}});
         });
-        
+
         it('ignoreUrls off', function(done) {
             var text = getFile('./test/texts/ignore_urls.txt');
             yaspeller.checkText(text, function(err, data) {
@@ -198,7 +169,7 @@ describe('API', function() {
                 done();
             }, {lang: 'en,ru', format: 'plain'});
         });
-        
+
         it('ignoreCapitalization on', function(done) {
             var text = getFile('./test/texts/ignore_capitalization.txt');
             yaspeller.checkText(text, function(err, data) {
@@ -207,7 +178,7 @@ describe('API', function() {
                 done();
             }, {lang: 'ru', format: 'plain', options: {ignoreCapitalization: true}});
         });
-        
+
         it('ignoreCapitalization off', function(done) {
             var text = getFile('./test/texts/ignore_capitalization.txt');
             yaspeller.checkText(text, function(err, data) {
@@ -215,8 +186,8 @@ describe('API', function() {
                 assert.equal(data.length, 1);
                 done();
             }, {lang: 'ru', format: 'plain'});
-        });        
-    
+        });
+
         it('findRepeatWords on', function(done) {
             var text = getFile('./test/texts/find_repeat_words.txt');
             yaspeller.checkText(text, function(err, data) {
@@ -225,7 +196,7 @@ describe('API', function() {
                 done();
             }, {lang: 'ru', format: 'plain', options: {findRepeatWords: true}});
         });
-        
+
         it('findRepeatWords off', function(done) {
             var text = getFile('./test/texts/find_repeat_words.txt');
             yaspeller.checkText(text, function(err, data) {
@@ -243,7 +214,7 @@ describe('API', function() {
                 done();
             }, {lang: 'en,ru', format: 'plain', options: {ignoreRomanNumerals: true}});
         });
-        
+
         it('ignoreRomanNumerals off', function(done) {
             var text = getFile('./test/texts/ignore_roman_numerals.txt');
             yaspeller.checkText(text, function(err, data) {
@@ -252,7 +223,7 @@ describe('API', function() {
                 done();
             }, {lang: 'en,ru', format: 'plain'});
         });
-        
+
         it('flagLatin on', function(done) {
             var text = getFile('./test/texts/flag_latin.txt');
             yaspeller.checkText(text, function(err, data) {
@@ -261,7 +232,7 @@ describe('API', function() {
                 done();
             }, {lang: 'ru', format: 'plain', options: {flagLatin: true}});
         });
-        
+
         it('flagLatin off', function(done) {
             var text = getFile('./test/texts/flag_latin.txt');
             yaspeller.checkText(text, function(err, data) {
