@@ -1,20 +1,6 @@
 {
-  "excludeFiles": [
-    ".git",
-    "yaspeller",
-    "node_modules"
-  ],
+  "excludeFiles": [],
+  "fileExtensions": [],
   "format": "auto",
-  "lang": "en,ru",
-  "fileExtensions": [
-    ".md",
-    ".htm",
-    ".html",
-    ".txt",
-    ".text",
-    ".svg",
-    ".wiki",
-    ".xhtml",
-    ".xml"
-  ]
+  "lang": "en,ru"
 }

@@ -37,7 +37,7 @@ Configuration file path.
 
 #### `--file-extensions <value>`
 Set file extensions to search for files in a folder.<br/>
-Default: `.md,.htm,.html,.txt,.text,.svg,.wiki,.xhtml,.xml`.
+Example: `.md,.htm,.txt`.
 
 #### `--dictionary <file>`
 JSON file for own dictionary.

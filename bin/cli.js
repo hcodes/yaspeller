@@ -289,15 +289,18 @@ program.args.forEach(function(resource) {
             }
         } else {
             if(fs.existsSync(resource)) {
-                if(fs.statSync(resource).isDirectory()) {
-                    yaspeller.checkDir(resource, function() {
-                        cb();
-                    }, settings, onResource);
-                } else {
-                    yaspeller.checkFile(resource, function(err, data) {
-                        onResource(err, data);
-                        cb();
-                    }, settings);
+                if(!yaspeller.isExcludedFile(resource)) {
+                    if(fs.statSync(resource).isDirectory()) {
+                        yaspeller.checkDir(resource, function() {
+                            cb();
+                        }, settings, onResource);
+
+                    } else if(yaspeller.getRegExpFileExtensions().test(resource)) {
+                        yaspeller.checkFile(resource, function(err, data) {
+                            onResource(err, data);
+                            cb();
+                        }, settings);
+                    }
                 }
             } else {
                 onResource(true, Error(resource + ': is not exists'));
