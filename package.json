@@ -50,5 +50,12 @@
   },
   "bin": {
     "yaspeller": "./bin/cli.js"
-  }
+  },
+  "files": [
+    "bin",
+    "lib",
+    "index.js",
+    ".yaspellerrc.default.json",
+    "LICENSE.md"
+  ]
 }
