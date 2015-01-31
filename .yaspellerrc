@@ -1,8 +1,9 @@
 {
   "lang": "ru",
   "format": "auto",
+  "fileExtensions": [".md"],
   "excludeFiles": [
-    ".git",
+    ".*",
     "yaspeller",
     "node_modules",
     "coverage",

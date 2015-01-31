@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 /* jshint maxlen: 500 */
 var fs = require('fs'),
+    pth = require('path'),
     async = require('async'),
     chalk = require('chalk'),
     isutf8 = require('isutf8'),
@@ -8,6 +9,7 @@ var fs = require('fs'),
     yaspeller = require('../lib/yaspeller'),
     mDebug = require('../lib/debug'),
     printDebug = mDebug.print,
+    minimatch = require('minimatch'),
     startTime = Date.now(),
     dictionary = [],
     settings = {},
@@ -214,9 +216,11 @@ chalk.enabled = program.colors;
 
 mDebug.setDebug(program.debug);
 
+var fileExtensions = program.fileExtensions || json.fileExtensions;
+
 yaspeller.setParams({
     maxRequests: program.maxRequests || json.maxRequests || 2,
-    fileExtensions: program.fileExtensions || json.fileExtensions,
+    fileExtensions: fileExtensions,
     excludeFiles: json.excludeFiles
 });
 
@@ -276,6 +280,7 @@ var hasErrors = false,
 
 program.args.forEach(function(resource) {
     tasks.push(function(cb) {
+        var ext;
         if(resource.search(/^https?:/) > -1) {
             if(resource.search(/sitemap\.xml$/) > -1) {
                 yaspeller.checkSitemap(resource, function() {
@@ -289,13 +294,14 @@ program.args.forEach(function(resource) {
             }
         } else {
             if(fs.existsSync(resource)) {
+                ext = pth.extname(resource).toLowerCase();
                 if(!yaspeller.isExcludedFile(resource)) {
                     if(fs.statSync(resource).isDirectory()) {
                         yaspeller.checkDir(resource, function() {
                             cb();
                         }, settings, onResource);
 
-                    } else if(yaspeller.getRegExpFileExtensions().test(resource)) {
+                    } else if(!fileExtensions.length || fileExtensions.indexOf(ext) !== -1) {
                         yaspeller.checkFile(resource, function(err, data) {
                             onResource(err, data);
                             cb();
