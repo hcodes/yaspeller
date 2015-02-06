@@ -39,7 +39,7 @@ yaspeller
 
 #### `--file-extensions <value>`
 Поиск файлов в папке по расширениям.<br/>
-По умолчанию: `.md,.htm,.html,.txt,.text,.svg,.wiki,.xhtml,.xml`.
+Пример: `.md,.htm,.txt`.
 
 #### `--dictionary <file>`
 JSON-файл собственного словаря.
@@ -52,9 +52,9 @@ JSON-файл собственного словаря.
 ```
 
 #### `--report <type>`
-Виды отчётов: `console`, `html` или `json`.<br/>
+Задать вид отчёта: `console`, `html` или `json`.<br/>
 По умолчанию: `console`<br/>
-Пример: `--report=console,html,../custom_report.js`
+Пример: `console,html,custom_report.js`
 
 #### `--by-words`
 Не использовать словарное окружение (контекст) при проверке.<br/>
