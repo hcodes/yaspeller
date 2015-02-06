@@ -1,5 +1,5 @@
 {
-  "lang": "ru",
+  "lang": "en,ru",
   "format": "auto",
   "fileExtensions": [".md"],
   "excludeFiles": [
@@ -7,7 +7,15 @@
     "yaspeller",
     "node_modules",
     "coverage",
+    "lib",
+    "bin",
     "test"
   ],
-  "dictionary": []
+  "dictionary": [
+    "htm",
+    "md",
+    "svg",
+    "sitemap",
+    "yaspeller"
+  ]
 }

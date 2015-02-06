@@ -7,7 +7,7 @@
   "name": "yaspeller",
   "main": "index.js",
   "description": "Search tool typos in the text, files and websites",
-  "version": "0.8.1",
+  "version": "1.0.0pre",
   "license": "MIT",
   "homepage": "https://github.com/hcodes/yaspeller",
   "repository": {
@@ -18,7 +18,12 @@
     "url": "https://github.com/hcodes/yaspeller/issues"
   },
   "keywords": [
-    "typos", "text", "опечатки", "текст", "Яндекс.Спеллер", "Yandex.Speller"
+    "typos",
+    "text",
+    "опечатки",
+    "текст",
+    "Яндекс.Спеллер",
+    "Yandex.Speller"
   ],
   "dependencies": {
     "async": "0.9.0",
@@ -30,11 +35,13 @@
     "minimatch": "~2.0.1"
   },
   "devDependencies": {
-    "mocha": "2.1.x",
     "chai": "1.x",
     "istanbul": "0.3.x",
     "jscs": "1.10.x",
-    "jshint": "2.x"
+    "jshint": "2.x",
+    "lodash": "^3.1.0",
+    "mocha": "2.1.x",
+    "showdown": "^0.3.1"
   },
   "optionalDependencies": {},
   "engines": {
@@ -46,8 +53,15 @@
     "jshint": "./node_modules/.bin/jshint .",
     "yaspeller": ".bin/cli .",
     "unit-test": "./node_modules/.bin/mocha -u bdd -R spec --recursive test",
-    "unit-test-coverage": "./node_modules/.bin/istanbul cover ./node_modules/mocha/bin/_mocha -- -u bdd -R spec --recursive test"  
+    "unit-test-coverage": "./node_modules/.bin/istanbul cover ./node_modules/mocha/bin/_mocha -- -u bdd -R spec --recursive test"
   },
+  "files": [
+    "bin",
+    "lib",
+    "LICENSE",
+    ".yaspellerrc.default.json",
+    "index.js"
+  ],
   "bin": {
     "yaspeller": "./bin/cli.js"
   },
