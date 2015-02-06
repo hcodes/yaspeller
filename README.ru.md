@@ -52,9 +52,9 @@ JSON-файл собственного словаря.
 ```
 
 #### `--report <type>`
-Вывести отчёт, как: `console`, `html` или `json`.<br/>
+Виды отчётов: `console`, `html` или `json`.<br/>
 По умолчанию: `console`<br/>
-Пример: `console,html,../custom_report.js`
+Пример: `--report=console,html,../custom_report.js`
 
 #### `--by-words`
 Не использовать словарное окружение (контекст) при проверке.<br/>
