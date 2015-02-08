@@ -22,7 +22,7 @@ Used API [Yandex.Speller](https://tech.yandex.ru/speller/doc/dg/concepts/About-d
 
 ### Examples
 + `yaspeller README.md` — search typos in the file.
-+ `yaspeller ./texts/` — finding typos in files (.xml, .html, .htm, .txt, .text, .svg, .md, .wiki) in the folder.
++ `yaspeller ./texts/` — finding typos in files in the folder.
 + `yaspeller http://www.yandex.ru/` — search typos in the page.
 + `yaspeller http://bem.info/sitemap.xml` — search typos at the addresses specified in the sitemap.xml.
 
@@ -52,6 +52,11 @@ JSON file for own dictionary.
     "someword3"
 ]
 ```
+
+#### `--report <type>`
+Set type of report: `console`, `html` or `json`.<br/>
+Default: `console`<br/>
+Example: `console,html,custom_report.js`
 
 #### `--by-words`
 Do not use a dictionary environment (context) during the scan.<br/>
