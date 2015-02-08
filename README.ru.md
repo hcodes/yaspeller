@@ -165,11 +165,11 @@ JSON-файл собственного словаря.
 | `excludeFiles` | `Array` | |
 | `fileExtensions` | `Array` | [`--file-extension`](#--file-extensions-value) |
 | `dictionary` | `Array` | [`--dictionary`](#--dictionary-file) |
-| `report` | `Array` | [`--report`](#--report) |
+| `report` | `Array` | [`--report`](#--report-type) |
 | `byWords`    | `Boolean` | [`--by-words`](#--by-words) |
 | `findRepeatWords` | `Boolean` | [`--find-repeat-words`](#--find-repeat-words) |
 | `flagLatin` | `Boolean` | [`--flag-latin`](#--flag-latin) |
-| `ignoreTags` | `Array` | [`--ignore-tags`](#--ignore-tags) |
+| `ignoreTags` | `Array` | [`--ignore-tags`](#--ignore-tags-tags) |
 | `ignoreCapitalization` | `Boolean` | [`--ignore-capitalization`](#--ignore-capitalization) |
 | `ignoreDigits` | `Boolean` | [`--ignore-digits`](#--ignore-digits) |
 | `ignoreLatin` | `Boolean` | [`--ignore-latin`](#--ignore-latin) |
