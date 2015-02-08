@@ -178,5 +178,5 @@ JSON-файл собственного словаря.
 | `ignoreUrls` | `Boolean` | [`--ignore-urls`](#--ignore-urls) |
 | `maxRequests` | `Boolean` | [`--max-requests`](#--max-requests-value) |
 
-## [Лицензия](./LICENSE.ru.md)
+## [Лицензия](./LICENSE.md)
 MIT License
