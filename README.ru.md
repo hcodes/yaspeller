@@ -20,7 +20,7 @@ yaspeller
 
 ### Примеры
 + `yaspeller README.md` — поиск опечаток в файле.
-+ `yaspeller -e=".md,.html,.js" ./texts/` — поиск опечаток в файлах в папке.
++ `yaspeller -e ".md,.html,.js" ./texts/` — поиск опечаток в файлах в папке.
 + `yaspeller http://www.yandex.ru/` — поиск опечаток на сайте.
 + `yaspeller http://bem.info/sitemap.xml` — поиск опечаток в адресах, перечисленных в sitemap.xml.
 
