@@ -115,6 +115,15 @@ describe('API', function() {
         }, {lang: 'ru', format: 'plain'});
     });
 
+    it('ignore comments', function(done) {
+        var text = getFile('./test/texts/settings_ignore_comments.txt');
+        yaspeller.checkText(text, function(err, data) {
+            assert.equal(err, false);
+            assert.equal(data.length, 2);
+            done();
+        }, {lang: 'en', format: 'html'});
+    });
+
     describe('Settings', function() {
         it('ignoreTags off', function(done) {
             var text = getFile('./test/texts/settings_ignore_tags.txt');
@@ -132,24 +141,6 @@ describe('API', function() {
                 assert.equal(data.length, 1);
                 done();
             }, {lang: 'en', format: 'html', ignoreTags: ['code']});
-        });
-
-        it('ignoreComments off', function(done) {
-            var text = getFile('./test/texts/settings_ignore_comments.txt');
-            yaspeller.checkText(text, function(err, data) {
-                assert.equal(err, false);
-                assert.equal(data.length, 2);
-                done();
-            }, {lang: 'en', format: 'html', ignoreComments: false});
-        });
-
-        it('ignoreComments on', function(done) {
-            var text = getFile('./test/texts/settings_ignore_comments.txt');
-            yaspeller.checkText(text, function(err, data) {
-                assert.equal(err, false);
-                assert.equal(data.length, 2);
-                done();
-            }, {lang: 'en', format: 'html', ignoreComments: true});
         });
 
         it('Without lang and format', function(done) {
