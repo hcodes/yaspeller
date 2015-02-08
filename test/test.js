@@ -89,12 +89,102 @@ describe('API', function() {
     });
 
     it('checkText', function(done) {
-        var text = fs.readFileSync('./test/texts/repeat_words.txt').toString('utf-8');
+        var text = getFile('./test/texts/repeat_words.txt');
         yaspeller.checkText(text, function(err, data) {
             assert.equal(err, false);
             assert.equal(data.length, 2);
             done();
         }, {lang: 'ru', format: 'plain'});
+    });
+
+    it('checkText > 10000 bytes', function(done) {
+        var text = getFile('./test/texts/gt10000bytes.txt');
+        yaspeller.checkText(text, function(err, data) {
+            assert.equal(err, false);
+            assert.equal(data.length, 2);
+            done();
+        }, {lang: 'ru', format: 'plain'});
+    });
+
+    it('checkText > 20000 bytes', function(done) {
+        var text = getFile('./test/texts/gt20000bytes.txt');
+        yaspeller.checkText(text, function(err, data) {
+            assert.equal(err, false);
+            assert.equal(data.length, 3);
+            done();
+        }, {lang: 'ru', format: 'plain'});
+    });
+
+    describe('Settings', function() {
+        it('ignoreTags off', function(done) {
+            var text = getFile('./test/texts/settings_ignore_tags.txt');
+            yaspeller.checkText(text, function(err, data) {
+                assert.equal(err, false);
+                assert.equal(data.length, 4);
+                done();
+            }, {lang: 'en', format: 'html', ignoreTags: []});
+        });
+
+        it('ignoreTags on', function(done) {
+            var text = getFile('./test/texts/settings_ignore_tags.txt');
+            yaspeller.checkText(text, function(err, data) {
+                assert.equal(err, false);
+                assert.equal(data.length, 1);
+                done();
+            }, {lang: 'en', format: 'html', ignoreTags: ['code']});
+        });
+
+        it('ignoreComments off', function(done) {
+            var text = getFile('./test/texts/settings_ignore_comments.txt');
+            yaspeller.checkText(text, function(err, data) {
+                assert.equal(err, false);
+                assert.equal(data.length, 2);
+                done();
+            }, {lang: 'en', format: 'html', ignoreComments: false});
+        });
+
+        it('ignoreComments on', function(done) {
+            var text = getFile('./test/texts/settings_ignore_comments.txt');
+            yaspeller.checkText(text, function(err, data) {
+                assert.equal(err, false);
+                assert.equal(data.length, 2);
+                done();
+            }, {lang: 'en', format: 'html', ignoreComments: true});
+        });
+
+        it('Without lang and format', function(done) {
+            yaspeller.checkText('<coddeeee> maasjedqjw  уфокцошцуок', function(err, data) {
+                assert.equal(err, false);
+                assert.equal(data.length, 2);
+                done();
+            });
+        });
+
+        it('Array of langs', function(done) {
+            var text = getFile('./test/texts/settings_array_langs.txt');
+            yaspeller.checkText(text, function(err, data) {
+                assert.equal(err, false);
+                assert.equal(data.length, 2);
+                done();
+            }, {lang: ['ru']});
+        });
+
+        it('Unknown format', function(done) {
+            yaspeller.checkText('<coddeeee> maasjedqjw  уфокцошцуок', function(err, data) {
+                assert.equal(err, false);
+                assert.equal(data.length, 3);
+                done();
+            }, {format: 'unknown'});
+        });
+
+        it('Format markdown', function(done) {
+            var text = getFile('./test/texts/settings_markdown.txt');
+            yaspeller.checkText(text, function(err, data) {
+                assert.equal(err, false);
+                assert.equal(data.length, 0);
+                done();
+            }, {ignoreTags: ['code', 'pre']});
+        });
     });
 
     describe('Options', function() {

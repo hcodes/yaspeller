@@ -36,6 +36,7 @@
   },
   "devDependencies": {
     "chai": "1.x",
+    "entities": "^1.1.1",
     "istanbul": "0.3.x",
     "jscs": "1.10.x",
     "jshint": "2.x",
@@ -58,18 +59,11 @@
   "files": [
     "bin",
     "lib",
-    "LICENSE",
-    ".yaspellerrc.default.json",
-    "index.js"
-  ],
-  "bin": {
-    "yaspeller": "./bin/cli.js"
-  },
-  "files": [
-    "bin",
-    "lib",
     "index.js",
     ".yaspellerrc.default.json",
     "LICENSE.md"
-  ]
+  ],
+  "bin": {
+    "yaspeller": "./bin/cli.js"
+  }
 }
