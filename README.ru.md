@@ -20,7 +20,7 @@ yaspeller
 
 ### Примеры
 + `yaspeller README.md` — поиск опечаток в файле.
-+ `yaspeller ./texts/` — поиск опечаток в файлах в папке.
++ `yaspeller -e=".md,.html,.js" ./texts/` — поиск опечаток в файлах в папке.
 + `yaspeller http://www.yandex.ru/` — поиск опечаток на сайте.
 + `yaspeller http://bem.info/sitemap.xml` — поиск опечаток в адресах, перечисленных в sitemap.xml.
 
@@ -31,13 +31,13 @@ yaspeller
 По умолчанию: `plain`.
 
 #### `-l, --lang <value>`
-Языки: `en`, `kk`, `ru` or `uk`.<br/>
+Языки: `en`, `ru` or `uk`.<br/>
 По умолчанию: `en,ru`.
 
 #### `-c, --config <path>`
 Конфигурационный файл.
 
-#### `--file-extensions <value>`
+#### `-e, --file-extensions <value>`
 Поиск файлов в папке по расширениям.<br/>
 Пример: `.md,.htm,.txt`.
 
@@ -65,6 +65,10 @@ JSON-файл собственного словаря.
 
 #### `--flag-latin`
 Отмечать слова, написанные латиницей, как ошибочные.
+
+#### `--ignore-tags <tags>`
+Игнорировать HTML-теги.<br/>
+По умолчанию: `code,kbd,object,samp,script,style,var`
 
 #### `--ignore-capitalization`
 Игнорировать неверное употребление ПРОПИСНЫХ/строчных букв, например, в слове `москва`.
@@ -115,7 +119,6 @@ JSON-файл собственного словаря.
     "node_modules",
     "libs"
   ],
-  "format": "auto",
   "lang": "ru",
   "fileExtensions": [
     ".md",
@@ -128,6 +131,33 @@ JSON-файл собственного словаря.
 }
 ```
 
+**Расширенный пример:**
+```JSON
+{
+  "excludeFiles": [
+    ".git",
+    "yaspeller",
+    "node_modules",
+    "libs"
+  ],
+  "format": "html",
+  "lang": "en",
+  "fileExtensions": [
+    ".md",
+    ".js",
+    ".css"
+  ],
+  "report": ["console", "html"],
+  "dictionary": [
+    "someword1"
+  ],
+  "ignoreTags": ["code", "script"],
+  "ignoreUrls": true,
+  "findRepeatWords": true,
+  "maxRequests": 5
+}
+```
+
 | Свойство | Тип | Подробности |
 |----------|------|---------|
 | `format` | `String` | [`--format`](#-f---format-value) |
@@ -135,9 +165,11 @@ JSON-файл собственного словаря.
 | `excludeFiles` | `Array` | |
 | `fileExtensions` | `Array` | [`--file-extension`](#--file-extensions-value) |
 | `dictionary` | `Array` | [`--dictionary`](#--dictionary-file) |
+| `report` | `Array` | [`--report`](#--report) |
 | `byWords`    | `Boolean` | [`--by-words`](#--by-words) |
 | `findRepeatWords` | `Boolean` | [`--find-repeat-words`](#--find-repeat-words) |
 | `flagLatin` | `Boolean` | [`--flag-latin`](#--flag-latin) |
+| `ignoreTags` | `Array` | [`--ignore-tags`](#--ignore-tags) |
 | `ignoreCapitalization` | `Boolean` | [`--ignore-capitalization`](#--ignore-capitalization) |
 | `ignoreDigits` | `Boolean` | [`--ignore-digits`](#--ignore-digits) |
 | `ignoreLatin` | `Boolean` | [`--ignore-latin`](#--ignore-latin) |

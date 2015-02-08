@@ -22,7 +22,7 @@ Used API [Yandex.Speller](https://tech.yandex.ru/speller/doc/dg/concepts/About-d
 
 ### Examples
 + `yaspeller README.md` — search typos in the file.
-+ `yaspeller ./texts/` — finding typos in files in the folder.
++ `yaspeller -e=".md,.html,.js" ./texts/` — finding typos in files in the folder.
 + `yaspeller http://www.yandex.ru/` — search typos in the page.
 + `yaspeller http://bem.info/sitemap.xml` — search typos at the addresses specified in the sitemap.xml.
 
@@ -33,13 +33,13 @@ Formats: `plain`, `html`, `markdown` или `auto`.<br/>
 Default: `auto`.
 
 #### `-l, --lang <value>`
-Languages: `en`, `kk`, `ru` or `uk`.<br/>
+Languages: `en`, `ru` or `uk`.<br/>
 Default: `en,ru`.
 
 #### `-c, --config <path>`
 Configuration file path.
 
-#### `--file-extensions <value>`
+#### `-e, --file-extensions <value>`
 Set file extensions to search for files in a folder.<br/>
 Example: `.md,.htm,.txt`.
 
@@ -67,6 +67,10 @@ Highlight repetitions of words, consecutive. For example, `I flew to to to Cypru
 
 #### `--flag-latin`
 Celebrate words, written in Latin, as erroneous.
+
+#### `--ignore-tags <tags>`
+Ignore HTML tags.<br/>
+Default: `code,kbd,object,samp,script,style,var`
 
 #### `--ignore-capitalization`
 Ignore the incorrect use of UPPERCASE / lowercase letters, for example, in the word `moscow`.
@@ -113,11 +117,10 @@ Yaspeller is configured using `.yaspellerrc` JSON file at the root of the projec
 {
   "excludeFiles": [
     ".git",
-    "yaspeller",
+    "libs",
     "node_modules",
-    "libs"
+    "yaspeller"
   ],
-  "format": "auto",
   "lang": "ru",
   "fileExtensions": [
     ".md",
@@ -130,6 +133,33 @@ Yaspeller is configured using `.yaspellerrc` JSON file at the root of the projec
 }
 ```
 
+**Advanced example:**
+```JSON
+{
+  "excludeFiles": [
+    ".git",
+    "yaspeller",
+    "node_modules",
+    "libs"
+  ],
+  "format": "html",
+  "lang": "en",
+  "fileExtensions": [
+    ".md",
+    ".js",
+    ".css"
+  ],
+  "report": ["console", "html"],
+  "dictionary": [
+    "someword1"
+  ],
+  "ignoreTags": ["code", "script"],
+  "ignoreUrls": true,
+  "findRepeatWords": true,
+  "maxRequests": 5
+}
+```
+
 | Property | Type | Details |
 |----------|------|---------|
 | `format` | `String` | [`--format`](#-f---format-value) |
@@ -137,9 +167,11 @@ Yaspeller is configured using `.yaspellerrc` JSON file at the root of the projec
 | `excludeFiles` | `Array` | |
 | `fileExtensions` | `Array` | [`--file-extension`](#--file-extensions-value) |
 | `dictionary` | `Array` | [`--dictionary`](#--dictionary-file) |
+| `report` | `Array` | [`--report`](#--report) |
 | `byWords`    | `Boolean` | [`--by-words`](#--by-words) |
 | `findRepeatWords` | `Boolean` | [`--find-repeat-words`](#--find-repeat-words) |
 | `flagLatin` | `Boolean` | [`--flag-latin`](#--flag-latin) |
+| `ignoreTags` | `Array` | [`--ignore-tags`](#--ignore-tags) |
 | `ignoreCapitalization` | `Boolean` | [`--ignore-capitalization`](#--ignore-capitalization) |
 | `ignoreDigits` | `Boolean` | [`--ignore-digits`](#--ignore-digits) |
 | `ignoreLatin` | `Boolean` | [`--ignore-latin`](#--ignore-latin) |
