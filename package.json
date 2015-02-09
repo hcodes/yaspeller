@@ -6,8 +6,11 @@
   },
   "name": "yaspeller",
   "main": "index.js",
+  "bin": {
+    "yaspeller": "./bin/cli.js"
+  },  
   "description": "Search tool typos in the text, files and websites",
-  "version": "1.0.0pre",
+  "version": "1.0.0pre2",
   "license": "MIT",
   "homepage": "https://github.com/hcodes/yaspeller",
   "repository": {
