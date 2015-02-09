@@ -5,10 +5,10 @@
     "url": "https://github.com/hcodes"
   },
   "name": "yaspeller",
-  "main": "index.js",
+  "main": "./lib/yaspeller.js",
   "bin": {
-    "yaspeller": "./bin/cli.js"
-  },  
+    "yaspeller": "./bin/yaspeller"
+  },
   "description": "Search tool typos in the text, files and websites",
   "version": "1.0.0pre2",
   "license": "MIT",
