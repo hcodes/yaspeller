@@ -1,4 +1,6 @@
 yaspeller/
+yaspeller_report.html
+yaspeller_report.json
 coverage/
 node_modules/
 npm-debug.log
@@ -31,7 +33,8 @@ $RECYCLE.BIN/
 .LSOverride
 
 # Icon must end with two \r
-Icon
+Icon
+
 
 # Thumbnails
 ._*
