@@ -10,7 +10,7 @@
     "yaspeller": "./bin/yaspeller"
   },
   "description": "Search tool typos in the text, files and websites",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "license": "MIT",
   "homepage": "https://github.com/hcodes/yaspeller",
   "repository": {
@@ -58,7 +58,7 @@
     "test": "npm run-script jshint && npm run-script jscs && npm run-script unit-test-coverage",
     "jscs": "./node_modules/.bin/jscs .",
     "jshint": "./node_modules/.bin/jshint .",
-    "yaspeller": ".bin/cli .",
+    "yaspeller": "node bin/yaspeller .",
     "unit-test": "./node_modules/.bin/mocha -u bdd -R spec --recursive test",
     "unit-test-coverage": "./node_modules/.bin/istanbul cover ./node_modules/mocha/bin/_mocha -- -u bdd -R spec --recursive test"
   },
