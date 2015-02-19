@@ -1,3 +1,5 @@
+bin/yaspeller eol=lf
+
 *.js    eol=lf
 *.css    eol=lf
 *.json    eol=lf
