@@ -51,6 +51,14 @@ JSON-файл собственного словаря.
     "someword3"
 ]
 ```
+Поддерживаются регулярные выражения:
+```JSON
+[
+    "someword1",
+    "/(S|s)omeword2/",
+    "/someword3/i"
+]
+```
 
 #### `--report <type>`
 Задать вид отчёта: `console`, `html` или `json`.<br/>
@@ -69,7 +77,8 @@ JSON-файл собственного словаря.
 
 #### `--ignore-tags <tags>`
 Игнорировать HTML-теги.<br/>
-По умолчанию: `code,kbd,object,samp,script,style,var`
+По умолчанию: `code,kbd,object,samp,script,style,var`<br/>
+Опция для форматов `html` и `markdown`.
 
 #### `--ignore-capitalization`
 Игнорировать неверное употребление ПРОПИСНЫХ/строчных букв, например, в слове `москва`.
@@ -150,7 +159,8 @@ JSON-файл собственного словаря.
   ],
   "report": ["console", "html"],
   "dictionary": [
-    "someword1"
+    "someword1",
+    "/(S|s)omeword2/"
   ],
   "ignoreTags": ["code", "script"],
   "ignoreUrls": true,
