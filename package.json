@@ -34,10 +34,10 @@
   "dependencies": {
     "async": "~0.9.0",
     "chalk": "~1.0.0",
-    "commander": "~2.6",
+    "commander": "~2.7.1",
     "entities": "~1.1.1",
     "isutf8": "~1.0.11",
-    "lodash": "~3.3.1",
+    "lodash": "~3.5.0",
     "minimatch": "~2.0.1",
     "request": "~2.53.0",
     "showdown": "~0.4.0",
@@ -48,7 +48,7 @@
     "istanbul": "~0.3.7",
     "jscs": "~1.11.3",
     "jshint": "~2.6.3",
-    "mocha": "~2.1.0"
+    "mocha": "~2.2.1"
   },
   "optionalDependencies": {},
   "engines": {
