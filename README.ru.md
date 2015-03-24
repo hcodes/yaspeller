@@ -176,7 +176,7 @@ JSON-файл собственного словаря.
 | `ignoreRomanNumerals` | `Boolean` | [`--ignore-roman-numerals`](#--ignore-roman-numerals) |
 | `ignoreUppercase` | `Boolean` | [`--ignore-uppercase`](#--ignore-uppercase) |
 | `ignoreUrls` | `Boolean` | [`--ignore-urls`](#--ignore-urls) |
-| `maxRequests` | `Boolean` | [`--max-requests`](#--max-requests-value) |
+| `maxRequests` | `Number` | [`--max-requests`](#--max-requests-value) |
 
 ## [Лицензия](./LICENSE.md)
 MIT License
