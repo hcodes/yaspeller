@@ -12,6 +12,7 @@
     "style",
     "var"
   ],
+  "maxRequests": 2,
   "lang": "en,ru",
   "report": ["console"]
 }

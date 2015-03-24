@@ -134,11 +134,32 @@
         color: #999;
         font-size: 0.8em;
     }
+
+    a:not([href]),
+    a:not([href]):hover
+    {
+        color: black;
+    }
 </style>
 </head>
 <body>
-    <div class="page">
-        {{content}}
-    </div>
+<div class="page">
+    {{content}}
+</div>
+<script>
+(function() {
+    if(window.location.protocol === 'file:') {
+        return;
+    }
+
+    var links = document.querySelectorAll('.page a');
+    for(var i = 0, len = links.length; i < len; i++) {
+        var link = links[i];
+        if(link.href.search(/^file:/) !== -1) {
+            link.removeAttribute('href');
+        }
+    }
+})();
+</script>
 </body>
 </html>
