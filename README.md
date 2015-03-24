@@ -178,7 +178,7 @@ Yaspeller is configured using `.yaspellerrc` JSON file at the root of the projec
 | `ignoreRomanNumerals` | `Boolean` | [`--ignore-roman-numerals`](#--ignore-roman-numerals) |
 | `ignoreUppercase` | `Boolean` | [`--ignore-uppercase`](#--ignore-uppercase) |
 | `ignoreUrls` | `Boolean` | [`--ignore-urls`](#--ignore-urls) |
-| `maxRequests` | `Boolean` | [`--max-requests`](#--max-requests-value) |
+| `maxRequests` | `Number` | [`--max-requests`](#--max-requests-value) |
 
 ## [License](./LICENSE.md)
 MIT License
