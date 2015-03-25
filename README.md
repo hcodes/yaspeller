@@ -24,7 +24,7 @@ Used API [Yandex.Speller](https://tech.yandex.ru/speller/doc/dg/concepts/About-d
 ### Examples
 + `yaspeller README.md` — search typos in the file.
 + `yaspeller -e ".md,.html,.js" ./texts/` — finding typos in files in the folder.
-+ `yaspeller http://www.yandex.ru/` — search typos in the page.
++ `yaspeller https://ru.wikipedia.org/wiki/%D0%9E%D0%BF%D0%B5%D1%87%D0%B0%D1%82%D0%BA%D0%B0` — search typos in the page.
 + `yaspeller http://bem.info/sitemap.xml` — search typos at the addresses specified in the sitemap.xml.
 
 ### Options
