@@ -181,5 +181,7 @@ Yaspeller is configured using `.yaspellerrc` JSON file at the root of the projec
 | `ignoreUrls` | `Boolean` | [`--ignore-urls`](#--ignore-urls) |
 | `maxRequests` | `Number` | [`--max-requests`](#--max-requests-value) |
 
+## [Restrictions API Yandex.Speller](http://legal.yandex.ru/speller_api/)
+
 ## [License](./LICENSE.md)
 MIT License
