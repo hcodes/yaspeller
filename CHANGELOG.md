@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.6
+- Update deps in package.json.
+- Added changelog.
+
 ## 1.0.5
 ### Bug fixes
 - Fix file protocol in html report.
