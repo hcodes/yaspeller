@@ -179,5 +179,7 @@ JSON-файл собственного словаря.
 | `ignoreUrls` | `Boolean` | [`--ignore-urls`](#--ignore-urls) |
 | `maxRequests` | `Number` | [`--max-requests`](#--max-requests-value) |
 
+## [Ограничения API Яндекс.Спеллера](http://legal.yandex.ru/speller_api/)
+
 ## [Лицензия](./LICENSE.md)
 MIT License
