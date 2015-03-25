@@ -37,7 +37,7 @@
     "commander": "~2.7.1",
     "entities": "~1.1.1",
     "isutf8": "~1.0.11",
-    "lodash": "~3.5.0",
+    "lodash": "~3.6",
     "minimatch": "~2.0.1",
     "request": "~2.54.0",
     "showdown": "~0.4.0",
