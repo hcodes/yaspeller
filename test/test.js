@@ -11,6 +11,8 @@ var yaspeller = require('../lib/yaspeller'),
 debug.setDebug(true);
 
 describe('API', function() {
+    this.timeout(5000);
+
     it('checkFile', function(done) {
         yaspeller.checkFile('./test/texts/repeat_words.txt', function(err, data) {
             debug.setDebug(false);
