@@ -54,6 +54,15 @@ JSON file for own dictionary.
 ]
 ```
 
+Regular expressions are supported:
+```js
+[
+    "someword1",
+    "/(S|s)omeword2/",
+    "/someword3/i"
+]
+```
+
 #### `--report <type>`
 Set type of report: `console`, `html` or `json`.<br/>
 Default: `console`<br/>
@@ -71,7 +80,8 @@ Celebrate words, written in Latin, as erroneous.
 
 #### `--ignore-tags <tags>`
 Ignore HTML tags.<br/>
-Default: `code,kbd,object,samp,script,style,var`
+Default: `code,kbd,object,samp,script,style,var`<br/>
+Option to formats `html` and` markdown`.
 
 #### `--ignore-capitalization`
 Ignore the incorrect use of UPPERCASE / lowercase letters, for example, in the word `moscow`.
@@ -152,7 +162,8 @@ Yaspeller is configured using `.yaspellerrc` JSON file at the root of the projec
   ],
   "report": ["console", "html"],
   "dictionary": [
-    "someword1"
+    "someword1",
+    "/(S|s)omeword2/"    
   ],
   "ignoreTags": ["code", "script"],
   "ignoreUrls": true,
