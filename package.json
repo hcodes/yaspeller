@@ -41,6 +41,7 @@
     "minimatch": "~2.0.1",
     "request": "~2.54.0",
     "showdown": "~0.4.0",
+    "strip-json-comments": "^1.0.2",
     "xml2js": "~0.4.5"
   },
   "devDependencies": {
