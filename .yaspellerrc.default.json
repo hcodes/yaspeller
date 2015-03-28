@@ -2,7 +2,6 @@
   "excludeFiles": [],
   "fileExtensions": [],
   "format": "auto",
-  "ignoreComments": true,
   "ignoreTags": [
     "code",
     "kbd",
