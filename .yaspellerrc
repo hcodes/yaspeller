@@ -1,7 +1,7 @@
 {
   "lang": "en,ru",
   "format": "auto",
-  "fileExtensions": [".md"], // jisdjisjdf
+  "fileExtensions": [".md"],
   "excludeFiles": [
     ".*",
     "yaspeller",
