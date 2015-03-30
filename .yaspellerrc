@@ -12,16 +12,22 @@
     "test"
   ],
   "dictionary": [
-    "NONINFRINGEMENT",
-    "Yaspeller",
-    "Seleznev",
-    "sublicense",
-    "htm",
+    "/(C|c)hangelog/",
     "CLI",
+    "deps",
+    "htm",
+    "hcodes",
+    "Habrahabr",
+    "LF",
     "linter",
     "md",
+    "NONINFRINGEMENT",
+    "npm",
+    "ru",
     "svg",
+    "Seleznev",
     "sitemap",
-    "yaspeller"
+    "sublicense",
+    "/(Y|y)aspeller/"
   ]
 }

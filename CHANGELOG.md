@@ -1,6 +1,7 @@
 # Changelog
 
 ## 1.1.0
++ Use settings `excludeFiles` and `fileExtensions` for checking one file.
 + Support for regular expressions #18.
 + Fixed detection format #19.
 
