@@ -68,6 +68,9 @@ Set type of report: `console`, `html` or `json`.<br/>
 Default: `console`<br/>
 Example: `console,html,custom_report.js`
 
+#### `--check-yo`
+Check the correctness of using the letter "e" in Russian texts.
+
 #### `--by-words`
 Do not use a dictionary environment (context) during the scan.<br/>
 This is useful in cases where the service is transmitted to the input of a list of individual words.
@@ -163,7 +166,7 @@ Yaspeller is configured using `.yaspellerrc` JSON file at the root of the projec
   "report": ["console", "html"],
   "dictionary": [
     "someword1",
-    "/(S|s)omeword2/"    
+    "/(S|s)omeword2/"
   ],
   "ignoreTags": ["code", "script"],
   "ignoreUrls": true,
@@ -180,6 +183,7 @@ Yaspeller is configured using `.yaspellerrc` JSON file at the root of the projec
 | `fileExtensions` | `Array` | [`--file-extension`](#--file-extensions-value) |
 | `dictionary` | `Array` | [`--dictionary`](#--dictionary-file) |
 | `report` | `Array` | [`--report`](#--report-type) |
+| `checkYo`    | `Boolean` | [`--check-yo`](#--check-yo) |
 | `byWords`    | `Boolean` | [`--by-words`](#--by-words) |
 | `findRepeatWords` | `Boolean` | [`--find-repeat-words`](#--find-repeat-words) |
 | `flagLatin` | `Boolean` | [`--flag-latin`](#--flag-latin) |

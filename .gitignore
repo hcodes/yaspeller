@@ -1,6 +1,7 @@
 yaspeller/
 yaspeller_report.html
 yaspeller_report.json
+yaspeller.error_dictionary.json
 coverage/
 node_modules/
 npm-debug.log

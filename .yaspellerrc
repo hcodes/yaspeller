@@ -1,4 +1,5 @@
 {
+  "checkYo": true,
   "lang": "en,ru",
   "format": "auto",
   "fileExtensions": [".md"],

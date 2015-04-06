@@ -65,6 +65,9 @@ JSON-файл собственного словаря.
 По умолчанию: `console`<br/>
 Пример: `console,html,custom_report.js`
 
+#### `--check-yo`
+Проверять корректность использования буквы «ё» в русских текстах.
+
 #### `--by-words`
 Не использовать словарное окружение (контекст) при проверке.<br/>
 Опция полезна в случаях, когда на вход сервиса передается список отдельных слов.
@@ -177,6 +180,7 @@ JSON-файл собственного словаря.
 | `fileExtensions` | `Array` | [`--file-extension`](#--file-extensions-value) |
 | `dictionary` | `Array` | [`--dictionary`](#--dictionary-file) |
 | `report` | `Array` | [`--report`](#--report-type) |
+| `checkYo`    | `Boolean` | [`--check-yo`](#--check-yo) |
 | `byWords`    | `Boolean` | [`--by-words`](#--by-words) |
 | `findRepeatWords` | `Boolean` | [`--find-repeat-words`](#--find-repeat-words) |
 | `flagLatin` | `Boolean` | [`--flag-latin`](#--flag-latin) |
