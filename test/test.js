@@ -12,7 +12,7 @@ var yaspeller = require('../lib/yaspeller'),
 debug.setDebug(true);
 
 describe('API', function() {
-    this.timeout(5000);
+    this.timeout(10000);
 
     it('checkFile', function(done) {
         yaspeller.checkFile('./test/texts/repeat_words.txt', function(err, data) {
@@ -241,6 +241,14 @@ describe('API', function() {
     });
 
     describe('Settings', function() {
+        it('checkYo', function(done) {
+            yaspeller.checkText('Елка, елки, еж.', function(err, data) {
+                assert.equal(err, false);
+                assert.equal(data.length, 2);
+                done();
+            }, {lang: 'ru', checkYo: true});
+        });
+
         it('ignoreTags off', function(done) {
             var text = getFile('./test/texts/settings_ignore_tags.txt');
             yaspeller.checkText(text, function(err, data) {
