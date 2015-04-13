@@ -69,7 +69,7 @@ Default: `console`<br/>
 Example: `console,html,custom_report.js`
 
 #### `--check-yo`
-Check the correctness of using the letter "e" in Russian texts.
+Check the correctness of using the letter “Ё” (Yo) in Russian texts.
 
 #### `--by-words`
 Do not use a dictionary environment (context) during the scan.<br/>
