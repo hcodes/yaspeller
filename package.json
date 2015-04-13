@@ -40,7 +40,7 @@
     "isutf8": "~1.0.11",
     "lodash": "~3.6",
     "minimatch": "~2.0.1",
-    "request": "~2.54.0",
+    "request": "~2.55.0",
     "showdown": "~0.4.0",
     "strip-json-comments": "^1.0.2",
     "xml2js": "~0.4.5"
@@ -49,7 +49,7 @@
     "chai": "~2.2.0",
     "istanbul": "~0.3.7",
     "jscs": "~1.12.0",
-    "jshint": "~2.6.3",
+    "jshint": "~2.7.0",
     "mocha": "~2.2.1"
   },
   "engines": {
