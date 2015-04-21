@@ -4,6 +4,7 @@ var yaspeller = require('../lib/yaspeller'),
     assert = require('chai').assert,
     fs = require('fs'),
     url404 = 'https://raw.githubusercontent.com/asd9qi9e91ke9k2k193k19',
+    urlUnknown = 'http://dk02keoqwke02keoqwwer923mr923.info/',
     urlGH = 'https://raw.githubusercontent.com/hcodes/yaspeller/master/test/texts/',
     getFile = function(name) {
         return fs.readFileSync(name).toString('utf-8');
@@ -67,9 +68,26 @@ describe('API', function() {
         });
     });
 
+    it('checkUrl unknown host', function(done) {
+        yaspeller.checkUrl(urlUnknown, function(err, data) {
+            assert.equal(err, true);
+            done();
+        });
+    });
+
     it('checkSitemap 404', function(done) {
         yaspeller.checkSitemap(urlGH + 'unknow_sitemap.xml', function(data) {
             assert.equal(data[0][0], true);
+            done();
+        });
+    });
+
+    it('checkSitemap', function(done) {
+        yaspeller.checkSitemap(urlGH + 'sitemap.xml', function(data) {
+            data.forEach(function(el) {
+                assert.equal(el[0], false);
+                assert.equal(el[1].data.length, 2);
+            });
             done();
         });
     });
@@ -81,11 +99,10 @@ describe('API', function() {
         });
     });
 
-    it('checkSitemap', function(done) {
-        yaspeller.checkSitemap(urlGH + 'sitemap.xml', function(data) {
+    it('checkSitemap unknown host', function(done) {
+        yaspeller.checkSitemap(urlUnknown + 'sitemap.xml', function(data) {
             data.forEach(function(el) {
-                assert.equal(el[0], false);
-                assert.equal(el[1].data.length, 2);
+                assert.equal(el[0], true);
             });
             done();
         });
