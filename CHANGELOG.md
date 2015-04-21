@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.1.0
+- Ability to use an empty parameter `--file-extensions` from CLI.
+
+### Bug fixes
+- Error with an unknown site.
+
 ## 2.0.1
 ### Bug fixes
 - Load config after args is parsed #27
