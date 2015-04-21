@@ -38,11 +38,11 @@
     "eyo": "~1.0.0",
     "entities": "~1.1.1",
     "isutf8": "~1.0.11",
-    "lodash": "~3.6",
+    "lodash": "3.x",
     "minimatch": "~2.0.1",
-    "request": "~2.55.0",
+    "request": "2.x",
     "showdown": "~0.4.0",
-    "strip-json-comments": "^1.0.2",
+    "strip-json-comments": "~1.0.2",
     "xml2js": "~0.4.5"
   },
   "devDependencies": {
