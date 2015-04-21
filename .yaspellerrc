@@ -13,6 +13,7 @@
     "test"
   ],
   "dictionary": [
+    "args",
     "/(C|c)hangelog/",
     "CLI",
     "deps",
@@ -29,6 +30,7 @@
     "Seleznev",
     "sitemap",
     "sublicense",
-    "/(Y|y)aspeller/"
+    "/(Y|y)aspeller/",
+    "Yo"
   ]
 }
