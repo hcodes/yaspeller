@@ -193,6 +193,21 @@ JSON-файл собственного словаря.
 | `ignoreUrls` | `Boolean` | [`--ignore-urls`](#--ignore-urls) |
 | `maxRequests` | `Number` | [`--max-requests`](#--max-requests-value) |
 
+## Плагин для [Gulp](http://gulpjs.com)
+```js
+var gulp = require('gulp'),
+    run = require('gulp-run');
+
+gulp.task('yaspeller', function (cb) {
+    run('yaspeller ./').exec()
+        .on('error', function (err) {
+            console.error(err.message);
+            cb();
+        })
+        .on('finish', cb);
+});
+```
+
 ## [Ограничения API Яндекс.Спеллера](http://legal.yandex.ru/speller_api/)
 
 ## [Лицензия](./LICENSE.md)
