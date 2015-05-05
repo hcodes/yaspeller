@@ -196,6 +196,21 @@ Yaspeller is configured using `.yaspellerrc` JSON file at the root of the projec
 | `ignoreUrls` | `Boolean` | [`--ignore-urls`](#--ignore-urls) |
 | `maxRequests` | `Number` | [`--max-requests`](#--max-requests-value) |
 
+## [Gulp](http://gulpjs.com) plugin
+```js
+var gulp = require('gulp'),
+    run = require('gulp-run');
+
+gulp.task('yaspeller', function (cb) {
+    run('yaspeller ./').exec()
+        .on('error', function (err) {
+            console.error(err.message);
+            cb();
+        })
+        .on('finish', cb);
+});
+```
+
 ## [Restrictions API Yandex.Speller](http://legal.yandex.ru/speller_api/)
 
 ## [License](./LICENSE.md)
