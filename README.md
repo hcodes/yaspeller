@@ -217,7 +217,10 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-shell'); // npm install grunt-shell --save-dev
     grunt.initConfig({
         shell: {
-            yaspeller: {options: {stderr: false}, command: './node_modules/.bin/yaspeller .'}
+            yaspeller: {
+                options: {stderr: false},
+                command: './node_modules/.bin/yaspeller .'
+            }
         }
     });
     grunt.registerTask('lint', ['shell:yaspeller']);
