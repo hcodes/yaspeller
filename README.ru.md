@@ -196,16 +196,29 @@ JSON-файл собственного словаря.
 ## Плагин для [Gulp](http://gulpjs.com)
 ```js
 var gulp = require('gulp'),
-    run = require('gulp-run');
+    run = require('gulp-run'); // npm install gulp-run --save-dev
 
 gulp.task('yaspeller', function (cb) {
-    run('yaspeller ./').exec()
+    run('./node_modules/.bin/yaspeller ./').exec()
         .on('error', function (err) {
             console.error(err.message);
             cb();
         })
         .on('finish', cb);
 });
+```
+
+## Плагин для [Grunt](http://gruntjs.com)
+```js
+module.exports = function(grunt) {
+    grunt.loadNpmTasks('grunt-shell'); // npm install grunt-shell --save-dev
+    grunt.initConfig({
+        shell: {
+            yaspeller: {options: {stderr: false}, command: './node_modules/.bin/yaspeller .'}
+        }
+    });
+    grunt.registerTask('lint', ['shell:yaspeller']);
+}
 ```
 
 ## [Ограничения API Яндекс.Спеллера](http://legal.yandex.ru/speller_api/)
