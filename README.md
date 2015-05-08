@@ -221,7 +221,7 @@ module.exports = function(grunt) {
         }
     });
     grunt.registerTask('lint', ['shell:yaspeller']);
-}
+};
 ```
 
 ## [Restrictions API Yandex.Speller](http://legal.yandex.ru/speller_api/)
