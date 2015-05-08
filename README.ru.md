@@ -218,7 +218,7 @@ module.exports = function(grunt) {
         }
     });
     grunt.registerTask('lint', ['shell:yaspeller']);
-}
+};
 ```
 
 ## [Ограничения API Яндекс.Спеллера](http://legal.yandex.ru/speller_api/)
