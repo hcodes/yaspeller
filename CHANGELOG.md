@@ -1,7 +1,8 @@
 # Changelog
 
 ## 2.2.0
-- Exit code for error loading in API #29
+- Exit code for error loading in API #29.
+- Update deps in package.json.
 
 ## 2.1.0
 - Ability to use an empty parameter `--file-extensions` from CLI.
