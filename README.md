@@ -199,16 +199,29 @@ Yaspeller is configured using `.yaspellerrc` JSON file at the root of the projec
 ## [Gulp](http://gulpjs.com) plugin
 ```js
 var gulp = require('gulp'),
-    run = require('gulp-run');
+    run = require('gulp-run'); // npm install gulp-run --save-dev
 
 gulp.task('yaspeller', function (cb) {
-    run('yaspeller ./').exec()
+    run('./node_modules/.bin/yaspeller .').exec()
         .on('error', function (err) {
             console.error(err.message);
             cb();
         })
         .on('finish', cb);
 });
+```
+
+## [Grunt](http://gruntjs.com) plugin
+```js
+module.exports = function(grunt) {
+    grunt.loadNpmTasks('grunt-shell'); // npm install grunt-shell --save-dev
+    grunt.initConfig({
+        shell: {
+            yaspeller: {options: {stderr: false}, command: './node_modules/.bin/yaspeller .'}
+        }
+    });
+    grunt.registerTask('lint', ['shell:yaspeller']);
+}
 ```
 
 ## [Restrictions API Yandex.Speller](http://legal.yandex.ru/speller_api/)
