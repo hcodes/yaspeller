@@ -59,6 +59,9 @@ JSON-файл собственного словаря.
     "/someword3/i"
 ]
 ```
+Примеры использования:<br/>
+`yaspeller --dictionary my_dict.json .`<br/>
+`yaspeller --dictionary my_dict.json:my_dict2.json .`
 
 #### `--report <type>`
 Задать вид отчёта: `console`, `html` или `json`.<br/>

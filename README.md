@@ -62,6 +62,10 @@ Regular expressions are supported:
     "/someword3/i"
 ]
 ```
+Examples:<br/>
+`yaspeller --dictionary my_dict.json .`<br/>
+`yaspeller --dictionary my_dict.json:my_dict2.json .`
+
 
 #### `--report <type>`
 Set type of report: `console`, `html` or `json`.<br/>
