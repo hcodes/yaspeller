@@ -1,5 +1,5 @@
 {
-    "predef": ["describe", "it"],
+    "mocha": true,
     "browser": true,
     "jquery": true,
     "curly": true,
