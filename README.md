@@ -64,7 +64,7 @@ Regular expressions are supported:
 ```
 
 #### `--report <type>`
-Set type of report: `console`, `html` or `json`.<br/>
+Set type of report: `console`, `html`, `markdown` or `json`.<br/>
 Default: `console`<br/>
 Example: `console,html,custom_report.js`
 
