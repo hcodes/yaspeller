@@ -50,7 +50,8 @@
     "istanbul": "~0.3.7",
     "jscs": "~1.13.1",
     "jshint": "~2.7.0",
-    "mocha": "~2.2.1"
+    "mocha": "~2.2.1",
+    "sinon": "^1.14.1"
   },
   "engines": {
     "node": "*"
