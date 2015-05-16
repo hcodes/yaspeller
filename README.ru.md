@@ -61,7 +61,7 @@ JSON-файл собственного словаря.
 ```
 
 #### `--report <type>`
-Задать вид отчёта: `console`, `html` или `json`.<br/>
+Задать вид отчёта: `console`, `html`, `markdown` или `json`.<br/>
 По умолчанию: `console`<br/>
 Пример: `console,html,custom_report.js`
 
