@@ -1,20 +1,9 @@
 var yaspeller = require('../lib/yaspeller'),
     dictionary = require('../lib/dictionary'),
     exitCodes = require('../lib/exit-codes'),
-    sinon = require('sinon'),
     assert = require('chai').assert;
 
-before(function() {
-    sinon.stub(process, 'exit');
-});
-
-after(function() {
-    sinon.restore();
-});
-
 describe('Dictionary', function() {
-    this.timeout(10000);
-
     it('removeDictWords, strings', function() {
         var dict = dictionary.prepareDictionary([
                 'контрол',

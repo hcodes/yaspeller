@@ -2,7 +2,8 @@
     "excludeFiles": [
         ".*",
         "coverage",
-        "node_modules"
+        "node_modules",
+        "test/json/**"
     ],
     "requireCurlyBraces": ["if", "else", "for", "while", "do"],
     "requireSpaceAfterKeywords": ["do", "else"],
