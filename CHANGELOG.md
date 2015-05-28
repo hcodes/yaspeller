@@ -4,6 +4,7 @@
 - JSON comments in dictionaries and configs #35
 - Аbility to specify multiple dictionaries in option --dictionary #33
 - Markdown report #31
+- Update deps in package.json
 
 ## 2.2.0
 - Exit code for error loading in API #29.
