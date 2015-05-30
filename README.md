@@ -152,7 +152,7 @@ Yaspeller is configured using `.yaspellerrc` JSON file at the root of the projec
 ```
 
 **Advanced example:**
-```JSON
+```js
 {
   "excludeFiles": [
     ".git",
