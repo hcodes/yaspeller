@@ -54,7 +54,7 @@ JSON-файл собственного словаря.
 Поддерживаются регулярные выражения:
 ```JSON
 [
-    "someword1",
+    "someword1", // JSON comments
     "/(S|s)omeword2/",
     "/someword3/i"
 ]
@@ -165,7 +165,7 @@ JSON-файл собственного словаря.
   ],
   "report": ["console", "html"],
   "dictionary": [
-    "someword1",
+    "someword1", // JSON comments
     "/(S|s)omeword2/"
   ],
   "ignoreTags": ["code", "script"],
