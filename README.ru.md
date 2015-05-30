@@ -196,6 +196,33 @@ JSON-файл собственного словаря.
 | `ignoreUrls` | `Boolean` | [`--ignore-urls`](#--ignore-urls) |
 | `maxRequests` | `Number` | [`--max-requests`](#--max-requests-value) |
 
+## Исключение части текста из проверки
+### Исключить строку
+```js
+var re = /А-ЯЁ/; // yaspeller ignore
+```
+```js
+var re = /А-ЯЁ/; /* yaspeller ignore */
+```
+```html
+<span>А-ЯЁ</span> <!-- yaspeller ignore -->
+```
+
+### Исключить блок
+```js
+/* yaspeller ignore:start */
+var reUpper = /А-ЯЁ/,
+    reLower = /а-яё/;
+/* yaspeller ignore:end */
+```
+
+```html
+<!-- yaspeller ignore:start -->
+<span>А-ЯЁ</span>
+<div>а-яё</div>
+<!-- yaspeller ignore:end -->
+```
+
 ## Плагин для [Gulp](http://gulpjs.com)
 ```js
 var gulp = require('gulp'),
