@@ -200,6 +200,33 @@ Yaspeller is configured using `.yaspellerrc` JSON file at the root of the projec
 | `ignoreUrls` | `Boolean` | [`--ignore-urls`](#--ignore-urls) |
 | `maxRequests` | `Number` | [`--max-requests`](#--max-requests-value) |
 
+## Ignore text from checking
+### Ignore a line
+```js
+var re = /a-z/; // yaspeller ignore
+```
+```js
+var re = /a-z/; /* yaspeller ignore */
+```
+```html
+<span>a-z</span> <!-- yaspeller ignore -->
+```
+
+### Ignore a block
+```js
+/* yaspeller ignore:start */
+var reUpper = /A-Z/,
+    reLower = /a-z/;
+/* yaspeller ignore:end */
+```
+
+```html
+<!-- yaspeller ignore:start -->
+<span>A-Z</span>
+<div>a-z</div>
+<!-- yaspeller ignore:end -->
+```
+
 ## [Gulp](http://gulpjs.com) plugin
 ```js
 var gulp = require('gulp'),
