@@ -78,44 +78,46 @@ describe('Utils', function() {
         );
     });
 
-    it('loadJsonFile', function() {
+    it('loadFileAsJson', function() {
         assert.deepEqual(
-            utils.loadJsonFile('./test/json/comment.js'),
+            utils.loadFileAsJson('./test/json/comment.json'),
             ['1']
         );
 
         assert.deepEqual(
-            utils.loadJsonFile('./test/json/comment.json'),
+            utils.loadFileAsJson('./test/json/no_comment.json'),
             ['1']
         );
+    });
 
+    it('loadFileAsJson, not json', function() {
+        assert.throws(function() {
+            utils.loadFileAsJson('./test/json/comment.ojs');
+        });
+    });
+
+    it('loadFileAsJson, js', function() {
         assert.deepEqual(
-            utils.loadJsonFile('./test/json/no_comment.json'),
+            utils.loadFileAsJson('./test/json/comment.js'),
             ['1']
         );
     });
 
-    it('loadJsonFile, not json', function() {
+    it('loadFileAsJson, unknown file', function() {
         assert.throws(function() {
-            utils.loadJsonFile('./test/json/comment.ojs');
+            utils.loadFileAsJson('unknown_file', true);
         });
     });
 
-    it('loadJsonFile, unknown file', function() {
+    it('loadFileAsJson, not utf8', function() {
         assert.throws(function() {
-            utils.loadJsonFile('unknown_file', true);
+            utils.loadFileAsJson('test/json/not_utf8.json');
         });
     });
 
-    it('loadJsonFile, not utf8', function() {
+    it('loadFileAsJson, error parsing', function() {
         assert.throws(function() {
-            utils.loadJsonFile('test/json/not_utf8.json');
-        });
-    });
-
-    it('loadJsonFile, error parsing', function() {
-        assert.throws(function() {
-            utils.loadJsonFile('test/json/error_parsing.json');
+            utils.loadFileAsJson('test/json/error_parsing.json');
         });
     });
 

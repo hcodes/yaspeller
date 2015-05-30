@@ -1,3 +1,1 @@
-[
-    "1" // hello
-]
+module.exports = ['1'];
