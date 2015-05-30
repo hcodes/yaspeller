@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.4.0
+- Ability to ignore text when checking
+
+### Bug fixes
+- Fix JSON comments in dictionaries and configs
+
 ## 2.3.0
 - JSON comments in dictionaries and configs #35
 - Аbility to specify multiple dictionaries in option --dictionary #33
