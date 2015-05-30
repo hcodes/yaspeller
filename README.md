@@ -57,7 +57,7 @@ JSON file for own dictionary.
 Regular expressions are supported:
 ```js
 [
-    "someword1",
+    "someword1", // JSON comments
     "/(S|s)omeword2/",
     "/someword3/i"
 ]
@@ -169,7 +169,7 @@ Yaspeller is configured using `.yaspellerrc` JSON file at the root of the projec
   ],
   "report": ["console", "html"],
   "dictionary": [
-    "someword1",
+    "someword1", // JSON comments
     "/(S|s)omeword2/"
   ],
   "ignoreTags": ["code", "script"],
