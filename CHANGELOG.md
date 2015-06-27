@@ -4,11 +4,11 @@
 - Ability to ignore text when checking
 
 ### Bug fixes
-- Fix JSON comments in dictionaries and configs
+- Fix JSON comments in dictionaries and config's
 
 ## 2.3.0
-- JSON comments in dictionaries and configs #35
-- Аbility to specify multiple dictionaries in option --dictionary #33
+- JSON comments in dictionaries and config's #35
+- Ability to specify multiple dictionaries in option --dictionary #33
 - Markdown report #31
 - Update deps in package.json
 
