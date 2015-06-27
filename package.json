@@ -35,7 +35,7 @@
     "async": "~1.0.0",
     "chalk": "~1.0.0",
     "commander": "~2.8.0",
-    "eyo": "~1.1.0",
+    "eyo-kernel": "~1.0.0",
     "entities": "~1.1.1",
     "isutf8": "~1.0.11",
     "lodash": "3.x",
