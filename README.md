@@ -46,10 +46,10 @@ Example: `.md,.htm,.txt`.
 
 #### `--dictionary <file>`
 JSON file for own dictionary.
-```JSON
+```js
 [
-    "someword1",
-    "someword2",
+    "someword1", // someword1 = someword1 and Someword1
+    "Someword2", // Someword2 = Someword2
     "someword3"
 ]
 ```
@@ -57,11 +57,12 @@ JSON file for own dictionary.
 Regular expressions are supported:
 ```js
 [
-    "someword1", // JSON comments
-    "/(S|s)omeword2/",
-    "/someword3/i"
+    "unknownword",
+    "unknown(W|w)ord[12]?", // unknown(W|w)ord[12]? = unknown(W|w)ord[12]? and Unknown(W|w)ord[12]?
+    "Unknown(W|w)ord[34]?" // Unknown(W|w)ord[34]? = Unknown(W|w)ord[34]?
 ]
 ```
+
 Examples:<br/>
 `yaspeller --dictionary my_dict.json .`<br/>
 `yaspeller --dictionary my_dict.json:my_dict2.json .`
@@ -169,8 +170,11 @@ Yaspeller is configured using `.yaspellerrc` JSON file at the root of the projec
   ],
   "report": ["console", "html"],
   "dictionary": [
-    "someword1", // JSON comments
-    "/(S|s)omeword2/"
+    // JSON comments
+    "someword1", // someword1 = someword1 and Someword1
+    "Someword2", // Someword2 = Someword2
+    "some(w|W)ord[23]", // some(w|W)ord[23] = some(w|W)ord[23] and Some(w|W)ord[23]
+    "Some(w|W)ord" // Some(w|W)ord = Some(w|W)ord
   ],
   "ignoreTags": ["code", "script"],
   "ignoreUrls": true,

@@ -14,7 +14,7 @@
   ],
   "dictionary": [
     "args",
-    "/(C|c)hangelog/",
+    "changelog",
     "CLI",
     "deps",
     "htm",
@@ -22,6 +22,7 @@
     "Habrahabr",
     "LF",
     "linter",
+    "Markdown",
     "md",
     "NONINFRINGEMENT",
     "npm",
@@ -30,7 +31,7 @@
     "Seleznev",
     "sitemap",
     "sublicense",
-    "/(Y|y)aspeller/",
-    "Yo"
+    "yaspeller",
+    "yo"
   ]
 }
