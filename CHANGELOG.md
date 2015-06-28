@@ -1,5 +1,31 @@
 # Changelog
 
+## 2.5.0
+- Replace npm module `eyo` to `eyo-kernel`
+- Output warnings of duplicate words in dictionaries
+- Update deps in package.json
+- Simplified regular expressions in words in the dictionary
+
+Before(<= 2.4.0):
+```js
+[
+  "someword1", // someword1 = someword1
+  "Someword2", // Someword2 = Someword2
+  "/some(w|W)ord[23]/", // some(w|W)ord[23] = some(w|W)ord[23]
+  "/Some(w|W)ord/" // Some(w|W)ord = Some(w|W)ord
+]
+```
+
+After(2.5.0):
+```js
+[
+  "someword1", // someword1 = someword1 and Someword1
+  "Someword2", // Someword2 = Someword2
+  "some(w|W)ord[23]", // some(w|W)ord[23] = some(w|W)ord[23] and Some(w|W)ord[23]
+  "Some(w|W)ord" // Some(w|W)ord = Some(w|W)ord
+]
+```
+
 ## 2.4.0
 - Ability to ignore text when checking
 
