@@ -32,26 +32,26 @@
     "Yandex.Speller"
   ],
   "dependencies": {
-    "async": "~1.2.1",
-    "chalk": "~1.0.0",
-    "commander": "~2.8.0",
+    "async": "~1.4.2",
+    "chalk": "~1.1.1",
+    "commander": "~2.9.0",
     "eyo-kernel": "~1.0.0",
     "entities": "~1.1.1",
     "isutf8": "~1.0.11",
-    "lodash": "3.x",
-    "minimatch": "~2.0.1",
-    "request": "2.x",
-    "showdown": "~1.1.0",
-    "strip-json-comments": "~1.0.2",
-    "xml2js": "~0.4.5"
+    "lodash": "^3.10.1",
+    "minimatch": "~3.0.0",
+    "request": "^2.65.0",
+    "showdown": "~1.2.3",
+    "strip-json-comments": "~1.0.4",
+    "xml2js": "~0.4.13"
   },
   "devDependencies": {
-    "chai": "~3.0.0",
-    "istanbul": "~0.3.7",
-    "jscs": "~1.13.1",
+    "chai": "~3.3.0",
+    "istanbul": "~0.4.0",
+    "jscs": "^2.3.4",
     "jshint": "~2.8.0",
-    "mocha": "~2.2.1",
-    "sinon": "^1.14.1"
+    "mocha": "~2.3.3",
+    "sinon": "^1.17.1"
   },
   "engines": {
     "node": "*"
