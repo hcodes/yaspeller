@@ -1,12 +1,16 @@
 # Changelog
 
+## 2.5.1
+- Updated deps in package.json
+
+
 ## 2.5.0
 - Replace npm module `eyo` to `eyo-kernel`
 - Output warnings of duplicate words in dictionaries
 - Update deps in package.json
 - Simplified regular expressions in words in the dictionary
 
-Before(<= 2.4.0):
+Before (<= 2.4.0):
 ```js
 [
   "someword1", // someword1 = someword1
@@ -16,7 +20,7 @@ Before(<= 2.4.0):
 ]
 ```
 
-After(2.5.0):
+After (2.5.0):
 ```js
 [
   "someword1", // someword1 = someword1 and Someword1
