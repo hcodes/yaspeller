@@ -1,0 +1,146 @@
+html, body
+{
+    font-size: 1em;
+    font-family: Arial, sans-serif;
+}
+
+body.show-only-errors_checked .ok
+{
+    display: none;
+}
+
+body.show-only-errors_checked .sym-ok-group
+{
+    opacity: 0.2;
+}
+
+.page
+{
+    padding: 20px 70px 30px 50px;
+}
+
+.word
+{
+    background-color: rgba(0, 0, 0, 0.05);
+    border-radius: 3px;
+    padding: 0.1em 0.2em;
+}
+
+.table
+{
+    table-layout: fixed;
+    width: 100%;
+    margin-left: 2em;
+    font-size: 0.9em;
+    border-spacing: 0 0;
+    border-collapse: collapse;
+}
+
+.table th
+{
+    font-weight: bold;
+    text-align: center;
+}
+
+.table th, .table td
+{
+    padding: 0.3em;
+}
+
+.table tr:nth-child(2n)
+{
+    background-color: #fcfcfc;
+}
+
+.table tr:hover
+{
+  background-color: #f0f0f0;
+}
+
+.table caption
+{
+    font-size: 1.2em;
+    margin-top: 1em;
+    margin-bottom: 0.5em;
+    font-weight: bold;
+    text-align: left;
+}
+
+.table td,
+.table th
+{
+    border: 1px solid #ddd;
+    padding: 6px 13px;
+}
+
+.table-num,
+.table-count
+{
+    text-align: right;
+}
+
+.table-num
+{
+    width: 2em;
+    text-align: right;
+}
+
+.table-count
+{
+    width: 2.5em;
+}
+
+.syserr,
+.err,
+.ok
+{
+    margin-top: 2.5em;
+}
+
+.syserr
+{
+    color: red;
+}
+
+.sym-err,
+.num-err
+{
+    color: red;
+}
+
+.num-ok,
+.sym-ok
+{
+    color: green;
+}
+
+.sym-ok,
+.sym-err
+{
+    display: inline-block;
+    font-weight: bold;
+    width: 1em;
+}
+
+.letters-en
+{
+    color: red;
+}
+
+.letters-ru
+{
+    color: green;
+}
+
+.time
+{
+    margin-left: 0.5em;
+    color: #999;
+    font-size: 0.8em;
+}
+
+a:not([href]),
+a:not([href]):hover
+{
+    color: black;
+}
