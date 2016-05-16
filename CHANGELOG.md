@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.7.0
+- Separate module for Yandex.Speller API
+- Updated deps in package.json
+
 ## 2.6.0
 - Added filter “Show only errors” in HTML report
 - Updated deps in package.json
