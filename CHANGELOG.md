@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.8.0
+- Added support for stdin
+- Updated deps in package.json
+
 ## 2.7.0
 - Separate module for Yandex.Speller API
 - Updated deps in package.json
