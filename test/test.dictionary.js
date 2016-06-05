@@ -28,7 +28,9 @@ describe('Dictionary', function() {
                 }
             ];
 
-        var result = dictionary.removeDictWords(typos, dict);
+        dictionary._dict = dict;
+
+        var result = dictionary.removeDictWords(typos);
         assert.deepEqual(result, [
             {
                 code: 2,
@@ -70,7 +72,9 @@ describe('Dictionary', function() {
                 }
             ];
 
-        var result = dictionary.removeDictWords(typos, dict);
+        dictionary._dict = dict;
+
+        var result = dictionary.removeDictWords(typos);
         assert.deepEqual(result, [
             {
                 code: 1,
@@ -159,18 +163,18 @@ describe('Dictionary', function() {
     });
 
     it('getDictionary(), empty params', function() {
-        var result = dictionary.getDictionary();
-        assert.deepEqual(result, []);
+        dictionary.set();
+        assert.deepEqual(dictionary._dict, []);
     });
 
-    it('getDictionary(), dictionary from config', function() {
-        var result = dictionary.getDictionary([], ['a']);
-        assert.deepEqual(result, [/[aA]/]);
+    it('set(), dictionary from config', function() {
+        dictionary.set([], ['a']);
+        assert.deepEqual(dictionary._dict, [/[aA]/]);
     });
 
-    it('getDictionary()', function() {
-        var result = dictionary.getDictionary(['test/dict/a.json', 'test/dict/b.json'], ['a']);
-        assert.deepEqual(result, [
+    it('set()', function() {
+        dictionary.set(['test/dict/a.json', 'test/dict/b.json'], ['a']);
+        assert.deepEqual(dictionary._dict, [
             /[aA]/,
             /[xX]yz/,
             /[aA]bc/,
@@ -179,18 +183,18 @@ describe('Dictionary', function() {
         ]);
     });
 
-    it('getDictionary(), is not utf8', function() {
-        dictionary.getDictionary(['test/dict/not_utf8.json']);
+    it('set(), is not utf8', function() {
+        dictionary.set(['test/dict/not_utf8.json']);
         assert.equal(process.exit.args[0], exitCodes.ERROR_DICTIONARY);
     });
 
-    it('getDictionary(), error parsing', function() {
-        dictionary.getDictionary(['test/dict/error_parsing.json']);
+    it('set(), error parsing', function() {
+        dictionary.set(['test/dict/error_parsing.json']);
         assert.equal(process.exit.args[0], exitCodes.ERROR_DICTIONARY);
     });
 
-    it('getDictionary(), not exists', function() {
-        dictionary.getDictionary(['test/dict/not_exists.json']);
+    it('set(), not exists', function() {
+        dictionary.set(['test/dict/not_exists.json']);
         assert.equal(process.exit.args[0], exitCodes.ERROR_DICTIONARY);
     });
 
@@ -198,25 +202,25 @@ describe('Dictionary', function() {
         assert.isFalse(dictionary.isNotOptimizedRegExp('/Unknownword/'));
         assert.isTrue(dictionary.isNotOptimizedRegExp('/[U]nknownword/'));
         assert.isTrue(dictionary.isNotOptimizedRegExp('[U]nknownword'));
-        
+
         assert.isTrue(dictionary.isNotOptimizedRegExp('/Unknownwor[d]/'));
         assert.isTrue(dictionary.isNotOptimizedRegExp('Unknownwor[d]'));
-        
+
         assert.isTrue(dictionary.isNotOptimizedRegExp('/()Unknownword/'));
         assert.isTrue(dictionary.isNotOptimizedRegExp('()Unknownword'));
-        
+
         assert.isTrue(dictionary.isNotOptimizedRegExp('/Unknownword()/'));
         assert.isTrue(dictionary.isNotOptimizedRegExp('Unknownword()'));
-        
+
         assert.isTrue(dictionary.isNotOptimizedRegExp('/Unknow[]nword/'));
         assert.isTrue(dictionary.isNotOptimizedRegExp('Unknow[]nword'));
-        
+
         assert.isFalse(dictionary.isNotOptimizedRegExp('/Unknow[ab]nword/'));
         assert.isFalse(dictionary.isNotOptimizedRegExp('Unknow[ab]nword'));
-        
+
         assert.isTrue(dictionary.isNotOptimizedRegExp('/Unknow[a]nword/'));
         assert.isTrue(dictionary.isNotOptimizedRegExp('Unknow[a]nword'));
-        
+
         assert.isTrue(dictionary.isNotOptimizedRegExp('/Unknow(a)nword/'));
         assert.isTrue(dictionary.isNotOptimizedRegExp('Unknow(a)nword'));
     });
