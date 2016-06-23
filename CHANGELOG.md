@@ -1,5 +1,8 @@
 # Changelog
 
+## 2.8.1
+- Updated deps in package.json
+
 ## 2.8.0
 - Added support for stdin
 - Updated deps in package.json
