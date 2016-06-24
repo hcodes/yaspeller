@@ -1,7 +1,8 @@
-html, body
+html,
+body
 {
-    font-size: 1em;
     font-family: Arial, sans-serif;
+    font-size: 1em;
 }
 
 body.show-only-errors_checked .ok
@@ -11,7 +12,7 @@ body.show-only-errors_checked .ok
 
 body.show-only-errors_checked .sym-ok-group
 {
-    opacity: 0.2;
+    opacity: .2;
 }
 
 .page
@@ -21,17 +22,20 @@ body.show-only-errors_checked .sym-ok-group
 
 .word
 {
-    background-color: rgba(0, 0, 0, 0.05);
+    padding: .1em .2em;
+
     border-radius: 3px;
-    padding: 0.1em 0.2em;
+    background-color: rgba(0, 0, 0, .05);
 }
 
 .table
 {
-    table-layout: fixed;
+    font-size: .9em;
+
     width: 100%;
     margin-left: 2em;
-    font-size: 0.9em;
+
+    table-layout: fixed;
     border-spacing: 0 0;
     border-collapse: collapse;
 }
@@ -39,12 +43,14 @@ body.show-only-errors_checked .sym-ok-group
 .table th
 {
     font-weight: bold;
+
     text-align: center;
 }
 
-.table th, .table td
+.table th,
+.table td
 {
-    padding: 0.3em;
+    padding: .3em;
 }
 
 .table tr:nth-child(2n)
@@ -54,40 +60,46 @@ body.show-only-errors_checked .sym-ok-group
 
 .table tr:hover
 {
-  background-color: #f0f0f0;
+    background-color: #f0f0f0;
 }
 
 .table caption
 {
     font-size: 1.2em;
-    margin-top: 1em;
-    margin-bottom: 0.5em;
     font-weight: bold;
+
+    margin-top: 1em;
+    margin-bottom: .5em;
+
     text-align: left;
 }
 
 .table td,
 .table th
 {
-    border: 1px solid #ddd;
     padding: 6px 13px;
+
+    text-align: left;
+
+    border: 1px solid #ddd;
 }
 
-.table-num,
-.table-count
-{
-    text-align: right;
-}
-
-.table-num
+.table .table-num
 {
     width: 2em;
+
     text-align: right;
 }
 
-.table-count
+.table .table-line
 {
-    width: 2.5em;
+    width: 4em;
+}
+
+.table sup.table-count
+{
+    margin-left: 3px;
+    font-size: 0.8em;
 }
 
 .syserr,
@@ -117,8 +129,10 @@ body.show-only-errors_checked .sym-ok-group
 .sym-ok,
 .sym-err
 {
-    display: inline-block;
     font-weight: bold;
+
+    display: inline-block;
+
     width: 1em;
 }
 
@@ -134,9 +148,11 @@ body.show-only-errors_checked .sym-ok-group
 
 .time
 {
-    margin-left: 0.5em;
+    font-size: .8em;
+
+    margin-left: .5em;
+
     color: #999;
-    font-size: 0.8em;
 }
 
 a:not([href]),
