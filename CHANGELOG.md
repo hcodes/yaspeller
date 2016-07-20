@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.8.2
+- Small fix for stdin #48
+- Updated deps in package.json
+
 ## 2.8.1
 - Updated deps in package.json
 
