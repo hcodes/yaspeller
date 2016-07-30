@@ -88,6 +88,9 @@ JSON-файл собственного словаря.
 По умолчанию: `code,kbd,object,samp,script,style,var`<br/>
 Опция для форматов `html` и `markdown`.
 
+#### `--ignore-text <regexp>`
+Удалить текст из проверки с помощью регулярных выражений.
+
 #### `--ignore-capitalization`
 Игнорировать неверное употребление ПРОПИСНЫХ/строчных букв, например, в слове `москва`.
 
@@ -174,6 +177,10 @@ JSON-файл собственного словаря.
     "Some(w|W)ord" // Some(w|W)ord = Some(w|W)ord
   ],
   "ignoreTags": ["code", "script"],
+  "ignoreText": [
+    "<php\?[^]*?\?>", // Короткая запись
+    ["<php\?[^]*?\?>", "g"] // Длинная запись
+  ],
   "ignoreUrls": true,
   "findRepeatWords": true,
   "maxRequests": 5
@@ -193,6 +200,7 @@ JSON-файл собственного словаря.
 | `findRepeatWords` | `Boolean` | [`--find-repeat-words`](#--find-repeat-words) |
 | `flagLatin` | `Boolean` | [`--flag-latin`](#--flag-latin) |
 | `ignoreTags` | `Array` | [`--ignore-tags`](#--ignore-tags-tags) |
+| `ignoreText` | `Array` | [`--ignore-text`](#--ignore-text-regexp) |
 | `ignoreCapitalization` | `Boolean` | [`--ignore-capitalization`](#--ignore-capitalization) |
 | `ignoreDigits` | `Boolean` | [`--ignore-digits`](#--ignore-digits) |
 | `ignoreLatin` | `Boolean` | [`--ignore-latin`](#--ignore-latin) |

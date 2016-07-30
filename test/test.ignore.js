@@ -1,5 +1,6 @@
 // jshint maxlen:1024
 var yaspeller = require('../lib/yaspeller'),
+    ignore = require('../lib/ignore'),
     assert = require('chai').assert;
 
 describe('Ignore text', function() {
@@ -55,5 +56,40 @@ describe('Ignore text', function() {
             assert.equal(data.length, 4);
             done();
         }, {lang: 'ru'});
+    });
+    
+    it('with regExp, long', function(done) {
+        var text = 'Moscaw1\n<ignore>Moscaw2</ignore>\n<ignore>Moscaw3</ignore>\nMoscaw4';
+        yaspeller.checkText(text, function(err, data) {
+            assert.equal(data.length, 2);
+            done();
+        }, {
+            lang: 'en',
+            ignoreText: ignore.prepareRegExpToIgnoreText([
+                ['<ignore>[^]*?</ignore>', 'gi']
+            ])
+        });
+    });
+
+    it('with regExp, short1', function(done) {
+        var text = 'Moscaw1\n<ignore>Moscaw2</ignore>\n<ignore>Moscaw3</ignore>\nMoscaw4';
+        yaspeller.checkText(text, function(err, data) {
+            assert.equal(data.length, 2);
+            done();
+        }, {
+            lang: 'en',
+            ignoreText: ignore.prepareRegExpToIgnoreText(['<ignore>[^]*?</ignore>'])
+        });
+    });
+
+    it('with regExp, short2', function(done) {
+        var text = 'Moscaw1\n<ignore>Moscaw2</ignore>\n<ignore>Moscaw3</ignore>\nMoscaw4';
+        yaspeller.checkText(text, function(err, data) {
+            assert.equal(data.length, 2);
+            done();
+        }, {
+            lang: 'en',
+            ignoreText: ignore.prepareRegExpToIgnoreText('<ignore>[^]*?</ignore>')
+        });
     });
 });
