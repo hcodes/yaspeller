@@ -12,7 +12,7 @@ yaspeller
 
 Используется API [Yandex.Speller](https://tech.yandex.ru/speller/doc/dg/concepts/About-docpage/).
 
-![yaspeller](https://raw.githubusercontent.com/hcodes/yaspeller/master/images/cli.png)
+![yaspeller](https://raw.githubusercontent.com/hcodes/yaspeller/master/images/cli.ru.png)
 
 ## Установка
 `npm install yaspeller -g`

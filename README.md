@@ -14,7 +14,7 @@ Search tool typos in the text, files and websites.
 
 Used API [Yandex.Speller](https://tech.yandex.ru/speller/doc/dg/concepts/About-docpage/).
 
-![yaspeller](https://raw.githubusercontent.com/hcodes/yaspeller/master/images/cli.png)
+![yaspeller](https://raw.githubusercontent.com/hcodes/yaspeller/master/images/cli.en.png)
 
 ## Installation
 `npm install yaspeller -g`
