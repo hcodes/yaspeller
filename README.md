@@ -93,6 +93,9 @@ Ignore HTML tags.<br/>
 Default: `code,kbd,object,samp,script,style,var`<br/>
 Option to formats `html` and` markdown`.
 
+#### `--ignore-text <regexp>`
+Remove the text from the scan using regular expressions.
+
 #### `--ignore-capitalization`
 Ignore the incorrect use of UPPERCASE / lowercase letters, for example, in the word `moscow`.
 
@@ -178,6 +181,10 @@ Yaspeller is configured using `.yaspellerrc` JSON file at the root of the projec
     "some(w|W)ord[23]", // some(w|W)ord[23] = some(w|W)ord[23] and Some(w|W)ord[23]
     "Some(w|W)ord" // Some(w|W)ord = Some(w|W)ord
   ],
+  "ignoreText": [
+    "<php\?[^]*?\?>", // Shortly
+    ["<php\?[^]*?\?>", "g"] // Longly
+  ],
   "ignoreTags": ["code", "script"],
   "ignoreUrls": true,
   "findRepeatWords": true,
@@ -198,6 +205,7 @@ Yaspeller is configured using `.yaspellerrc` JSON file at the root of the projec
 | `findRepeatWords` | `Boolean` | [`--find-repeat-words`](#--find-repeat-words) |
 | `flagLatin` | `Boolean` | [`--flag-latin`](#--flag-latin) |
 | `ignoreTags` | `Array` | [`--ignore-tags`](#--ignore-tags-tags) |
+| `ignoreText` | `Array` | [`--ignore-text`](#--ignore-text-regexp) |
 | `ignoreCapitalization` | `Boolean` | [`--ignore-capitalization`](#--ignore-capitalization) |
 | `ignoreDigits` | `Boolean` | [`--ignore-digits`](#--ignore-digits) |
 | `ignoreLatin` | `Boolean` | [`--ignore-latin`](#--ignore-latin) |
