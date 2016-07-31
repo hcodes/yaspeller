@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.9.0 
+- Ability to ignore the text using regular expressions (`--ignore-text` for CLI or `ignoreText` for `.yaspellerrc`)
+- Updated deps in package.json
+
 ## 2.8.2
 - Small fix for stdin #48
 - Updated deps in package.json
