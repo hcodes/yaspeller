@@ -24,21 +24,21 @@ describe('API', function() {
     });
 
     it('checkFile with window 1251', function(done) {
-        yaspeller.checkFile('./test/texts/repeat_words_win1251.txt', function(err, data) {
+        yaspeller.checkFile('./test/texts/repeat_words_win1251.txt', function(err) {
             assert.equal(err, true);
             done();
         });
     });
 
     it('checkFile with unknow file', function(done) {
-        yaspeller.checkFile('./test/texts/unknow.txt', function(err, data) {
+        yaspeller.checkFile('./test/texts/unknow.txt', function(err) {
             assert.equal(err, true);
             done();
         });
     });
 
     it('checkFile with dir', function(done) {
-        yaspeller.checkFile('./test/texts/checkdir', function(err, data) {
+        yaspeller.checkFile('./test/texts/checkdir', function(err) {
             assert.equal(err, true);
             done();
         });
@@ -61,14 +61,14 @@ describe('API', function() {
     });
 
     it('checkUrl 404', function(done) {
-        yaspeller.checkUrl(url404, function(err, data) {
+        yaspeller.checkUrl(url404, function(err) {
             assert.equal(err, true);
             done();
         });
     });
 
     it('checkUrl unknown host', function(done) {
-        yaspeller.checkUrl(urlUnknown, function(err, data) {
+        yaspeller.checkUrl(urlUnknown, function(err) {
             assert.equal(err, true);
             done();
         });
