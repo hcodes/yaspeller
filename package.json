@@ -55,7 +55,7 @@
     "sinon": "^1.17.4"
   },
   "engines": {
-    "node": "*"
+    "node": ">=4"
   },
   "scripts": {
     "test": "npm run-script eslint && npm run-script jscs && npm run-script unit-test-coverage",
