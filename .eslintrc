@@ -11,5 +11,8 @@
         "node": true,
         "mocha": true
     },
+    "globals": {
+        "Set": true
+    },
     "extends": "eslint:recommended"
 }
