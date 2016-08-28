@@ -1,10 +1,8 @@
-var yaspeller = require('../lib/yaspeller'),
-    debug = require('../lib/debug'),
-    assert = require('chai').assert,
-    fs = require('fs'),
-    getFile = function(name) {
-        return fs.readFileSync(name).toString('utf-8');
-    };
+const yaspeller = require('../lib/yaspeller');
+const debug = require('../lib/debug');
+const assert = require('chai').assert;
+const fs = require('fs');
+const getFile = name => fs.readFileSync(name).toString('utf-8');
 
 debug.setDebug(true);
 
@@ -12,7 +10,7 @@ describe('Options', function() {
     this.timeout(10000);
 
     it('ignoreUppercase on', function(done) {
-        var text = getFile('./test/texts/ignore_uppercase.txt');
+        const text = getFile('./test/texts/ignore_uppercase.txt');
         yaspeller.checkText(text, function(err, data) {
             assert.equal(err, false);
             assert.equal(data.length, 0);
@@ -21,7 +19,7 @@ describe('Options', function() {
     });
 
     it('ignoreUppercase off', function(done) {
-        var text = getFile('./test/texts/ignore_uppercase.txt');
+        const text = getFile('./test/texts/ignore_uppercase.txt');
         yaspeller.checkText(text, function(err, data) {
             assert.equal(err, false);
             assert.equal(data.length, 1);
@@ -30,7 +28,7 @@ describe('Options', function() {
     });
 
     it('ignoreDigits on', function(done) {
-        var text = getFile('./test/texts/ignore_digits.txt');
+        const text = getFile('./test/texts/ignore_digits.txt');
         yaspeller.checkText(text, function(err, data) {
             assert.equal(err, false);
             assert.equal(data.length, 0);
@@ -39,7 +37,7 @@ describe('Options', function() {
     });
 
     it('ignoreDigits off', function(done) {
-        var text = getFile('./test/texts/ignore_digits.txt');
+        const text = getFile('./test/texts/ignore_digits.txt');
         yaspeller.checkText(text, function(err, data) {
             assert.equal(err, false);
             assert.equal(data.length, 1);
@@ -48,7 +46,7 @@ describe('Options', function() {
     });
 
     it('ignoreLatin on', function(done) {
-        var text = getFile('./test/texts/ignore_latin.txt');
+        const text = getFile('./test/texts/ignore_latin.txt');
         yaspeller.checkText(text, function(err, data) {
             assert.equal(err, false);
             assert.equal(data.length, 0);
@@ -57,7 +55,7 @@ describe('Options', function() {
     });
 
     it('ignoreLatin off', function(done) {
-        var text = getFile('./test/texts/ignore_latin.txt');
+        const text = getFile('./test/texts/ignore_latin.txt');
         yaspeller.checkText(text, function(err, data) {
             assert.equal(err, false);
             assert.equal(data.length, 1);
@@ -66,7 +64,7 @@ describe('Options', function() {
     });
 
     it('ignoreUrls on', function(done) {
-        var text = getFile('./test/texts/ignore_urls.txt');
+        const text = getFile('./test/texts/ignore_urls.txt');
         yaspeller.checkText(text, function(err, data) {
             assert.equal(err, false);
             assert.equal(data.length, 0);
@@ -75,7 +73,7 @@ describe('Options', function() {
     });
 
     it('ignoreUrls off', function(done) {
-        var text = getFile('./test/texts/ignore_urls.txt');
+        const text = getFile('./test/texts/ignore_urls.txt');
         yaspeller.checkText(text, function(err, data) {
             assert.equal(err, false);
             assert.equal(data.length, 2);
@@ -84,7 +82,7 @@ describe('Options', function() {
     });
 
     it('ignoreCapitalization on', function(done) {
-        var text = getFile('./test/texts/ignore_capitalization.txt');
+        const text = getFile('./test/texts/ignore_capitalization.txt');
         yaspeller.checkText(text, function(err, data) {
             assert.equal(err, false);
             assert.equal(data.length, 0);
@@ -93,7 +91,7 @@ describe('Options', function() {
     });
 
     it('ignoreCapitalization off', function(done) {
-        var text = getFile('./test/texts/ignore_capitalization.txt');
+        const text = getFile('./test/texts/ignore_capitalization.txt');
         yaspeller.checkText(text, function(err, data) {
             assert.equal(err, false);
             assert.equal(data.length, 1);
@@ -102,7 +100,7 @@ describe('Options', function() {
     });
 
     it('findRepeatWords on', function(done) {
-        var text = getFile('./test/texts/find_repeat_words.txt');
+        const text = getFile('./test/texts/find_repeat_words.txt');
         yaspeller.checkText(text, function(err, data) {
             assert.equal(err, false);
             assert.equal(data.length, 1);
@@ -111,7 +109,7 @@ describe('Options', function() {
     });
 
     it('findRepeatWords off', function(done) {
-        var text = getFile('./test/texts/find_repeat_words.txt');
+        const text = getFile('./test/texts/find_repeat_words.txt');
         yaspeller.checkText(text, function(err, data) {
             assert.equal(err, false);
             assert.equal(data.length, 0);
@@ -120,7 +118,7 @@ describe('Options', function() {
     });
 
     it('ignoreRomanNumerals on', function(done) {
-        var text = getFile('./test/texts/ignore_roman_numerals.txt');
+        const text = getFile('./test/texts/ignore_roman_numerals.txt');
         yaspeller.checkText(text, function(err, data) {
             assert.equal(err, false);
             assert.equal(data.length, 0);
@@ -129,7 +127,7 @@ describe('Options', function() {
     });
 
     it('ignoreRomanNumerals off', function(done) {
-        var text = getFile('./test/texts/ignore_roman_numerals.txt');
+        const text = getFile('./test/texts/ignore_roman_numerals.txt');
         yaspeller.checkText(text, function(err, data) {
             assert.equal(err, false);
             assert.equal(data.length, 1);
@@ -138,7 +136,7 @@ describe('Options', function() {
     });
 
     it('flagLatin on', function(done) {
-        var text = getFile('./test/texts/flag_latin.txt');
+        const text = getFile('./test/texts/flag_latin.txt');
         yaspeller.checkText(text, function(err, data) {
             assert.equal(err, false);
             assert.equal(data.length, 1);
@@ -147,7 +145,7 @@ describe('Options', function() {
     });
 
     it('flagLatin off', function(done) {
-        var text = getFile('./test/texts/flag_latin.txt');
+        const text = getFile('./test/texts/flag_latin.txt');
         yaspeller.checkText(text, function(err, data) {
             assert.equal(err, false);
             assert.equal(data.length, 0);

@@ -1,37 +1,36 @@
-var yaspeller = require('../lib/yaspeller'),
-    dictionary = require('../lib/dictionary'),
-    exitCodes = require('../lib/exit-codes'),
-    assert = require('chai').assert;
+const yaspeller = require('../lib/yaspeller');
+const dictionary = require('../lib/dictionary');
+const exitCodes = require('../lib/exit-codes');
+const assert = require('chai').assert;
 
 describe('Dictionary', function() {
     it('removeDictWords(), strings', function() {
-        var dict = dictionary.prepareDictionary([
-                'контрол',
-                'юзабилити'
-            ]),
-            typos = [
-                {
-                    code: 1,
-                    word: 'юзабилити'
-                },
-                {
-                    code: 2,
-                    word: 'москва'
-                },
-                {
-                    code: 1,
-                    word: 'блабла'
-                },
-                {
-                    code: 1,
-                    word: 'контрол'
-                }
-            ];
+        const dict = dictionary.prepareDictionary([
+            'контрол',
+            'юзабилити'
+        ]);
+        const typos = [
+            {
+                code: 1,
+                word: 'юзабилити'
+            },
+            {
+                code: 2,
+                word: 'москва'
+            },
+            {
+                code: 1,
+                word: 'блабла'
+            },
+            {
+                code: 1,
+                word: 'контрол'
+            }
+        ];
 
         dictionary._dict = dict;
 
-        var result = dictionary.removeDictWords(typos);
-        assert.deepEqual(result, [
+        assert.deepEqual(dictionary.removeDictWords(typos), [
             {
                 code: 2,
                 word: 'москва'
@@ -44,7 +43,7 @@ describe('Dictionary', function() {
     });
 
     it('prepareDictionary()', function() {
-        var dict = dictionary.prepareDictionary([
+        const dict = dictionary.prepareDictionary([
             'контрол',
             '/(Ю|юзабилити/',
             '/москв[а/i',
@@ -54,13 +53,13 @@ describe('Dictionary', function() {
     });
 
     it('isTypo()', function() {
-        var dict = dictionary.prepareDictionary([
+        const dict = dictionary.prepareDictionary([
             'контрол'
         ]);
 
         assert.isFalse(dictionary.isTypo('Контрол', dict));
 
-        var dict2 = dictionary.prepareDictionary([
+        const dict2 = dictionary.prepareDictionary([
             'Контрол'
         ]);
 
@@ -68,30 +67,30 @@ describe('Dictionary', function() {
     });
 
     it('removeDuplicates()', function() {
-        var typos = [
-                {
-                    code: 1,
-                    word: 'юзабилити'
-                },
-                {
-                    code: 1,
-                    word: 'юзабилити'
-                },
-                {
-                    code: 1,
-                    word: 'мосКва'
-                },
-                {
-                    code: 1,
-                    word: 'мосКва'
-                },
-                {
-                    code: 1,
-                    word: 'блабла'
-                }
-            ];
+        const typos = [
+            {
+                code: 1,
+                word: 'юзабилити'
+            },
+            {
+                code: 1,
+                word: 'юзабилити'
+            },
+            {
+                code: 1,
+                word: 'мосКва'
+            },
+            {
+                code: 1,
+                word: 'мосКва'
+            },
+            {
+                code: 1,
+                word: 'блабла'
+            }
+        ];
 
-        var result = yaspeller.removeDuplicates(typos);
+        const result = yaspeller.removeDuplicates(typos);
         assert.equal(result.length, 3);
     });
 

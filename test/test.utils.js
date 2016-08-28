@@ -1,8 +1,8 @@
-var assert = require('chai').assert,
-    sinon = require('sinon'),
-    pth = require('path'),
-    exitCodes = require('../lib/exit-codes'),
-    utils = require('../lib/utils');
+const assert = require('chai').assert;
+const sinon = require('sinon');
+const pth = require('path');
+const exitCodes = require('../lib/exit-codes');
+const utils = require('../lib/utils');
 
 beforeEach(function() {
     sinon.stub(process, 'exit');

@@ -1,13 +1,11 @@
-var yaspeller = require('../lib/yaspeller'),
-    debug = require('../lib/debug'),
-    assert = require('chai').assert,
-    fs = require('fs'),
-    url404 = 'https://raw.githubusercontent.com/asd9qi9e91ke9k2k193k19',
-    urlUnknown = 'http://dk02keoqwke02keoqwwer923mr923.info/',
-    urlGH = 'https://raw.githubusercontent.com/hcodes/yaspeller/master/test/texts/',
-    getFile = function(name) {
-        return fs.readFileSync(name).toString('utf-8');
-    };
+const yaspeller = require('../lib/yaspeller');
+const debug = require('../lib/debug');
+const assert = require('chai').assert;
+const fs = require('fs');
+const url404 = 'https://raw.githubusercontent.com/asd9qi9e91ke9k2k193k19';
+const urlUnknown = 'http://dk02keoqwke02keoqwwer923mr923.info/';
+const urlGH = 'https://raw.githubusercontent.com/hcodes/yaspeller/master/test/texts/';
+const getFile = name => fs.readFileSync(name).toString('utf-8');
 
 debug.setDebug(true);
 
@@ -108,7 +106,7 @@ describe('API', function() {
     });
 
     it('checkText', function(done) {
-        var text = getFile('./test/texts/repeat_words.txt');
+        const text = getFile('./test/texts/repeat_words.txt');
         yaspeller.checkText(text, function(err, data) {
             assert.equal(err, false);
             assert.equal(data.length, 2);
@@ -117,7 +115,7 @@ describe('API', function() {
     });
 
     it('checkText > 10000 bytes', function(done) {
-        var text = getFile('./test/texts/gt10000bytes.txt');
+        const text = getFile('./test/texts/gt10000bytes.txt');
         yaspeller.checkText(text, function(err, data) {
             assert.equal(err, false);
             assert.equal(data.length, 2);
@@ -126,7 +124,7 @@ describe('API', function() {
     });
 
     it('checkText > 20000 bytes', function(done) {
-        var text = getFile('./test/texts/gt20000bytes.txt');
+        const text = getFile('./test/texts/gt20000bytes.txt');
         yaspeller.checkText(text, function(err, data) {
             assert.equal(err, false);
             assert.equal(data.length, 3);
@@ -135,7 +133,7 @@ describe('API', function() {
     });
 
     it('ignore comments', function(done) {
-        var text = getFile('./test/texts/settings_ignore_comments.txt');
+        const text = getFile('./test/texts/settings_ignore_comments.txt');
         yaspeller.checkText(text, function(err, data) {
             assert.equal(err, false);
             assert.equal(data.length, 2);

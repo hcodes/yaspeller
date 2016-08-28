@@ -1,9 +1,9 @@
-var yaspeller = require('../lib/yaspeller'),
-    assert = require('chai').assert,
-    fs = require('fs'),
-    getFile = function(name) {
-        return fs.readFileSync(name).toString('utf-8');
-    };
+const yaspeller = require('../lib/yaspeller');
+const assert = require('chai').assert;
+const fs = require('fs');
+const getFile = name => {
+    return fs.readFileSync(name).toString('utf-8'); 
+};
 
 describe('Settings', function() {
     this.timeout(10000);
@@ -17,7 +17,7 @@ describe('Settings', function() {
     });
 
     it('ignoreTags off', function(done) {
-        var text = getFile('./test/texts/settings_ignore_tags.txt');
+        const text = getFile('./test/texts/settings_ignore_tags.txt');
         yaspeller.checkText(text, function(err, data) {
             assert.equal(err, false);
             assert.equal(data.length, 4);
@@ -26,7 +26,7 @@ describe('Settings', function() {
     });
 
     it('ignoreTags on', function(done) {
-        var text = getFile('./test/texts/settings_ignore_tags.txt');
+        const text = getFile('./test/texts/settings_ignore_tags.txt');
         yaspeller.checkText(text, function(err, data) {
             assert.equal(err, false);
             assert.equal(data.length, 1);
@@ -43,7 +43,7 @@ describe('Settings', function() {
     });
 
     it('Array of langs', function(done) {
-        var text = getFile('./test/texts/settings_array_langs.txt');
+        const text = getFile('./test/texts/settings_array_langs.txt');
         yaspeller.checkText(text, function(err, data) {
             assert.equal(err, false);
             assert.equal(data.length, 2);
