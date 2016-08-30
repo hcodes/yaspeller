@@ -133,4 +133,18 @@ describe('Utils', function() {
         utils.getConfig('test/json/error_parsing.json');
         assert.equal(process.exit.args[0], exitCodes.ERROR_CONFIG);
     });
+
+    it('kebabCase', function() {
+        assert.equal(
+            utils.kebabCase('helloWorld'),
+            'hello-world'
+        );
+    });
+
+    it('uniq', function() {
+        assert.deepEqual(
+            utils.uniq([1, 1, 2, 2, 3, 4, 5, 5]),
+            [1, 2, 3, 4, 5]
+        );
+    });
 });

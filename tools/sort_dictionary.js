@@ -1,10 +1,7 @@
 'use strict';
 
-var fs = require('fs'),
-    _ = require('lodash'),
-    program = require('commander');
-
-program.parse(process.argv);
+const fs = require('fs');
+const program = require('commander');
 
 function sortDictionary(words) {
     function prepare(word) {
@@ -17,11 +14,11 @@ function sortDictionary(words) {
 }
 
 program.parse(process.argv);
+program.parse(process.argv);
 
-var filename = program.args[0],
-    dict = JSON.parse(fs.readFileSync(filename).toString());
-
+const filename = program.args[0];
+let dict = JSON.parse(fs.readFileSync(filename).toString());
 sortDictionary(dict);
-dict = _.unique(dict);
+dict = Array.from(new Set(dict)); // unique values
 
 fs.writeFileSync(filename, JSON.stringify(dict, null, '  '));
