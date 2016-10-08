@@ -131,7 +131,7 @@ Debug mode.
 `npm install yaspeller --save-dev`
 
 Add the text in `package.json` / `scripts`:<br/>
-`    "yaspeller": "./node_modules/.bin/yaspeller .",`
+`    "yaspeller": "yaspeller .",`
 
 To run the linter:<br/>
 `npm run yaspeller`
