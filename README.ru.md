@@ -126,7 +126,7 @@ JSON-файл собственного словаря.
 `npm install yaspeller --save-dev`
 
 Необходимо добавить в `package.json` / `scripts`:<br/>
-`    "yaspeller": "./node_modules/.bin/yaspeller .",`
+`    "yaspeller": "yaspeller .",`
 
 Для запуска в качестве линтера:<br/>
 `npm run yaspeller`
