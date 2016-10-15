@@ -140,4 +140,61 @@ describe('API', function() {
             done();
         }, {lang: 'en', format: 'html'});
     });
+
+    it('addPositions', function() {
+        const text = 'Moscaw London\nMoscow Londan';
+        const data = [
+            {word: 'Moscaw', count: 1},
+            {word: 'Londan', count: 1}
+        ];
+
+        yaspeller.addPositions(text, data);
+
+        assert.deepEqual(data, [
+            {word: 'Moscaw', count: 1, position: [{line: 1, column: 1}]},
+            {word: 'Londan', count: 1, position: [{line: 2, column: 8}]}
+        ]);
+    });
+
+    it('removeDuplicates', function() {
+        const data = [
+            {word: 'asdkas9dka9sd', code: 2},
+            {word: 'asdkas9dka9sd', code: 2},
+            {word: 'Landon', s: ['London'], code: 1},
+            {word: 'Landon', s: ['London'], code: 1}
+        ];
+
+        assert.deepEqual(yaspeller.removeDuplicates(data), [
+            {word: 'Landon', suggest: ['London'], code: 1, count: 2},
+            {word: 'asdkas9dka9sd', code: 2, count: 2}
+        ]);
+    });
+
+    it('sortByPositions', function() {
+        const data = [
+            {word: 'Paaris', count: 3, position: [{line: 3, column: 1}], code: 3},
+            {word: 'Mosca', count: 1, position: [{line: 7, column: 10}], code: 1},
+            {word: 'Moscaw', count: 1, position: [{line: 6, column: 100}], code: 1},
+            {word: 'Moscaww', count: 1, position: [{line: 6, column: 1}], code: 1},
+            {word: 'Moscawwww', count: 1, position: [{line: 6, column: 10}], code: 1},
+            {word: 'Moscawwwww', count: 1, position: [], code: 1},
+            {word: 'Londannn', count: 1, position: [], code: 1},
+            {word: 'Londan', count: 2, position: [{line: 2, column: 10}], code: 1},
+            {word: 'Nev Yourk', count: 1, position: [{line: 1, column: 1}], code: 2}
+        ];
+
+        yaspeller.sortByPositions(data);
+
+        assert.deepEqual(data, [
+            {word: 'Londan', count: 2, position: [{line: 2, column: 10}], code: 1},
+            {word: 'Moscaww', count: 1, position: [{line: 6, column: 1}], code: 1},
+            {word: 'Moscawwww', count: 1, position: [{line: 6, column: 10}], code: 1},
+            {word: 'Moscaw', count: 1, position: [{line: 6, column: 100}], code: 1},
+            {word: 'Mosca', count: 1, position: [{line: 7, column: 10}], code: 1},
+            {word: 'Londannn', count: 1, position: [], code: 1},
+            {word: 'Moscawwwww', count: 1, position: [], code: 1},
+            {word: 'Nev Yourk', count: 1, position: [{line: 1, column: 1}], code: 2},
+            {word: 'Paaris', count: 3, position: [{line: 3, column: 1}], code: 3}
+        ]);
+    });
 });
