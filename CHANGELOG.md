@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.0.0
+- Added line number in reports
+- Removed support for old format of words in the dictionary
+- A support for old Node version is dropped
+- Updated deps in package.json
+
 ## 2.9.1
 - Small fixes in README.md for npmjs.org
 
