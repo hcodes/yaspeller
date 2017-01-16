@@ -32,7 +32,7 @@ Used API [Yandex.Speller](https://tech.yandex.ru/speller/doc/dg/concepts/About-d
 ### Options
 
 #### `-f, --format <value>`
-Formats: `plain`, `html`, `markdown` или `auto`.<br/>
+Formats: `plain`, `html`, `markdown` or `auto`.<br/>
 Default: `auto`.
 
 #### `-l, --lang <value>`
