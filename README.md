@@ -274,5 +274,8 @@ module.exports = function(grunt) {
 
 ## [Restrictions API Yandex.Speller](http://legal.yandex.ru/speller_api/)
 
+## Links
+- [Yaspeller for CI](https://github.com/ai/yaspeller-ci)
+
 ## [License](./LICENSE.md)
 MIT License
