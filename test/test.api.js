@@ -170,6 +170,16 @@ describe('API', function() {
         ]);
     });
 
+    it('remove acute accent, shy and other', function(done) {
+        const text = 'Helló, wórld!\nПриве́т, ми́р!\nRevo&shy;lu&shy;ti\u200con';
+
+        yaspeller.checkText(text, function(err, data) {
+            assert.equal(err, false);
+            assert.equal(data.length, 0);
+            done();
+        }, {lang: 'ru,en', format: 'html'});
+    });
+
     it('sortByPositions', function() {
         const data = [
             {word: 'Paaris', count: 3, position: [{line: 3, column: 1}], code: 3},
