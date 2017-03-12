@@ -1,5 +1,14 @@
 # Changelog
 
+# 3.1.0
+- Remove acute accent, shy and other symbols #65
+- Updated deps in package.json
+
+Bugs:
+- Can't read options --config #61 @pavelpower
+- Fix the error message in the dictionary.js #60 @vessd
+- Fix(readme): translate 'или' to 'or' #57 @JLHwung
+
 ## 3.0.0
 - Added line number in reports
 - Removed support for old format of words in the dictionary
