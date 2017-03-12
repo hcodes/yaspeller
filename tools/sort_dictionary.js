@@ -14,7 +14,6 @@ function sortDictionary(words) {
 }
 
 program.parse(process.argv);
-program.parse(process.argv);
 
 const filename = program.args[0];
 let dict = JSON.parse(fs.readFileSync(filename).toString());
