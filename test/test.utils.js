@@ -39,7 +39,10 @@ describe('Utils', function() {
     });
 
     it('isReqFileExtension', function() {
+        assert.ok(utils.isReqFileExtension('example.js', []));
+        assert.ok(utils.isReqFileExtension('example.js', ['']));
         assert.ok(utils.isReqFileExtension('example.js', ['.js']));
+        assert.ok(utils.isReqFileExtension('example.ru.js', ['.ru.js']));
         assert.notOk(utils.isReqFileExtension('example.js', ['.css']));
     });
 
