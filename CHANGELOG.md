@@ -1,5 +1,8 @@
 # Changelog
 
+# 3.2.0
+- File extension with multiple dots #66, #67 @levonet
+
 # 3.1.0
 - Remove acute accent, shy and other symbols #65
 - Updated deps in package.json
