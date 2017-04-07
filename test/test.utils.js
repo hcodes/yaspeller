@@ -39,8 +39,14 @@ describe('Utils', function() {
     });
 
     it('isReqFileExtension', function() {
+        assert.ok(utils.isReqFileExtension('example.js', []));
+        assert.ok(utils.isReqFileExtension('example.js', ['']));
         assert.ok(utils.isReqFileExtension('example.js', ['.js']));
+        assert.ok(utils.isReqFileExtension('example.ru.js', ['.en.js', '', '.ru.js']));
+
+        assert.notOk(utils.isReqFileExtension('example.js', ['', '.css']));
         assert.notOk(utils.isReqFileExtension('example.js', ['.css']));
+        assert.notOk(utils.isReqFileExtension('example.js', ['.css', '.en.js', '.ru.js']));
     });
 
     it('isExcludedFile', function() {
