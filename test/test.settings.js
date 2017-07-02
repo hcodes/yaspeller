@@ -11,7 +11,7 @@ describe('Settings', function() {
     it('checkYo', function(done) {
         yaspeller.checkText('Елка, елки, еж.', function(err, data) {
             assert.equal(err, false);
-            assert.equal(data.length, 2);
+            assert.equal(data.length, 3);
             done();
         }, {lang: 'ru', checkYo: true});
     });
