@@ -115,7 +115,7 @@ Ignore words written in capital letters.
 Ignore Internet addresses, email addresses and filenames.
 
 #### `--max-requests <value>`
-Max count of requests at a time.<br/>
+Max count of requests in parallel.<br/>
 Default: `2`.
 
 #### `--no-colors`

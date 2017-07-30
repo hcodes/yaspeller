@@ -1,5 +1,9 @@
 # Changelog
 
+## 3.3.0
+- Glob patterns for Windows
+- Updated deps in package.json
+
 # 3.2.0
 - File extension with multiple dots #66, #67 @levonet
 
@@ -21,7 +25,7 @@ Bugs:
 ## 2.9.1
 - Small fixes in README.md for npmjs.org
 
-## 2.9.0 
+## 2.9.0
 - Ability to ignore the text using regular expressions (`--ignore-text` for CLI or `ignoreText` for `.yaspellerrc`)
 - Updated deps in package.json
 
@@ -44,10 +48,8 @@ Bugs:
 - Added filter “Show only errors” in HTML report
 - Updated deps in package.json
 
-
 ## 2.5.1
 - Updated deps in package.json
-
 
 ## 2.5.0
 - Replace npm module `eyo` to `eyo-kernel`
