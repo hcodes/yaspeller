@@ -1,5 +1,17 @@
 # Changelog
 
+## 4.0.0
+- Add --init CLI option #77
+- Add --stdin and --stdin-filename CLI options #76
+
+Before:
+`echo "Hello, world!" | yaspeller`
+
+After:
+`echo "Hello, world!" | yaspeller --stdin`
+or
+`echo "Hello, world!" | yaspeller --stdin --stdin-filename hello.txt`
+
 ## 3.3.0
 - Glob patterns for Windows
 - Updated deps in package.json
