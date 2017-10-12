@@ -19,10 +19,7 @@
         ],
         "array-bracket-spacing": [
           2,
-          "never",
-          {
-            "singleValue": true
-          }
+          "never"
         ],
         "key-spacing": [
           2,
@@ -39,6 +36,7 @@
           }
         ],
         "space-infix-ops": 2,
+        "no-console": 0,
         "no-with": 2,
         "no-multiple-empty-lines": 2,
         "brace-style": [
