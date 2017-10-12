@@ -51,7 +51,6 @@
     "chai": "~4.1.0",
     "eslint": "~4.6.1",
     "istanbul": "~0.4.5",
-    "jscs": "~3.0.7",
     "mocha": "~3.5.0",
     "sinon": "~3.2.1"
   },
@@ -59,8 +58,7 @@
     "node": ">=4"
   },
   "scripts": {
-    "test": "npm run-script eslint && npm run-script jscs && npm run-script unit-test-coverage",
-    "jscs": "./node_modules/.bin/jscs .",
+    "test": "npm run-script eslint && npm run-script unit-test-coverage",
     "eslint": "./node_modules/.bin/eslint .",
     "yaspeller": "node bin/yaspeller .",
     "unit-test": "./node_modules/.bin/mocha -u bdd -R spec --recursive test",
