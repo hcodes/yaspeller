@@ -1,7 +1,10 @@
 # Changelog
 
+## v4.0.2
+Fixed SyntaxError #83.
+
 ## 4.0.1
-- Fixed error handling for Yandex.Speller API #83, #84.
+- Fixed error handling for Yandex.Speller API #84.
 - Updated deps in package.json.
 
 ## 4.0.0
