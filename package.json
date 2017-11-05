@@ -33,7 +33,7 @@
   ],
   "dependencies": {
     "async": "^2.5.0",
-    "chalk": "^2.1.0",
+    "chalk": "^2.3.0",
     "commander": "^2.11.0",
     "entities": "^1.1.1",
     "escape-html": "^1.0.3",
@@ -42,17 +42,17 @@
     "isutf8": "^2.0.1",
     "minimatch": "^3.0.4",
     "request": "^2.83.0",
-    "showdown": "^1.7.6",
+    "showdown": "^1.8.1",
     "strip-json-comments": "^2.0.1",
     "xml2js": "^0.4.19",
-    "yandex-speller": "^2.1.0"
+    "yandex-speller": "^2.1.1"
   },
   "devDependencies": {
     "chai": "^4.1.0",
-    "eslint": "^4.8.0",
+    "eslint": "^4.10.0",
     "istanbul": "^0.4.5",
     "mocha": "^4.0.1",
-    "sinon": "^4.0.1"
+    "sinon": "^4.1.1"
   },
   "engines": {
     "node": ">=4"
