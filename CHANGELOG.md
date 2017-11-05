@@ -1,5 +1,9 @@
 # Changelog
 
+## 4.0.1
+- Fixed error handling for Yandex.Speller API #83, #84.
+- Updated deps in package.json.
+
 ## 4.0.0
 - Add --init CLI option #77
 - Add --stdin and --stdin-filename CLI options #76
