@@ -1,5 +1,8 @@
 # Changelog
 
+## v4.0.3
+Fixed exit code #87.
+
 ## v4.0.2
 Fixed SyntaxError #83.
 
