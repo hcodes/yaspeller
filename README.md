@@ -88,7 +88,7 @@ This is useful in cases where the service is transmitted to the input of a list 
 Highlight repetitions of words, consecutive. For example, `I flew to to to Cyprus`.
 
 #### `--flag-latin`
-Celebrate words, written in Latin, as erroneous.
+Flag words, written in Latin, as erroneous.
 
 #### `--ignore-tags <tags>`
 Ignore HTML tags.<br/>
