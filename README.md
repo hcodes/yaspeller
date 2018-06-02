@@ -127,10 +127,10 @@ Clean output without colors.
 Output only errors.
 
 #### `--stdin`
-Process files on <STDIN>. Default: false
+Process files on `<STDIN>`. Default: false
 
 #### `--stdin-filename <file>`
-Specify filename to process STDIN as. Used in reports.
+Specify filename to process `<STDIN>` as. Used in reports.
 
 #### `--debug`
 Debug mode.
