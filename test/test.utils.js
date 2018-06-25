@@ -1,16 +1,6 @@
 const assert = require('chai').assert;
-const sinon = require('sinon');
 const pth = require('path');
-const exitCodes = require('../lib/exit-codes');
 const utils = require('../lib/utils');
-
-beforeEach(function() {
-    sinon.stub(process, 'exit');
-});
-
-afterEach(function() {
-    process.exit.restore();
-});
 
 describe('Utils', function() {
     it('isSitemap', function() {
@@ -125,19 +115,6 @@ describe('Utils', function() {
         assert.throws(function() {
             utils.loadFileAsJson('test/json/error_parsing.json');
         });
-    });
-
-    it('getConfig, custom config', function() {
-        assert.deepEqual(utils.getConfig('./test/json/no_comment.json'), ['1']);
-    });
-
-    it('getConfig, default config', function() {
-        assert.ok(Object.keys(utils.getConfig(null)).length);
-    });
-
-    it('getConfig, throw', function() {
-        utils.getConfig('test/json/error_parsing.json');
-        assert.equal(process.exit.args[0], exitCodes.ERROR_CONFIG);
     });
 
     it('kebabCase', function() {

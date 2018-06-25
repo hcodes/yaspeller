@@ -1,5 +1,9 @@
 # Changelog
 
+## v4.1.0
+- Updated deps in package.json.
+- Warnings for unknown properties in config files #94.
+
 ## v4.0.3
 Fixed exit code #87.
 

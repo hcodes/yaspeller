@@ -10,7 +10,7 @@
     "yaspeller": "./bin/yaspeller"
   },
   "description": "Search tool typos in the text, files and websites",
-  "version": "4.0.3",
+  "version": "4.1.0",
   "license": "MIT",
   "homepage": "https://github.com/hcodes/yaspeller",
   "repository": {
@@ -32,27 +32,27 @@
     "Yandex.Speller"
   ],
   "dependencies": {
-    "async": "^2.5.0",
-    "chalk": "^2.3.0",
-    "commander": "^2.11.0",
+    "async": "^2.6.1",
+    "chalk": "^2.4.1",
+    "commander": "^2.15.1",
     "entities": "^1.1.1",
     "escape-html": "^1.0.3",
-    "eyo-kernel": "^2.2.0",
+    "eyo-kernel": "^2.3.1",
     "glob": "^7.1.2",
-    "isutf8": "^2.0.1",
+    "isutf8": "^2.0.2",
     "minimatch": "^3.0.4",
-    "request": "^2.83.0",
-    "showdown": "^1.8.1",
+    "request": "^2.87.0",
+    "showdown": "^1.8.6",
     "strip-json-comments": "^2.0.1",
     "xml2js": "^0.4.19",
     "yandex-speller": "^2.1.1"
   },
   "devDependencies": {
     "chai": "^4.1.0",
-    "eslint": "^4.10.0",
+    "eslint": "^5.0.0",
     "istanbul": "^0.4.5",
-    "mocha": "^4.0.1",
-    "sinon": "^4.1.1"
+    "mocha": "^5.2.0",
+    "sinon": "^6.0.1"
   },
   "engines": {
     "node": ">=4"
