@@ -1,0 +1,19 @@
+{
+    "checkYo": [],
+    "excludeFiles": [],
+    "fileExtensions": [],
+    "format": true,
+    "ignoreTags": [
+      "code",
+      "kbd",
+      "object",
+      "samp",
+      "script",
+      "style",
+      "var"
+    ],
+    "maxRequests": 2,
+    "lang": "en,ru",
+    "report": ["console"]
+  }
+  
