@@ -46,13 +46,9 @@ describe('Config', function() {
 
     it('get, package.json', function() {
         fs.renameSync('./package.json', './package.json.tmp');
-        const writeStream = fs.createWriteStream('./package.json');
-        fs.createReadStream('./test/json/test_package.json').pipe(writeStream);
-        writeStream.on('close', () => {
-            const data = config.get();
-            fs.unlinkSync('./package.json');
-            fs.renameSync('./package.json.tmp', './package.json');
-            assert.deepEqual(data, { lang: 'tlh' });
-        });
+        fs.writeFileSync('./package.json', fs.readFileSync('./test/json/test_package.json'));
+        assert.deepEqual(config.get(), { lang: 'tlh' });
+        fs.unlinkSync('./package.json');
+        fs.renameSync('./package.json.tmp', './package.json');
     });
 });
