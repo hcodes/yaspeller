@@ -31,12 +31,12 @@ describe('Config', function() {
 
     it('get, unknown properties', function() {
         config.get('test/json/unknown_properties.json');
-        
+
         const count = console.error.args.length;
         assert.equal(count, 2);
     });
 
-    it('get, wrong property type', function() {        
+    it('get, wrong property type', function() {
         config.get('test/json/wrong_prop_type.json');
 
         const count = console.error.args.length;
