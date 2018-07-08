@@ -47,10 +47,9 @@ describe('Config', function() {
 
     it('get, config from package.json', function() {
         fs.renameSync('./package.json', './package.json.tmp');
-        fs.copyFileSync('./test/json/test_package.json', './package.json');
+        fs.writeFileSync('./package.json', fs.readFileSync('./test/json/test_package.json'));
         assert.deepEqual(config.get(null), { lang: 'en,ru' });
         fs.unlinkSync('./package.json');
         fs.renameSync('./package.json.tmp', './package.json');
-
     });
 });
