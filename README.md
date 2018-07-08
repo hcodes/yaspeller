@@ -144,7 +144,7 @@ Add the text in `package.json` / `scripts`:<br/>
 To run the linter:<br/>
 `npm run yaspeller`
 
-Yaspeller is configured using `.yaspellerrc` JSON file at the root of the project.
+Yaspeller is configured using field `yaspeller` in `package.json` or `.yaspellerrc`, `.yaspeller.json` JSON files at the root of the project.
 ```JSON
 {
   "excludeFiles": [

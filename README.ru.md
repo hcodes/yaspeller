@@ -137,7 +137,7 @@ JSON-файл собственного словаря.
 Для запуска в качестве линтера:<br/>
 `npm run yaspeller`
 
-`yaspeller` настраивается, используя `.yaspellerrc` или `.yaspeller.json`, расположенный в корне проекта.
+`yaspeller` настраивается, в поле `yaspeller` в файле `package.json` или в файлах `.yaspellerrc` или `.yaspeller.json`, расположенных в корне проекта.
 ```JSON
 {
   "excludeFiles": [
