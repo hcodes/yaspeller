@@ -1,4 +1,4 @@
-const fs = require('fs');
+// const fs = require('fs');
 
 const assert = require('chai').assert;
 
@@ -46,10 +46,8 @@ describe('Config', function() {
     });
 
     it('get, config from package.json', function() {
-        fs.renameSync('./package.json', './package.json.tmp');
-        fs.writeFileSync('./package.json', fs.readFileSync('./test/json/test_package.json'));
+        process.chdir('./test/json');
         assert.deepEqual(config.get(null), { lang: 'en,ru' });
-        fs.unlinkSync('./package.json');
-        fs.renameSync('./package.json.tmp', './package.json');
+        process.chdir('../../');
     });
 });
