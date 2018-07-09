@@ -1,5 +1,8 @@
 # Changelog
 
+## v4.2.0
+`yaspeller` field in `package.json` #100 (@thepocp), #101 (@shashkovdanil).
+
 ## v4.1.0
 - Updated deps in package.json.
 - Warnings for unknown properties in config files #94.
