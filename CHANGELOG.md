@@ -1,5 +1,8 @@
 # Changelog
 
+## v4.2.1
+FIX: TypeError: Cannot destructure property config of 'undefined' or 'null' #103.
+
 ## v4.2.0
 `yaspeller` field in `package.json` #100 (@thepocp), #101 (@shashkovdanil).
 
