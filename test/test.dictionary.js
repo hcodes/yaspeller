@@ -53,17 +53,53 @@ describe('Dictionary', function() {
     });
 
     it('isTypo()', function() {
-        const dict = dictionary.prepareDictionary([
-            'контрол'
-        ]);
-
-        assert.isFalse(dictionary.isTypo('Контрол', dict));
-
-        const dict2 = dictionary.prepareDictionary([
-            'Контрол'
-        ]);
-
-        assert.isTrue(dictionary.isTypo('контрол', dict2));
+        [
+            {
+                dict: [
+                    'контрол'
+                ],
+                word: 'Контрол',
+                result: false
+            },
+            {
+                dict: [
+                    'Контрол'
+                ],
+                word: 'контрол',
+                result: true
+            },
+            {
+                dict: [
+                    'митап'
+                ],
+                word: 'митап',
+                result: false
+            },
+            {
+                dict: [
+                    'митап'
+                ],
+                word: 'тестмитап',
+                result: true
+            },
+            {
+                dict: [
+                    'митап'
+                ],
+                word: 'немитап',
+                result: true
+            },
+            {
+                dict: [
+                    'митап'
+                ],
+                word: 'багмитапбаг',
+                result: true
+            }
+        ].forEach(item => {
+            const dict = dictionary.prepareDictionary(item.dict);
+            assert.equal(item.result, dictionary.isTypo(item.word, dict), item.word);
+        });
     });
 
     it('removeDuplicates()', function() {
@@ -101,17 +137,17 @@ describe('Dictionary', function() {
 
     it('set(), dictionary from config', function() {
         dictionary.set([], ['a']);
-        assert.deepEqual(dictionary._dict, [/[aA]/]);
+        assert.deepEqual(dictionary._dict, [/^[aA]$/]);
     });
 
     it('set()', function() {
         dictionary.set(['test/dict/a.json', 'test/dict/b.json'], ['a']);
         assert.deepEqual(dictionary._dict, [
-            /[aA]/,
-            /[xX]yz/,
-            /[aA]bc/,
-            /CLI/,
-            /[dD]eps/
+            /^[aA]$/,
+            /^[xX]yz$/,
+            /^[aA]bc$/,
+            /^CLI$/,
+            /^[dD]eps$/
         ]);
     });
 
