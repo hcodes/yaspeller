@@ -1,5 +1,9 @@
 # Changelog
 
+## v5.0.0
+- FIX: **Breaking changes**: Incorrect work of dictionary words in substrings #106.
+- FIX: Comments in JSON  #108.
+
 ## v4.2.1
 FIX: TypeError: Cannot destructure property config of 'undefined' or 'null' #103.
 
