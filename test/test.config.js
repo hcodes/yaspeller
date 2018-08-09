@@ -19,6 +19,10 @@ describe('Config', function() {
     it('get, custom config', function() {
         assert.deepEqual(config.get('./test/json/no_comment.json'), ['1']);
     });
+    
+    it('get, custom config with comments', function() {
+        assert.deepEqual(config.get('./test/json/comment.json'), ['1']);
+    });
 
     it('get, default config', function() {
         assert.ok(Object.keys(config.get(null)).length);
