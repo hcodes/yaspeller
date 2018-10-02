@@ -1,5 +1,8 @@
 # Changelog
 
+## v5.0.1
+- FIX: sitemap.xml - TypeError: Cannot read property 'replace' of undefined #113.
+
 ## v5.0.0
 - FIX: **Breaking changes**: Incorrect work of dictionary words in substrings #106.
 - FIX: Comments in JSON  #108.
