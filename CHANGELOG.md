@@ -1,5 +1,9 @@
 # Changelog
 
+## v5.1.0
+- Updated deps in package.json.
+- Add warning where to fix a typo #115.
+
 ## v5.0.1
 - FIX: sitemap.xml - TypeError: Cannot read property 'replace' of undefined #113.
 
