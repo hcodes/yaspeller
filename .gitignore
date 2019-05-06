@@ -3,6 +3,7 @@ yaspeller_report.*
 yaspeller_error_dictionary.json
 coverage/
 node_modules/
+.nyc_output/
 npm-debug.log
 
 # Windows image file caches
