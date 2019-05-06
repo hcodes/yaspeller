@@ -17,15 +17,23 @@ afterEach(function() {
 
 describe('Config', function() {
     it('get, custom config', function() {
-        assert.deepEqual(config.get('./test/json/no_comment.json'), ['1']);
+        assert.deepEqual(config.get('./test/json/no_comment.json'), {
+            relativePath: 'test/json/no_comment.json',
+            data: ['1']
+        });
     });
     
     it('get, custom config with comments', function() {
-        assert.deepEqual(config.get('./test/json/comment.json'), ['1']);
+        assert.deepEqual(config.get('./test/json/comment.json'), {
+            relativePath: 'test/json/comment.json',
+            data: ['1']
+        });
     });
 
     it('get, default config', function() {
-        assert.ok(Object.keys(config.get(null)).length);
+        const result = config.get(null);
+        assert.equal(result.relativePath, '.yaspellerrc');
+        assert.ok(Object.keys(result.data).length);
     });
 
     it('get, throw', function() {
@@ -49,7 +57,7 @@ describe('Config', function() {
 
     it('get, config from package.json', function() {
         process.chdir('./test/json');
-        assert.deepEqual(config.get(null), { lang: 'en,ru' });
+        assert.deepEqual(config.get(null).data, { lang: 'en,ru' });
         process.chdir('../../');
     });
 });
