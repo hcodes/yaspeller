@@ -46,7 +46,8 @@
     "showdown": "^1.9.0",
     "strip-json-comments": "^3.0.0",
     "xml2js": "^0.4.19",
-    "yandex-speller": "^2.1.1"
+    "yandex-speller": "^2.1.1",
+    "snyk": "^1.190.0"
   },
   "devDependencies": {
     "chai": "^4.2.0",
@@ -64,12 +65,15 @@
     "eslint": "eslint .",
     "yaspeller": "node bin/yaspeller .",
     "unit-test": "mocha",
-    "unit-test-coverage": "nyc mocha"
+    "unit-test-coverage": "nyc mocha",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "files": [
     "bin",
     "lib",
     ".yaspellerrc.default.json",
     "LICENSE.md"
-  ]
+  ],
+  "snyk": true
 }
