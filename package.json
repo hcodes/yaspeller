@@ -10,7 +10,7 @@
     "yaspeller": "./bin/yaspeller"
   },
   "description": "Search tool typos in the text, files and websites",
-  "version": "5.1.0",
+  "version": "6.0.0",
   "license": "MIT",
   "homepage": "https://github.com/hcodes/yaspeller",
   "repository": {
@@ -46,7 +46,7 @@
     "showdown": "^1.9.0",
     "strip-json-comments": "^3.0.0",
     "xml2js": "^0.4.19",
-    "yandex-speller": "^2.1.1"
+    "yandex-speller": "^4.0.0"
   },
   "devDependencies": {
     "chai": "^4.2.0",
@@ -57,7 +57,7 @@
     "sinon": "^7.3.2"
   },
   "engines": {
-    "node": ">=4"
+    "node": ">=8"
   },
   "scripts": {
     "test": "npm run-script eslint && npm run-script unit-test-coverage",

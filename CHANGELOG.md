@@ -1,5 +1,9 @@
 # Changelog
 
+## v6.0.0
+- Drop support for old Node.js < 8.
+- Update deps in package.json
+
 ## v5.1.0
 - Updated deps in package.json.
 - Add warning where to fix a typo #115.
