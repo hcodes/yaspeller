@@ -50,7 +50,7 @@
   },
   "devDependencies": {
     "chai": "^4.2.0",
-    "eslint": "^5.16.0",
+    "eslint": "^6.0.1",
     "mocha": "^6.1.4",
     "nyc": "^14.1.0",
     "parse-json": "^4.0.0",
