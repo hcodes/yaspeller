@@ -1,5 +1,8 @@
 # Changelog
 
+## v6.0.1
+- Updated deps in package.json.
+
 ## v6.0.0
 - Drop support for old Node.js < 8.
 - Update deps in package.json
