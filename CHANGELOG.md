@@ -1,5 +1,8 @@
 # Changelog
 
+## v6.0.2
+- Updated deps in package.json.
+
 ## v6.0.1
 - Updated deps in package.json.
 
