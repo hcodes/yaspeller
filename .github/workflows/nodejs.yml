@@ -1,6 +1,6 @@
 name: Node CI
 
-on: [push]
+on: [push, pull_request]
 
 jobs:
   build:
@@ -24,3 +24,11 @@ jobs:
         npm test
       env:
         CI: true
+  coverage:
+    runs-on: [ubuntu-latest]
+    needs: [build]
+    steps:
+      - name: npm i coveralls and send coverage
+        run: |
+          npm i coveralls
+          cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && echo "Coverage data was sent to coveralls!"
