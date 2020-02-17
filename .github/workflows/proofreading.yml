@@ -8,7 +8,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Yaspeller Action
-        uses: heytitle/github-action-yaspeller/@v0.0.4
+        uses: heytitle/github-action-yaspeller/@v0.0.7
         with:
           ext: "*.md"
           dictionary: ".github/workflows/dict.json"
