@@ -1,7 +1,4 @@
-on:
-  push:
-    # Sequence of patterns matched against refs/heads
-    branches: gh-pages
+on: [push, pull_request]
 jobs:
   proofreading:
     runs-on: ubuntu-latest
@@ -11,6 +8,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Yaspeller Action
-        uses: heytitle/github-action-yaspeller/@v0.0.1
+        uses: heytitle/github-action-yaspeller/@v0.0.4
         with:
-          filepath: "*.md"
+          ext: "*.md"
+          dictionary: ".github/workflows/dict.json"
