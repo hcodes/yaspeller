@@ -1,0 +1,16 @@
+on:
+  push:
+    # Sequence of patterns matched against refs/heads
+    branches: gh-pages
+jobs:
+  proofreading:
+    runs-on: ubuntu-latest
+    name: Proofreading
+    steps:
+      # To use this repository's private action, you must check out the repository
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Yaspeller Action
+        uses: heytitle/github-action-yaspeller/@v0.0.1
+        with:
+          filepath: "*.md"
