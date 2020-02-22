@@ -28,7 +28,7 @@ describe('API', function() {
         });
     });
 
-    it('checkFile with unknow file', function(done) {
+    it('checkFile with unknown file', function(done) {
         yaspeller.checkFile('./test/texts/unknow.txt', function(err) {
             assert.equal(err, true);
             done();
