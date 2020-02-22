@@ -52,7 +52,7 @@
     "chai": "^4.2.0",
     "eslint": "^6.0.1",
     "mocha": "^6.1.4",
-    "nyc": "^14.1.0",
+    "nyc": "^14.1.1",
     "parse-json": "^5.0.0",
     "sinon": "^7.3.2"
   },
@@ -64,7 +64,7 @@
     "eslint": "eslint .",
     "yaspeller": "node bin/yaspeller .",
     "unit-test": "mocha",
-    "unit-test-coverage": "nyc mocha"
+    "unit-test-coverage": "nyc --reporter=lcov --reporter=text-summary mocha"
   },
   "files": [
     "bin",
