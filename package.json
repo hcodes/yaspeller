@@ -10,7 +10,7 @@
     "yaspeller": "./bin/yaspeller"
   },
   "description": "Search tool typos in the text, files and websites",
-  "version": "6.0.2",
+  "version": "6.0.3",
   "license": "MIT",
   "homepage": "https://github.com/hcodes/yaspeller",
   "repository": {
@@ -32,7 +32,7 @@
     "Yandex.Speller"
   ],
   "dependencies": {
-    "async": "^3.1.1",
+    "async": "^3.2.0",
     "chalk": "^2.4.2",
     "commander": "^3.0.0",
     "cosmiconfig": "^5.2.0",
