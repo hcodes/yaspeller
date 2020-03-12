@@ -24,7 +24,7 @@ Used API [Yandex.Speller](https://tech.yandex.ru/speller/doc/dg/concepts/About-d
 ## Using CLI
 `yaspeller [options] <file-or-directory-or-link...>`
 
-## Using with pre-commit:
+## Using with [pre-commit](http://pre-commit.com/)
 
 Add this to your `.pre-commit-config.yaml`:
 
