@@ -2,5 +2,5 @@
     name: yaspeller
     entry: yaspeller
     language: node
-    types: [markdown]
-    args: ["--find-repeat-words", "--ignore-digits", "--ignore-urls", "--ignore-uppercase"]
+    types: [text]
+    args: []

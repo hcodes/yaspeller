@@ -30,10 +30,10 @@ Add this to your `.pre-commit-config.yaml`:
 
 ```yaml
 - repo: https://github.com/hcodes/yaspeller.git
-  rev: master # Use the sha / tag you want to point at or master
+  rev: '' # Use the sha / tag you want to point at
   hooks:
     - id: yaspeller
-      args: ["--find-repeat-words", "--ignore-digits", "--ignore-urls"]
+      args: []
 ```
 
 
