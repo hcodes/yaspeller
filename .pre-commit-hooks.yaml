@@ -3,4 +3,3 @@
     entry: yaspeller
     language: node
     types: [text]
-    args: []
