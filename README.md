@@ -33,7 +33,6 @@ Add this to your `.pre-commit-config.yaml`:
   rev: '' # Use the sha / tag you want to point at
   hooks:
     - id: yaspeller
-      args: []
 ```
 
 
