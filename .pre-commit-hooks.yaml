@@ -2,7 +2,7 @@
     name: yaspeller
     entry: yaspeller
     language: node
-    files: .*\.(md|markdown)$
+    types: [markdown]
     args: ["--find-repeat-words", "--ignore-digits", "--ignore-urls", "--ignore-uppercase"]
     require_serial: false
     additional_dependencies: []
