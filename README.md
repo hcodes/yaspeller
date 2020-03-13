@@ -24,6 +24,18 @@ Used API [Yandex.Speller](https://tech.yandex.ru/speller/doc/dg/concepts/About-d
 ## Using CLI
 `yaspeller [options] <file-or-directory-or-link...>`
 
+## Using with [pre-commit](https://pre-commit.com/)
+
+Add this to your `.pre-commit-config.yaml`:
+
+```yaml
+- repo: https://github.com/hcodes/yaspeller.git
+  rev: '' # Use the sha / tag you want to point at
+  hooks:
+    - id: yaspeller
+```
+
+
 ### Examples
 + `yaspeller README.md` — search typos in the file.
 + `yaspeller "*.md"` — node glob syntax for Windows.

@@ -1,0 +1,5 @@
+-   id: yaspeller
+    name: yaspeller
+    entry: yaspeller
+    language: node
+    types: [text]
