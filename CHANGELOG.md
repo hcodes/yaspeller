@@ -1,7 +1,9 @@
 # Changelog
 
-## v6.0.3
+## v6.0.4
 - Fix: print a typo warning at the end if there are typos #121.
+
+## v6.0.3
 - Updated deps in package.json.
 
 ## v6.0.2
