@@ -35,7 +35,7 @@
     "async": "^3.2.0",
     "chalk": "^3.0.0",
     "commander": "^3.0.0",
-    "cosmiconfig": "^5.2.0",
+    "cosmiconfig": "^6.0.0",
     "entities": "^2.0.0",
     "escape-html": "^1.0.3",
     "eyo-kernel": "^2.5.6",
