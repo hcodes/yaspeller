@@ -22,7 +22,7 @@ yaspeller
 
 ### Примеры
 + `yaspeller README.md` — поиск опечаток в файле.
-+ `yaspeller -e ".md,.html,.js" ./texts/` — поиск опечаток в файлах в папке.
++ `yaspeller -e ".md,.html" ./texts/` — поиск опечаток в файлах в папке.
 + `yaspeller https://ru.wikipedia.org/wiki/%D0%9E%D0%BF%D0%B5%D1%87%D0%B0%D1%82%D0%BA%D0%B0` — поиск опечаток на странице сайта.
 + `yaspeller http://bem.info/sitemap.xml` — поиск опечаток в адресах, перечисленных в sitemap.xml.
 + `echo "Hello, world!" | yaspeller`
@@ -154,8 +154,7 @@ JSON-файл собственного словаря.
   "lang": "ru",
   "fileExtensions": [
     ".md",
-    ".js",
-    ".css"
+    ".txt"
   ],
   "dictionary": [
     "someword1"
@@ -176,8 +175,7 @@ JSON-файл собственного словаря.
   "lang": "en",
   "fileExtensions": [
     ".md",
-    ".js",
-    ".css"
+    ".txt"
   ],
   "report": ["console", "html"],
   "dictionary": [
