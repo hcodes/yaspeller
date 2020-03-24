@@ -20,6 +20,17 @@ yaspeller
 ## Командная строка
 `yaspeller [options] <file-or-directory-or-link...>`
 
+## Используйте с [pre-commit](https://pre-commit.com/)
+
+Добавте в ваш `.pre-commit-config.yaml`:
+
+```yaml
+- repo: https://github.com/hcodes/yaspeller.git
+  rev: '' # Use the sha / tag you want to point at
+  hooks:
+    - id: yaspeller
+```
+
 ### Примеры
 + `yaspeller README.md` — поиск опечаток в файле.
 + `yaspeller -e ".md,.html" ./texts/` — поиск опечаток в файлах в папке.
