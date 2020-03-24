@@ -18,7 +18,20 @@ describe('API', function() {
             assert.equal(err, false);
             assert.equal(data.data.length, 2);
             done();
-        }, {lang: 'ru', format: 'plain'});
+        }, {lang: 'ru', format: 'plain',  options: { findRepeatWords: true }});
+    });
+
+    it('checkFile markdown', function(done) {
+        yaspeller.checkFile('./test/texts/repeat_words.md', function(err, data) {
+            debug.setDebug(false);
+            assert.equal(err, false);
+            assert.equal(data.data.length, 0);
+            done();
+        }, {
+            lang: 'ru',
+            ignoreTags: ['code'],
+            options: { findRepeatWords: true }
+        });
     });
 
     it('checkFile with window 1251', function(done) {
@@ -111,7 +124,7 @@ describe('API', function() {
             assert.equal(err, false);
             assert.equal(data.length, 2);
             done();
-        }, {lang: 'ru', format: 'plain'});
+        }, {lang: 'ru', format: 'plain', options: { findRepeatWords: true }});
     });
 
     it('checkText > 10000 bytes', function(done) {
