@@ -38,7 +38,7 @@ Add this to your `.pre-commit-config.yaml`:
 ### Examples
 + `yaspeller README.md` — search typos in the file.
 + `yaspeller "*.md"` — node glob syntax for Windows.
-+ `yaspeller -e ".md,.html,.js" ./texts/` — finding typos in files in the folder.
++ `yaspeller -e ".md,.html,.txt" ./texts/` — finding typos in files in the folder.
 + `yaspeller https://ru.wikipedia.org/wiki/%D0%9E%D0%BF%D0%B5%D1%87%D0%B0%D1%82%D0%BA%D0%B0` — search typos in the page.
 + `yaspeller http://bem.info/sitemap.xml` — search typos at the addresses specified in the sitemap.xml.
 + `echo "Hello, world!" | yaspeller --stdin`
@@ -174,7 +174,6 @@ To run the linter:<br/>
   "lang": "ru",
   "fileExtensions": [
     ".md",
-    ".js",
     ".css"
   ],
   "dictionary": [
@@ -196,7 +195,6 @@ To run the linter:<br/>
   "lang": "en",
   "fileExtensions": [
     ".md",
-    ".js",
     ".css"
   ],
   "report": ["console", "html"],
