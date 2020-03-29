@@ -184,21 +184,4 @@ describe('Dictionary', function() {
 
         assert.isTrue(dictionary.isNotOptimizedRegExp('Unknow(a)nword'));
     });
-
-    it('isUpperCase()', function() {
-        assert.isFalse(dictionary.isUpperCase('а'));
-        assert.isTrue(dictionary.isUpperCase('Р'));
-    });
-
-    it('isLowerCase()', function() {
-        assert.isTrue(dictionary.isLowerCase('а'));
-        assert.isFalse(dictionary.isLowerCase('Р'));
-    });
-
-    it('isLetter()', function() {
-        assert.isFalse(dictionary.isLetter('='));
-        assert.isFalse(dictionary.isLetter('-'));
-        assert.isTrue(dictionary.isLetter('o'));
-        assert.isTrue(dictionary.isLetter('P'));
-    });
 });
