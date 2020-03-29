@@ -3,13 +3,16 @@
 const fs = require('fs');
 const program = require('commander');
 
-function sortDictionary(words) {
-    function prepare(word) {
-        return word.toLowerCase().replace(/[()[\]|?+.]/g, '');
-    }
+const { jsonStringify } = require('../lib/helpers/string');
+const { uniq } = require('../lib/helpers/array');
 
+function prepareWord(word) {
+    return word.toLowerCase().replace(/[()[\]|?+.]/g, '');
+}
+
+function sortDictionary(words) {
     words.sort(function(a, b) {
-        return prepare(a).localeCompare(prepare(b));
+        return prepareWord(a).localeCompare(prepareWord(b));
     });
 }
 
@@ -18,6 +21,6 @@ program.parse(process.argv);
 const filename = program.args[0];
 let dict = JSON.parse(fs.readFileSync(filename).toString());
 sortDictionary(dict);
-dict = Array.from(new Set(dict)); // unique values
+dict = uniq(dict);
 
-fs.writeFileSync(filename, JSON.stringify(dict, null, '  '));
+fs.writeFileSync(filename, jsonStringify(dict));

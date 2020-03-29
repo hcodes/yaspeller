@@ -1,10 +1,10 @@
 const yaspeller = require('../lib/yaspeller');
-const debug = require('../lib/debug');
+const { setDebugMode } = require('../lib/helpers/debug');
 const assert = require('chai').assert;
 const fs = require('fs');
 const getFile = name => fs.readFileSync(name).toString('utf-8');
 
-debug.setDebug(true);
+setDebugMode(true);
 
 describe('Options', function() {
     this.timeout(10000);

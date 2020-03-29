@@ -1,5 +1,5 @@
 const yaspeller = require('../lib/yaspeller');
-const debug = require('../lib/debug');
+const { setDebugMode } = require('../lib/helpers/debug');
 const assert = require('chai').assert;
 const fs = require('fs');
 const url404 = 'https://raw.githubusercontent.com/asd9qi9e91ke9k2k193k19';
@@ -7,14 +7,14 @@ const urlUnknown = 'http://dk02keoqwke02keoqwwer923mr923.info/';
 const urlGH = 'https://raw.githubusercontent.com/hcodes/yaspeller/master/test/texts/';
 const getFile = name => fs.readFileSync(name).toString('utf-8');
 
-debug.setDebug(true);
+setDebugMode(true);
 
 describe('API', function() {
     this.timeout(10000);
 
     it('checkFile', function(done) {
         yaspeller.checkFile('./test/texts/repeat_words.txt', function(err, data) {
-            debug.setDebug(false);
+            setDebugMode(false);
             assert.equal(err, false);
             assert.equal(data.data.length, 2);
             done();
@@ -23,7 +23,7 @@ describe('API', function() {
 
     it('checkFile markdown', function(done) {
         yaspeller.checkFile('./test/texts/repeat_words.md', function(err, data) {
-            debug.setDebug(false);
+            setDebugMode(false);
             assert.equal(err, false);
             assert.equal(data.data.length, 0);
             done();
