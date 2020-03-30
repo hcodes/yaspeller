@@ -1,5 +1,10 @@
 # Changelog
 
+## v6.1.0
+- Fix lost symlink #145, #128.
+- Print row:col for repeated words #142, #134.
+- Fix repeated words with code for markdown files #141, #134.
+
 ## v6.0.4
 - Fix: print a typo warning at the end if there are typos #121.
 
