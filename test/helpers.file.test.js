@@ -2,7 +2,7 @@ const assert = require('chai').assert;
 const pth = require('path');
 const {
     isExcludedFile,
-    isDir,
+    isDirectory,
     isRequiredFileExtension,
     findFiles,
     loadFileAsJson,
@@ -25,9 +25,9 @@ describe('File', () => {
         assert.notOk(isExcludedFile(pth.resolve('example.js'), ['*.css']));
     });
 
-    it('isDir', () => {
-        assert.ok(isDir('./test'));
-        assert.notOk(isDir('./README.md'));
+    it('isDirectory', () => {
+        assert.ok(isDirectory('./test'));
+        assert.notOk(isDirectory('./README.md'));
     });
 
     it('findFiles', () => {
