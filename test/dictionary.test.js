@@ -1,14 +1,9 @@
-const yaspeller = require('../lib/yaspeller');
 const dictionary = require('../lib/dictionary');
 const exitCodes = require('../lib/exit-codes');
 const assert = require('chai').assert;
 
 describe('Dictionary', function() {
-    it('removeDictWords(), strings', function() {
-        const dict = dictionary.prepareDictionary([
-            'контрол',
-            'юзабилити'
-        ]);
+    it('removeDictionaryWordsFromData(), strings', function() {
         const typos = [
             {
                 code: 1,
@@ -28,9 +23,12 @@ describe('Dictionary', function() {
             }
         ];
 
-        dictionary._dict = dict;
+        dictionary.set([
+            'контрол',
+            'юзабилити'
+        ]);
 
-        assert.deepEqual(dictionary.removeDictWords(typos), [
+        assert.deepEqual(dictionary.removeDictionaryWordsFromData(typos), [
             {
                 code: 2,
                 word: 'москва'
@@ -42,8 +40,8 @@ describe('Dictionary', function() {
         ]);
     });
 
-    it('prepareDictionary()', function() {
-        const dict = dictionary.prepareDictionary([
+    it('prepareDictionaryWords()', function() {
+        const dict = dictionary.prepareDictionaryWords([
             'контрол',
             '/(Ю|юзабилити/',
             '/москв[а/i',
@@ -97,52 +95,24 @@ describe('Dictionary', function() {
                 result: true
             }
         ].forEach(item => {
-            const dict = dictionary.prepareDictionary(item.dict);
+            const dict = dictionary.prepareDictionaryWords(item.dict);
             assert.equal(item.result, dictionary.isTypo(item.word, dict), item.word);
         });
     });
 
-    it('removeDuplicates()', function() {
-        const typos = [
-            {
-                code: 1,
-                word: 'юзабилити'
-            },
-            {
-                code: 1,
-                word: 'юзабилити'
-            },
-            {
-                code: 1,
-                word: 'мосКва'
-            },
-            {
-                code: 1,
-                word: 'мосКва'
-            },
-            {
-                code: 1,
-                word: 'блабла'
-            }
-        ];
-
-        const result = yaspeller.removeDuplicates(typos);
-        assert.equal(result.length, 3);
-    });
-
     it('getDictionary(), empty params', function() {
-        dictionary.set();
-        assert.deepEqual(dictionary._dict, []);
+        dictionary.loadDictionaries();
+        assert.deepEqual(dictionary.get(), []);
     });
 
     it('set(), dictionary from config', function() {
-        dictionary.set([], ['a']);
-        assert.deepEqual(dictionary._dict, [/^[aA]$/]);
+        dictionary.loadDictionaries([], ['a']);
+        assert.deepEqual(dictionary.get(), [/^[aA]$/]);
     });
 
     it('set()', function() {
-        dictionary.set(['test/dict/a.json', 'test/dict/b.json'], ['a']);
-        assert.deepEqual(dictionary._dict, [
+        dictionary.loadDictionaries(['test/dict/a.json', 'test/dict/b.json'], ['a']);
+        assert.deepEqual(dictionary.get(), [
             /^[aA]$/,
             /^[xX]yz$/,
             /^[aA]bc$/,
@@ -152,17 +122,17 @@ describe('Dictionary', function() {
     });
 
     it('set(), is not utf8', function() {
-        dictionary.set(['test/dict/not_utf8.json']);
+        dictionary.loadDictionaries(['test/dict/not_utf8.json']);
         assert.equal(process.exit.args[0], exitCodes.ERROR_DICTIONARY);
     });
 
     it('set(), error parsing', function() {
-        dictionary.set(['test/dict/error_parsing.json']);
+        dictionary.loadDictionaries(['test/dict/error_parsing.json']);
         assert.equal(process.exit.args[0], exitCodes.ERROR_DICTIONARY);
     });
 
     it('set(), not exists', function() {
-        dictionary.set(['test/dict/not_exists.json']);
+        dictionary.loadDictionaries(['test/dict/not_exists.json']);
         assert.equal(process.exit.args[0], exitCodes.ERROR_DICTIONARY);
     });
 
