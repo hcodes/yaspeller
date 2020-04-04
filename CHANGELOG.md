@@ -1,5 +1,9 @@
 # Changelog
 
+## v7.0.0
+- Drop support for Node.js < 10.
+- Add .yaspellerrc.js and .yaspellerrc.json for project config #153, #150
+
 ## v6.1.0
 - Fix lost symlink #145, #128.
 - Print row:col for repeated words #142, #134.
