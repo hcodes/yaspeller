@@ -151,6 +151,8 @@ JSON-файл собственного словаря.
 `yaspeller` настраивается, используя JSON-файл, расположенный в корне проекта:
 
 - `.yaspellerrc`
+- `.yaspellerrc.js`
+- `.yaspellerrc.json`
 - `.yaspeller.json`
 - `package.json`, поле `yaspeller`
 
