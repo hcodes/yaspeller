@@ -160,6 +160,8 @@ To run the linter:<br/>
 `yaspeller` is configured using JSON file at the root of the project:
 
 - `.yaspellerrc`
+- `.yaspellerrc.js`
+- `.yaspellerrc.json`
 - `.yaspeller.json`
 - `package.json`, field `yaspeller`
 
