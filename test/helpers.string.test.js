@@ -1,11 +1,16 @@
 const assert = require('chai').assert;
 const {
     kebabCase,
+    isHTML,
+    isMarkdown,
+    jsonStringify,
     replaceEngLettersWithAsterisk,
     replaceRusLettersWithAsterisk,
     hasEngRusLetters,
+    splitTrim,
+    splitByCommas,
     stripTags,
-} = require('../lib/helpers/string'); 
+} = require('../lib/helpers/string');
 
 describe('String', () => {
     it('kebabCase', () => {
@@ -32,4 +37,32 @@ describe('String', () => {
     it('stripTags', () => {
         assert.ok(stripTags('<p>Hello</p>', 'Hello'));
     });
+
+    it('isHTML', () => {
+        assert.ok(isHTML('<p>Hello</p>'));
+        assert.notOk(isHTML('Hello world'));
+    });
+
+    it('isMarkdown', () => {
+        assert.ok(isMarkdown('```code```'));
+        assert.notOk(isMarkdown('Hello world'));
+    });
+
+    it('jsonStringify', () => {
+        assert.equal(jsonStringify({ a: 1, b: 2 }), '{\n  "a": 1,\n  "b": 2\n}');
+    });
+
+    it('isMarkdown', () => {
+        assert.ok(isMarkdown('```code```'));
+        assert.notOk(isMarkdown('Hello world'));
+    });
+
+    it('splitTrim', () => {
+        assert.deepEqual(splitTrim(' 1:2 ', ':'), ['1', '2']);
+    });
+
+    it('splitByComma', () => {
+        assert.deepEqual(splitByCommas('console , html '), ['console', 'html']);
+    });
+
 });
