@@ -4,7 +4,6 @@ yaspeller
 [![NPM Downloads](https://img.shields.io/npm/dm/yaspeller.svg?style=flat)](https://www.npmjs.org/package/yaspeller)
 [![Coverage Status](https://img.shields.io/coveralls/hcodes/yaspeller.svg)](https://coveralls.io/r/hcodes/yaspeller)
 [![Dependency Status](https://img.shields.io/david/hcodes/yaspeller.svg)](https://david-dm.org/hcodes/yaspeller)
-[![Known Vulnerabilities](https://snyk.io/test/github/hcodes/yaspeller/badge.svg)](https://snyk.io/test/github/hcodes/yaspeller)
 
 <img align="right" width="200" src="https://raw.githubusercontent.com/hcodes/yaspeller/master/images/logo.png" />
 
