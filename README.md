@@ -85,7 +85,7 @@ Examples:<br/>
 
 
 #### `--report <type>`
-Set type of report: `console`, `html`, `markdown` or `json`.<br/>
+Set type of report: `console`, `html`, `markdown`, `junit` or `json`.<br/>
 Default: `console`<br/>
 Example: `console,html,custom_report.js`
 

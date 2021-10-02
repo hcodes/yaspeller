@@ -76,7 +76,7 @@ JSON-файл собственного словаря.
 `yaspeller --dictionary my_dict.json:my_dict2.json .`
 
 #### `--report <type>`
-Задать вид отчёта: `console`, `html`, `markdown` или `json`.<br/>
+Задать вид отчёта: `console`, `html`, `markdown`, `junit` или `json`.<br/>
 По умолчанию: `console`<br/>
 Пример: `console,html,custom_report.js`
 
