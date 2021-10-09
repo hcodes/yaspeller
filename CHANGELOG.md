@@ -1,5 +1,8 @@
 # Changelog
 
+## v7.1.0
+Added junit report #171 @Lootjs.
+
 ## v7.0.0
 - Drop support for Node.js < 10.
 - Add .yaspellerrc.js and .yaspellerrc.json for project config #153, #150
