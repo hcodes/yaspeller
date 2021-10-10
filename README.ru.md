@@ -245,8 +245,8 @@ var re = /А-ЯЁ/; /* yaspeller ignore */
 ### Исключить блок
 ```js
 /* yaspeller ignore:start */
-var reUpper = /А-ЯЁ/,
-    reLower = /а-яё/;
+const reUpper = /А-ЯЁ/;
+const reLower = /а-яё/;
 /* yaspeller ignore:end */
 ```
 
@@ -259,8 +259,8 @@ var reUpper = /А-ЯЁ/,
 
 ## Плагин для [Gulp](http://gulpjs.com)
 ```js
-var gulp = require('gulp'),
-    run = require('gulp-run'); // npm install gulp-run --save-dev
+const gulp = require('gulp');
+const run = require('gulp-run'); // npm install gulp-run --save-dev
 
 gulp.task('yaspeller', function (cb) {
     run('./node_modules/.bin/yaspeller ./').exec()
@@ -292,6 +292,7 @@ module.exports = function(grunt) {
 
 ## Ссылки
 - [Yaspeller для CI](https://github.com/ai/yaspeller-ci)
+- [Github Action for Yaspeller](https://github.com/heytitle/github-action-yaspeller)
 
 ## [Лицензия](./LICENSE.md)
 MIT License
