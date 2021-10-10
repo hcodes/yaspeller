@@ -254,8 +254,8 @@ var re = /a-z/; /* yaspeller ignore */
 ### Ignore a block
 ```js
 /* yaspeller ignore:start */
-var reUpper = /A-Z/,
-    reLower = /a-z/;
+const reUpper = /A-Z/;
+const reLower = /a-z/;
 /* yaspeller ignore:end */
 ```
 
@@ -268,8 +268,8 @@ var reUpper = /A-Z/,
 
 ## [Gulp](http://gulpjs.com) plugin
 ```js
-var gulp = require('gulp'),
-    run = require('gulp-run'); // npm install gulp-run --save-dev
+const gulp = require('gulp');
+const run = require('gulp-run'); // npm install gulp-run --save-dev
 
 gulp.task('yaspeller', function (cb) {
     run('./node_modules/.bin/yaspeller .').exec()
@@ -301,6 +301,7 @@ module.exports = function(grunt) {
 
 ## Links
 - [Yaspeller for CI](https://github.com/ai/yaspeller-ci)
+- [Github Action for Yaspeller](https://github.com/heytitle/github-action-yaspeller)
 
 ## [License](./LICENSE.md)
 MIT License
