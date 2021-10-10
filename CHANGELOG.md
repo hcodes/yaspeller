@@ -1,5 +1,9 @@
 # Changelog
 
+## v7.2.0
+- Update deps in package.json
+- Fixed sitemap bug #169
+
 ## v7.1.0
 Added junit report #171 @Lootjs.
 
