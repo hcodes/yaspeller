@@ -1,5 +1,8 @@
 # Changelog
 
+## v7.2.1
+-  --ignore-tags Not work properly in Markdown files with HTML #176
+
 ## v7.2.0
 - Update deps in package.json
 - Fixed sitemap bug #169
