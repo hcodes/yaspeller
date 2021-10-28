@@ -131,7 +131,7 @@ Ignore Internet addresses, email addresses and filenames.
 Max count of requests in parallel.<br/>
 Default: `2`.
 
-#### `--no-colors`
+#### `--no-color`
 Clean output without colors.
 
 #### `--only-errors`
