@@ -1,5 +1,10 @@
 # Changelog
 
+## v8.0.0
+- Yaspeller requires Node.js 12 or higher.
+- Reducing the size of dependencies #178 @alchazov.
+- CLI `no-colors` option replaced with `no-color`.
+
 ## v7.2.1
 -  --ignore-tags Not work properly in Markdown files with HTML #176
 
