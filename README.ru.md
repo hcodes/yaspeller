@@ -75,6 +75,10 @@ JSON-файл собственного словаря.
 `yaspeller --dictionary my_dict.json .`<br/>
 `yaspeller --dictionary my_dict.json:my_dict2.json .`
 
+Если у вас много md-файлов, и вы заносите линтер, то, возможно, вам пригодится
+[yaspeller-dictionary-builder](https://github.com/razum2um/yaspeller-dictionary-builder).
+Так вы сможете сгенерировать начальный словарь, где каждая строка будет объединять все словоформы.
+
 #### `--report <type>`
 Задать вид отчёта: `console`, `html`, `markdown`, `junit` или `json`.<br/>
 По умолчанию: `console`<br/>

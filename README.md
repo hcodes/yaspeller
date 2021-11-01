@@ -83,6 +83,9 @@ Examples:<br/>
 `yaspeller --dictionary my_dict.json .`<br/>
 `yaspeller --dictionary my_dict.json:my_dict2.json .`
 
+If you have tons of markdown and introduce this linter, you're likely to want
+generation of initial dictionary with [yaspeller-dictionary-builder](https://github.com/razum2um/yaspeller-dictionary-builder),
+so one line will cover all word's forms.
 
 #### `--report <type>`
 Set type of report: `console`, `html`, `markdown`, `junit` or `json`.<br/>
