@@ -42,7 +42,7 @@
     "lilconfig": "^2.0.3",
     "marked": "^3.0.8",
     "minimatch": "^3.0.4",
-    "node-fetch": "^2.6.2",
+    "node-fetch": "^3.1.1",
     "picocolors": "^1.0.0",
     "secure-json-parse": "^2.4.0",
     "strip-json-comments": "^3.1.1",
