@@ -1,5 +1,8 @@
 # Changelog
 
+## v8.0.1
+Update deps in package.json.
+
 ## v8.0.0
 - Yaspeller requires Node.js 12 or higher.
 - Reducing the size of dependencies #178 @alchazov.
