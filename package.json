@@ -57,7 +57,7 @@
     "sinon": "^17.0.0"
   },
   "engines": {
-    "node": ">=12"
+    "node": ">=16"
   },
   "scripts": {
     "test": "npm run-script eslint && npm run-script unit-test-coverage",
