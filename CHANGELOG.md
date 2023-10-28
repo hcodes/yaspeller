@@ -1,5 +1,8 @@
 # Changelog
 
+## v9.1.0
+- Update `yandex-speller` package.
+
 ## v9.0.0
 - Update deps in package.json.
 - Yaspeller requires Node.js 16 or higher.
