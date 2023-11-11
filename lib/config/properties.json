@@ -6,16 +6,11 @@
     "dictionary": { "type": "array" },
     "report": { "type": "array" },
     "checkYo": { "type": "boolean" },
-    "byWords": { "type": "boolean" },
     "findRepeatWords": { "type": "boolean" },
-    "flagLatin": { "type": "boolean" },
     "ignoreTags": { "type": "array" },
     "ignoreText": { "type": "array" },
     "ignoreCapitalization": { "type": "boolean" },
     "ignoreDigits": { "type": "boolean" },
-    "ignoreLatin": { "type": "boolean" },
-    "ignoreRomanNumerals": { "type": "boolean" },
-    "ignoreUppercase": { "type": "boolean" },
     "ignoreUrls": { "type": "boolean" },
-    "maxRequests": { "type": "number" }    
+    "maxRequests": { "type": "number" }
 }

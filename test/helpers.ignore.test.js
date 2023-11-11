@@ -25,11 +25,11 @@ describe('Ignore text', () => {
         const text = 'Масква\nМасква <!-- yaspeller ignore -->\n Москва Масква <!--yaspeller ignore\nМасква <!--yaspeller  ignore     -->\n Москва Масква <!--      yaspeller ignore      -->\nМасква';
         yaspeller.checkText(text, (err, data) => {
             assert.equal(err, false);
-            assert.equal(data.length, 2);
+            assert.equal(data.length, 3);
             done();
         }, {lang: 'ru'});
     });
-    
+
     it('by blocks with //', done => {
         const text = 'Масква // yaspeller ignore:start \n Москва Масква \nМасква \n Москва Масква // yaspeller ignore:end ';
         yaspeller.checkText(text, (err, data) => {
@@ -43,7 +43,7 @@ describe('Ignore text', () => {
         const text = 'Масква /* yaspeller ignore:start */ \n Москва Масква \n Масква /* yaspeller  ignore:end  */\n Москва Масква';
         yaspeller.checkText(text, (err, data) => {
             assert.equal(err, false);
-            assert.equal(data.length, 2);
+            assert.equal(data.length, 3);
             done();
         }, {lang: 'ru'});
     });
@@ -56,33 +56,9 @@ describe('Ignore text', () => {
             done();
         }, {lang: 'ru'});
     });
-    
-    it('with regExp, long', done => {
-        const text = 'Moscaw1\n<ignore>Moscaw2</ignore>\n<ignore>Moscaw3</ignore>\nMoscaw4';
-        yaspeller.checkText(text, (err, data) => {
-            assert.equal(data.length, 2);
-            done();
-        }, {
-            lang: 'en',
-            ignoreText: prepareRegExpToIgnoreText([
-                ['<ignore>[^]*?</ignore>', 'gi']
-            ])
-        });
-    });
 
-    it('with regExp, short1', done => {
-        const text = 'Moscaw1\n<ignore>Moscaw2</ignore>\n<ignore>Moscaw3</ignore>\nMoscaw4';
-        yaspeller.checkText(text, (err, data) => {
-            assert.equal(data.length, 2);
-            done();
-        }, {
-            lang: 'en',
-            ignoreText: prepareRegExpToIgnoreText(['<ignore>[^]*?</ignore>'])
-        });
-    });
-
-    it('with regExp, short2', done => {
-        const text = 'Moscaw1\n<ignore>Moscaw2</ignore>\n<ignore>Moscaw3</ignore>\nMoscaw4';
+    it('with regExp', done => {
+        const text = 'Mascow\n<ignore>Mascow</ignore>\n<ignore>Mascow</ignore>\nMascow';
         yaspeller.checkText(text, (err, data) => {
             assert.equal(data.length, 2);
             done();

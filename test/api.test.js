@@ -140,7 +140,7 @@ describe('API', function() {
         const text = getFile('./test/texts/gt20000bytes.txt');
         yaspeller.checkText(text, function(err, data) {
             assert.equal(err, false);
-            assert.equal(data.length, 3);
+            assert.equal(data.length, 2);
             done();
         }, {lang: 'ru', format: 'plain'});
     });

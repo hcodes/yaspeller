@@ -229,15 +229,12 @@ To run the linter:<br/>
 | `dictionary` | `Array` | [`--dictionary`](#--dictionary-file) |
 | `report` | `Array` | [`--report`](#--report-type) |
 | `checkYo`    | `Boolean` | [`--check-yo`](#--check-yo) |
-| `byWords`    | `Boolean` | [`--by-words`](#--by-words) |
 | `findRepeatWords` | `Boolean` | [`--find-repeat-words`](#--find-repeat-words) |
-| `flagLatin` | `Boolean` | [`--flag-latin`](#--flag-latin) |
 | `ignoreTags` | `Array` | [`--ignore-tags`](#--ignore-tags-tags) |
 | `ignoreText` | `Array` | [`--ignore-text`](#--ignore-text-regexp) |
 | `ignoreCapitalization` | `Boolean` | [`--ignore-capitalization`](#--ignore-capitalization) |
 | `ignoreDigits` | `Boolean` | [`--ignore-digits`](#--ignore-digits) |
-| `ignoreLatin` | `Boolean` | [`--ignore-latin`](#--ignore-latin) |
-| `ignoreRomanNumerals` | `Boolean` | [`--ignore-roman-numerals`](#--ignore-roman-numerals) |
+(#--ignore-roman-numerals) |
 | `ignoreUppercase` | `Boolean` | [`--ignore-uppercase`](#--ignore-uppercase) |
 | `ignoreUrls` | `Boolean` | [`--ignore-urls`](#--ignore-urls) |
 | `maxRequests` | `Number` | [`--max-requests`](#--max-requests-value) |
