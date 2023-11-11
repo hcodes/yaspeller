@@ -1,5 +1,9 @@
 # Changelog
 
+## v10.0.0
+- Update major `yandex-speller` package.
+- Remove unsupported options of new API Yandex Speller: `flagLatin`, `ignoreLatin`, `byWords`, `ignoreRomanNumerals` and `ignoreUppercase`.
+
 ## v9.1.0
 - Update `yandex-speller` package.
 
