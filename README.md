@@ -33,7 +33,6 @@ Add this to your `.pre-commit-config.yaml`:
     - id: yaspeller
 ```
 
-
 ### Examples
 + `yaspeller README.md` — search typos in the file.
 + `yaspeller "*.md"` — node glob syntax for Windows.
@@ -95,15 +94,8 @@ Example: `console,html,custom_report.js`
 #### `--check-yo`
 Check the correctness of using the letter “Ё” (Yo) in Russian texts.
 
-#### `--by-words`
-Do not use a dictionary environment (context) during the scan.<br/>
-This is useful in cases where the service is transmitted to the input of a list of individual words.
-
 #### `--find-repeat-words`
 Highlight repetitions of words, consecutive. For example, `I flew to to to Cyprus`.
-
-#### `--flag-latin`
-Flag words, written in Latin, as erroneous.
 
 #### `--ignore-tags <tags>`
 Ignore HTML tags.<br/>
@@ -118,15 +110,6 @@ Ignore the incorrect use of UPPERCASE / lowercase letters, for example, in the w
 
 #### `--ignore-digits`
 Ignore words with numbers, such as `avp17h4534`.
-
-#### `--ignore-latin`
-Ignore words, written in Latin, for example, `madrid`.
-
-#### `--ignore-roman-numerals`
-Ignore Roman numerals `I, II, III, ...`.
-
-#### `--ignore-uppercase`
-Ignore words written in capital letters.
 
 #### `--ignore-urls`
 Ignore Internet addresses, email addresses and filenames.
