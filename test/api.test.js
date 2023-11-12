@@ -193,6 +193,16 @@ describe('API', function() {
         }, {lang: 'ru,en', format: 'html'});
     });
 
+    it('Incorrect error with Japanese texts', function(done) {
+        const text = 'こんにちは、世界';
+
+        yaspeller.checkText(text, function(err, data) {
+            assert.equal(err, false);
+            assert.equal(data.length, 1);
+            done();
+        }, {lang: 'ru,en', format: 'html'});
+    });
+
     it('sortByPositions', function() {
         const data = [
             {word: 'Paaris', count: 3, position: [{line: 3, column: 1}], code: 3},

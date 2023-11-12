@@ -1,5 +1,8 @@
 # Changelog
 
+## v10.0.1
+- Fix `TypeError: Cannot read properties of undefined (reading 'length')` #199
+
 ## v10.0.0
 - Update major `yandex-speller` package.
 - Remove unsupported options of new API Yandex Speller: `flagLatin`, `ignoreLatin`, `byWords`, `ignoreRomanNumerals` and `ignoreUppercase`.
