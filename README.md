@@ -217,8 +217,6 @@ To run the linter:<br/>
 | `ignoreText` | `Array` | [`--ignore-text`](#--ignore-text-regexp) |
 | `ignoreCapitalization` | `Boolean` | [`--ignore-capitalization`](#--ignore-capitalization) |
 | `ignoreDigits` | `Boolean` | [`--ignore-digits`](#--ignore-digits) |
-(#--ignore-roman-numerals) |
-| `ignoreUppercase` | `Boolean` | [`--ignore-uppercase`](#--ignore-uppercase) |
 | `ignoreUrls` | `Boolean` | [`--ignore-urls`](#--ignore-urls) |
 | `maxRequests` | `Number` | [`--max-requests`](#--max-requests-value) |
 
