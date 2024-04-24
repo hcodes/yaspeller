@@ -7,6 +7,8 @@ yaspeller
 
 <img align="right" width="200" src="https://raw.githubusercontent.com/hcodes/yaspeller/master/images/logo.png" />
 
+**Проект закрыт, используйте [CSpell](https://cspell.org/) или другую альтернативу. [Пример использования CSpell](https://habr.com/ru/articles/809889/)**
+
 Средство поиска опечаток в тексте, в файлах и на сайтах.
 
 Используется API [Yandex.Speller](https://tech.yandex.ru/speller/doc/dg/concepts/About-docpage/).
