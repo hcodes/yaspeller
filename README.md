@@ -5,6 +5,9 @@ yaspeller
 [![Coverage Status](https://img.shields.io/coveralls/hcodes/yaspeller.svg)](https://coveralls.io/r/hcodes/yaspeller)
 [![install size](https://packagephobia.com/badge?p=yaspeller)](https://packagephobia.com/result?p=yaspeller)
 
+
+**This project is closed, use [CSpell](https://cspell.org/) or another alternative. [Example of using CSpell](https://habr.com/ru/articles/809889/)**
+
 <img align="right" width="200" src="https://raw.githubusercontent.com/hcodes/yaspeller/master/images/logo.png" />
 
 
